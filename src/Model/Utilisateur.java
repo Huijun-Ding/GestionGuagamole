@@ -2,7 +2,7 @@ package Model;
 
 import java.util.ArrayList;
 
-public class Utilisateur {
+public abstract  class Utilisateur {
     private String numU;
     private String mdpU;
     private String nomU;

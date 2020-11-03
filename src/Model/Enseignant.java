@@ -15,15 +15,9 @@ public class Enseignant extends Utilisateur{
         
     }
     
-    public void modifierDateTP() {
-        
-    }
-    
-    public void modofoerHeureDebTP() {
-        
-    }
-    
-    public void modifierHeureFinTP() {
+
+    public void ajouterTP() {
+
         
     }
 }

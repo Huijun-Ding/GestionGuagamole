@@ -4,18 +4,14 @@ import java.util.Date;
 
 public class Reservation {
     private Date dateReservation;
-    private Creneau creneauReservation;
+    private Calendrier calendrierR;
     private Utilisateur utilisateur;
     private Machine machine;
     
-    public Reservation(Date d, Creneau time, Utilisateur u, Machine m) {
+    public Reservation(Date d, Calendrier c, Utilisateur u, Machine m) {
         this.dateReservation = d;
-        this.creneauReservation = time;
+        this.calendrierR =  c;
         this.utilisateur = u;
         this.machine = m;
-    }
-    
-    public void finReservationMachine() {
-        
     }
 }

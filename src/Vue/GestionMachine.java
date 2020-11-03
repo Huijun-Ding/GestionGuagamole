@@ -3,6 +3,7 @@ package Vue;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -11,29 +12,19 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class GestionMachine extends JFrame {
+public class GestionMachine extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GestionMachine frame = new GestionMachine();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	private static JButton btnAjouterMachine = new JButton("Ajouter");
+	private static JButton btnModifierMachine = new JButton("Modifier");
+	private static JButton btnSupprimerMachine = new JButton("Supprimer");
+	private static JButton btnRetourGM = new JButton("Retour");
 	/**
 	 * Create the frame.
 	 */
@@ -54,37 +45,45 @@ public class GestionMachine extends JFrame {
 		lblNewLabel_1.setBounds(31, 50, 97, 16);
 		contentPane.add(lblNewLabel_1);
 		
-		JButton btnAjouterMachine = new JButton("Ajouter");
+		
 		btnAjouterMachine.setBounds(270, 73, 117, 29);
 		contentPane.add(btnAjouterMachine);
 		
-		JButton btnModifierMachine = new JButton("Modifier");
-		btnModifierMachine.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnModifierMachine.setBounds(270, 136, 117, 29);
+		
+		btnModifierMachine.setBounds(270, 115, 117, 29);
 		contentPane.add(btnModifierMachine);
 		
-		JButton btnSupprimerMachine = new JButton("Supprimer");
-		btnSupprimerMachine.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnSupprimerMachine.setBounds(270, 199, 117, 29);
+		
+		btnSupprimerMachine.setBounds(270, 154, 117, 29);
 		contentPane.add(btnSupprimerMachine);
 		
-		JButton btnRetourGM = new JButton("Retour");
-		btnRetourGM.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnRetourGM.setBounds(166, 249, 117, 29);
+		btnRetourGM.setBounds(270, 193, 117, 29);
 		contentPane.add(btnRetourGM);
 		
 		JLabel lblNewLabel = new JLabel("Gestion des machines");
 		lblNewLabel.setBounds(146, 17, 157, 16);
 		contentPane.add(lblNewLabel);
+		
+		btnAjouterMachine.addActionListener(this);
+		btnModifierMachine.addActionListener(this);
+		btnSupprimerMachine.addActionListener(this);
+		btnRetourGM.addActionListener(this);
+		
+		this.setVisible(true);
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==btnAjouterMachine) {
+			this.setVisible(false);
+			AjouterMachine am  = new AjouterMachine();
+		}if(e.getSource()==btnModifierMachine) {
+			this.setVisible(false);
+			ModifierMachine mm = new ModifierMachine();
+		}if(e.getSource()==btnRetourGM) {
+			this.setVisible(false);
+			HomePageAdminM hp = new HomePageAdminM();
+		}
+		
 	}
 
 }

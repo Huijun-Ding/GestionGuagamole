@@ -2,36 +2,27 @@ package Vue;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Font;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class HomePageAdminM extends JFrame {
+public class HomePageAdminM extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					HomePageAdminM frame = new HomePageAdminM();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
+	private static JButton btnSeDeconnecter = new JButton("Se Deconnecter");
+	private static JButton btnGestionSalle = new JButton("Gestion des salles");
+	private static JButton btnGestionMachine = new JButton("Gestion des machines");
 	/**
 	 * Create the frame.
 	 */
@@ -56,20 +47,38 @@ public class HomePageAdminM extends JFrame {
 		prenomAdminM.setBounds(211, 17, 61, 16);
 		contentPane.add(prenomAdminM);
 		
-		JButton btnSeDeconnecter = new JButton("Se Déconnecter");
-		btnSeDeconnecter.setBounds(320, 12, 124, 29);
+		
+		
+		btnSeDeconnecter.setBounds(304, 24, 124, 29);
 		contentPane.add(btnSeDeconnecter);
 		
-		JButton btnGestionSalle = new JButton("Gestion des salles");
-		btnGestionSalle.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		
 		btnGestionSalle.setBounds(40, 136, 168, 52);
 		contentPane.add(btnGestionSalle);
 		
-		JButton btnGestionMachine = new JButton("Gestion des machines");
+		
 		btnGestionMachine.setBounds(259, 136, 168, 52);
 		contentPane.add(btnGestionMachine);
+		
+		btnSeDeconnecter.addActionListener(this);
+		btnGestionSalle.addActionListener(this);
+		btnGestionMachine.addActionListener(this);
+		
+		this.setVisible(true);
 	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==btnSeDeconnecter) {
+			this.setVisible(false);
+			Connexion con = new Connexion();
+		}if(e.getSource()==btnGestionSalle) {
+			this.setVisible(false);
+			GestionSalle gs = new GestionSalle();
+		}if(e.getSource()==btnGestionMachine) {
+			this.setVisible(false);
+			GestionMachine gm = new GestionMachine();
+		}
+		
+	}
+
 }

@@ -1,19 +1,16 @@
 package Vue;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.*;
 
-import javax.swing.JButton;
+import javax.swing.*;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 public class ModifierMachine extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtNumSModifMachine;
 
 	/**
 	 * Launch the application.
@@ -46,7 +43,7 @@ public class ModifierMachine extends JFrame {
 		lblNewLabel.setBounds(136, 6, 191, 16);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Numéro de machine:");
+		JLabel lblNewLabel_1 = new JLabel("Numero de machine:");
 		lblNewLabel_1.setBounds(75, 70, 143, 16);
 		contentPane.add(lblNewLabel_1);
 		
@@ -63,11 +60,11 @@ public class ModifierMachine extends JFrame {
 		btnAnnulerModifMachine.setBounds(75, 226, 117, 29);
 		contentPane.add(btnAnnulerModifMachine);
 		
-		JLabel lblNewLabel_2 = new JLabel("Numéro de Salle:");
+		JLabel lblNewLabel_2 = new JLabel("Numero de Salle:");
 		lblNewLabel_2.setBounds(75, 134, 130, 16);
 		contentPane.add(lblNewLabel_2);
 		
-		txtNumSModifMachine = new JTextField();
+		JTextField txtNumSModifMachine = new JTextField();
 		txtNumSModifMachine.setBounds(267, 129, 130, 26);
 		contentPane.add(txtNumSModifMachine);
 		txtNumSModifMachine.setColumns(10);

@@ -47,11 +47,11 @@ public class ModifierSalle extends JFrame {
 		lblNewLabel.setBounds(136, 6, 191, 16);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Numéro de salle:");
+		JLabel lblNewLabel_1 = new JLabel("Numero de salle:");
 		lblNewLabel_1.setBounds(75, 70, 116, 16);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("Capacité:");
+		JLabel lblNewLabel_2 = new JLabel("Capacite:");
 		lblNewLabel_2.setBounds(75, 161, 103, 16);
 		contentPane.add(lblNewLabel_2);
 		

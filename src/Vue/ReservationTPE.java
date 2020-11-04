@@ -18,13 +18,18 @@ public class ReservationTPE {
         jf2.add(jp, BorderLayout.NORTH);
 
         JPanel jp1 = new JPanel();
-        JLabel labelTP =new JLabel("Choisissez votre TP ：");    //创建标签
-        JComboBox cmbTP = new JComboBox();    //创建JComboBox
-        cmbTP.addItem("--veuillez coisir--");    //向下拉列表中添加一项
+        JLabel labelTP =new JLabel("Choisissez votre TP ：");    
+        JComboBox cmbTP = new JComboBox();  
+        // une boucle de tous les TP correspond à cet étudiant
+        cmbTP.addItem("--veuillez coisir--");    
         cmbTP.addItem("TP Programmation Objet Groupe 2 14H-17h");
+        
+        
+        
+        
         jp1.add(labelTP);
         jp1.add(cmbTP);  
-        JButton btn1 = new JButton("Retour");    //创建按钮
+        JButton btn1 = new JButton("Retour");    
         JButton btn2 = new JButton("Valider");
         jp1.add(btn1);
         jp1.add(btn2);
@@ -87,12 +92,13 @@ public class ReservationTPE {
                     
                     
                     // vers la page de consultation
-                    
+                    jf2.dispose();
+                    new ConsultationE();
                 }
             }
         });         
         
-        jf2.setVisible(true);    //设置窗口可见        
+        jf2.setVisible(true);        
     }
     
     public static void main(String[] args) {

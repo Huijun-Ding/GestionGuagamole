@@ -119,7 +119,7 @@ public class Connexion extends JFrame implements ItemListener, ActionListener{
 			if(controler.connexion(id, mdp, i)!=null) {
 			if(i==3) {
 			this.dispose();
-			HomePageAdminF hpf = new HomePageAdminF();
+			HomePageAdminF hpf = new HomePageAdminF(controler);
 					}
 			else {
 				this.dispose();

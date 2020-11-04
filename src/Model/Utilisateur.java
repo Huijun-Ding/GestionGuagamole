@@ -7,13 +7,21 @@ public class Utilisateur {
     private String mdpU;
     private String nomU;
     private String prenomU;
-    private ArrayList<Reservation> mesReservation;
+    protected ArrayList<Reservation> mesReservation;
     
     public Utilisateur(String num, String mdp, String nom, String prenom) {
         this.numU = num;
         this.mdpU = mdp;
         this.nomU = nom;
         this.prenomU = prenom;
-        mesReservation = new ArrayList();
+        this.mesReservation = new ArrayList<>();
     }
+
+	public ArrayList<Reservation> getMesReservation() {
+		return mesReservation;
+	}
+
+	public void setMesReservation(ArrayList<Reservation> mesReservation) {
+		this.mesReservation = mesReservation;
+	}
 }

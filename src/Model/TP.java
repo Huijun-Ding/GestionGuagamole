@@ -5,7 +5,9 @@ import java.util.Date;
 
 public class TP {
     private String nomTP;
-    private int nbEtudiantsTP;
+    
+
+	private int nbEtudiantsTP;
     private Calendrier calendrierTP;
     private Salle salle;
     private Enseignant enseignant;
@@ -19,6 +21,10 @@ public class TP {
         this.enseignant = e;
         this.groupe = g;
     }
+
+    public String getNomTP() {
+		return nomTP;
+	}
     
     public void supprimerTP() {
       

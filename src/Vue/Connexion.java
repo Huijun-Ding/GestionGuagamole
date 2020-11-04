@@ -123,7 +123,7 @@ public class Connexion extends JFrame implements ItemListener, ActionListener{
 					}
 			else {
 				this.dispose();
-				HomePageAdminM hp = new HomePageAdminM();
+				HomePageAdminM hp = new HomePageAdminM(controler);
 			}
 			}
 			else if(controler.connexion(id, mdp, i)==null) {

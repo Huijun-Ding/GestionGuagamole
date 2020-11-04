@@ -14,8 +14,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-public class GestionSalle extends JFrame implements ActionListener{
+import Controler.ControlerInterface;
 
+public class GestionSalle extends JFrame implements ActionListener{
+	ControlerInterface controler;
 	private JPanel contentPane;
 
 	private static JButton btnAjouterSalle = new JButton("Ajouter");
@@ -25,7 +27,8 @@ public class GestionSalle extends JFrame implements ActionListener{
 	/**
 	 * Create the frame.
 	 */
-	public GestionSalle() {
+	public GestionSalle(ControlerInterface controler) {
+		this.controler = controler;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -75,13 +78,13 @@ public class GestionSalle extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btnRetourGS) {
 			this.dispose();
-			HomePageAdminM am = new HomePageAdminM();
+			HomePageAdminM am = new HomePageAdminM(controler);
 		}if(e.getSource()==btnAjouterSalle) {
 			this.dispose();
-			AjouterSalle as = new AjouterSalle();
+			AjouterSalle as = new AjouterSalle(controler);
 		}if(e.getSource()==btnModifierSalle) {
 			this.dispose();
-			ModifierSalle ms = new ModifierSalle();
+			ModifierSalle ms = new ModifierSalle(controler);
 		}
 		
 	}

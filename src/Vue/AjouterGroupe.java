@@ -8,6 +8,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Controler.ControlerInterface;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -20,10 +23,12 @@ public class AjouterGroupe extends JFrame implements ActionListener{
 	
 	private static JButton btnValiderAG = new JButton("Valider");
 	private static JButton btnRetourAG = new JButton("Retour");
+	ControlerInterface controler;
 	/**
 	 * Create the frame.
 	 */
-	public AjouterGroupe() {
+	public AjouterGroupe(ControlerInterface controler) {
+		this.controler = controler;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -70,10 +75,10 @@ public class AjouterGroupe extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btnValiderAG) {
 			this.dispose();
-			GestionGroupe gg = new GestionGroupe();
+			GestionGroupe gg = new GestionGroupe(controler);
 		}if(e.getSource()==btnRetourAG) {
 			this.dispose();
-			GestionGroupe gg = new GestionGroupe();
+			GestionGroupe gg = new GestionGroupe(controler);
 		}
 		
 	}

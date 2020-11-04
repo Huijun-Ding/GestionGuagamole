@@ -1,35 +1,21 @@
 package Vue;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.*;
 
-import javax.swing.JButton;
+import javax.swing.*;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-public class ModifierMachine extends JFrame {
+public class ModifierMachine extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
-	private JTextField txtNumSModifMachine;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ModifierMachine frame = new ModifierMachine();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private static JButton btnValiderModifMachine = new JButton("Valider");
+	private static JButton btnAnnulerModifMachine = new JButton("Annuler");
 
 	/**
 	 * Create the frame.
@@ -46,7 +32,7 @@ public class ModifierMachine extends JFrame {
 		lblNewLabel.setBounds(136, 6, 191, 16);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Numéro de machine:");
+		JLabel lblNewLabel_1 = new JLabel("Numero de machine:");
 		lblNewLabel_1.setBounds(75, 70, 143, 16);
 		contentPane.add(lblNewLabel_1);
 		
@@ -55,22 +41,39 @@ public class ModifierMachine extends JFrame {
 		contentPane.add(txtNumMModifMachine);
 		txtNumMModifMachine.setColumns(10);
 		
-		JButton btnValiderModifMachine = new JButton("Valider");
+		
 		btnValiderModifMachine.setBounds(280, 226, 117, 29);
 		contentPane.add(btnValiderModifMachine);
 		
-		JButton btnAnnulerModifMachine = new JButton("Annuler");
+		
 		btnAnnulerModifMachine.setBounds(75, 226, 117, 29);
 		contentPane.add(btnAnnulerModifMachine);
 		
-		JLabel lblNewLabel_2 = new JLabel("Numéro de Salle:");
+		JLabel lblNewLabel_2 = new JLabel("Numero de Salle:");
 		lblNewLabel_2.setBounds(75, 134, 130, 16);
 		contentPane.add(lblNewLabel_2);
 		
-		txtNumSModifMachine = new JTextField();
+		JTextField txtNumSModifMachine = new JTextField();
 		txtNumSModifMachine.setBounds(267, 129, 130, 26);
 		contentPane.add(txtNumSModifMachine);
 		txtNumSModifMachine.setColumns(10);
+		
+		btnValiderModifMachine.addActionListener(this);
+		btnAnnulerModifMachine.addActionListener(this);
+		
+		this.setVisible(true);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==btnValiderModifMachine) {
+			this.dispose();
+			GestionMachine gm = new GestionMachine();
+		}if(e.getSource()==btnAnnulerModifMachine) {
+			this.dispose();
+			GestionMachine gm = new GestionMachine();
+		}
+		
 	}
 
 }

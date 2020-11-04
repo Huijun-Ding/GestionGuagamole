@@ -10,17 +10,20 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Controler.ControlerInterface;
+
 public class ModifierMachine extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
-
+	ControlerInterface controler;
 	private static JButton btnValiderModifMachine = new JButton("Valider");
 	private static JButton btnAnnulerModifMachine = new JButton("Annuler");
 
 	/**
 	 * Create the frame.
 	 */
-	public ModifierMachine() {
+	public ModifierMachine(ControlerInterface controler) {
+		this.controler = controler;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -68,10 +71,10 @@ public class ModifierMachine extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btnValiderModifMachine) {
 			this.dispose();
-			GestionMachine gm = new GestionMachine();
+			GestionMachine gm = new GestionMachine(controler);
 		}if(e.getSource()==btnAnnulerModifMachine) {
 			this.dispose();
-			GestionMachine gm = new GestionMachine();
+			GestionMachine gm = new GestionMachine(controler);
 		}
 		
 	}

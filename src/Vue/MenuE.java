@@ -33,8 +33,10 @@ public class MenuE {
         JPanel jp2 = new JPanel();
         JButton btn3 = new JButton("Réserver pour un TP");
         JButton btn4 = new JButton("Réserver une machine libre");
+        JButton btn5 = new JButton("Retour");
         jp2.add(btn3);
         jp2.add(btn4);
+        jp2.add(btn5, BorderLayout.SOUTH);
 
         cards.add(jp1, "card1");    //向卡片式布局面板中添加面板1
         cards.add(jp2, "card2");    //向卡片式布局面板中添加面板2
@@ -49,6 +51,14 @@ public class MenuE {
                 }
             }
         });
+        
+        btn5.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == btn5) {
+                    cl.show(cards, "card1");
+                }
+            }
+        });        
         
         jf.setVisible(true);    //设置窗口可见
     }

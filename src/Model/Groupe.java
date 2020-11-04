@@ -6,6 +6,7 @@ public class Groupe {
     private String numGroupe;
     private Formation formation;
     private ArrayList<Etudiant> etudiants;
+    private ArrayList<TP> listTPs;
     
     public Groupe(String num, Formation f) {
         this.numGroupe = num;
@@ -18,5 +19,17 @@ public class Groupe {
     
     public void supprimerEtudiantGroupe() {
         
+    }
+    
+    public void addListTPs() {
+        
+    }
+    
+    public void removeListTPs() {
+        
+    }
+    
+    public ArrayList<TP> getListTPs() {
+        return this.listTPs;
     }
 }

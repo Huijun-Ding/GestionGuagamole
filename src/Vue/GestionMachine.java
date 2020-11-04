@@ -12,12 +12,15 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+
+import Controler.ControlerInterface;
+
 import java.awt.event.ActionEvent;
 
 public class GestionMachine extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
-
+	ControlerInterface controler;
 	/**
 	 * Launch the application.
 	 */
@@ -28,7 +31,8 @@ public class GestionMachine extends JFrame implements ActionListener{
 	/**
 	 * Create the frame.
 	 */
-	public GestionMachine() {
+	public GestionMachine(ControlerInterface controler) {
+		this.controler = controler;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -75,13 +79,13 @@ public class GestionMachine extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btnAjouterMachine) {
 			this.dispose();
-			AjouterMachine am  = new AjouterMachine();
+			AjouterMachine am  = new AjouterMachine(controler);
 		}if(e.getSource()==btnModifierMachine) {
 			this.dispose();
-			ModifierMachine mm = new ModifierMachine();
+			ModifierMachine mm = new ModifierMachine(controler);
 		}if(e.getSource()==btnRetourGM) {
 			this.dispose();
-			HomePageAdminM hp = new HomePageAdminM();
+			HomePageAdminM hp = new HomePageAdminM(controler);
 		}
 		
 	}

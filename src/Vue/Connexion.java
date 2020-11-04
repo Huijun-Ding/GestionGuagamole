@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Controler.ControlerInterface;
-
+import BD.Query;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ItemEvent;
@@ -29,7 +29,7 @@ public class Connexion extends JFrame implements ItemListener, ActionListener{
 	private static JPasswordField passConn;
 	private ControlerInterface controler;
 
-	private static JRadioButton rdEtudiant = new JRadioButton("Etudiant",true);
+	private static JRadioButton rdEtudiant = new JRadioButton("Etudiant",false);
 	private static JRadioButton rdEnseignant = new JRadioButton("Enseignant",false);
 	private static JRadioButton rdRespoF = new JRadioButton("Respo. Formation",false);
 	private static JLabel lblNewLabel = new JLabel("Connexion");
@@ -99,7 +99,7 @@ public class Connexion extends JFrame implements ItemListener, ActionListener{
 		this.setVisible(true);
 	}
 	
-	static int i = 1;
+	static int i = 0;
 	@Override
 	public void itemStateChanged(ItemEvent arg0) {
 		if(arg0.getSource()==rdEtudiant) {
@@ -109,24 +109,28 @@ public class Connexion extends JFrame implements ItemListener, ActionListener{
 		}else if(arg0.getSource()==rdRespoF) {
 			i=3;
 		}
-		System.out.print(i);
 	}
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent arg0){
 		if(arg0.getSource()==btnValiderConn) {
 			String identifiant = txtIdentifiantConn.getText();
+			int id = Integer.parseInt(identifiant);
 			String mdp = new String(passConn.getPassword());
-			System.out.println(identifiant);
-			System.out.println(mdp);
-			if(controler.connexion(identifiant, mdp, i)!=null) {
+			if(controler.connexion(id, mdp, i)!=null) {
+			if(i==3) {
 			this.dispose();
-			HomePageAdminM hp = new HomePageAdminM();
-			}if(controler.connexion(identifiant, mdp, i)==null) {
+			HomePageAdminF hpf = new HomePageAdminF();
+					}
+			else {
+				this.dispose();
+				HomePageAdminM hp = new HomePageAdminM();
+			}
+			}
+			else if(controler.connexion(id, mdp, i)==null) {
 				this.dispose();
 				System.out.println("Error");
 				Connexion conn = new Connexion(controler);
 			}
-
 
 		}
 		else if(arg0.getSource()==btnAnnulerConn) {

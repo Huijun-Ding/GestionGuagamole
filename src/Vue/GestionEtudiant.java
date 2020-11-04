@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Controler.ControlerInterface;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -21,10 +24,12 @@ public class GestionEtudiant extends JFrame implements ActionListener{
 	private static JButton btnModifierEtudiant = new JButton("Modifier");
 	private static JButton btnSupprimerEtudiant = new JButton("Supprimer");
 	private static JButton btnRetourGE = new JButton("Retour");
+	ControlerInterface controler;
 	/**
 	 * Create the frame.
 	 */
-	public GestionEtudiant() {
+	public GestionEtudiant(ControlerInterface controler) {
+		this.controler=controler;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -67,14 +72,16 @@ public class GestionEtudiant extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btnAjouterEtudiant) {
+			AjouterEtudiant ae = new AjouterEtudiant(controler);
 			this.dispose();
 		}if(e.getSource()==btnModifierEtudiant) {
+			ModiferEtudiant me = new ModiferEtudiant(controler);
 			this.dispose();
 		}if(e.getSource()==btnSupprimerEtudiant) {
 			
 		}if(e.getSource()==btnRetourGE) {
 			this.dispose();
-			HomePageAdminF hp = new HomePageAdminF();
+			HomePageAdminF hp = new HomePageAdminF(controler);
 		}
 		
 	}

@@ -1,5 +1,7 @@
 package BD;
 import java.sql.*;
+
+import Model.AdminRespoF;
 public class BDconfig {
     static Connection con;
     public Connection getConnection() {
@@ -16,4 +18,5 @@ public class BDconfig {
     	}
     	return con;
     }
+ 
 }

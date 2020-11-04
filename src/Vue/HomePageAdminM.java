@@ -30,7 +30,8 @@ public class HomePageAdminM extends JFrame implements ActionListener{
 	/**
 	 * Create the frame.
 	 */
-	public HomePageAdminM() {
+	public HomePageAdminM(ControlerInterface controler) {
+		this.controler = controler;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -77,10 +78,10 @@ public class HomePageAdminM extends JFrame implements ActionListener{
 			Connexion con = new Connexion(controler);
 		}if(e.getSource()==btnGestionSalle) {
 			this.dispose();
-			GestionSalle gs = new GestionSalle();
+			GestionSalle gs = new GestionSalle(controler);
 		}if(e.getSource()==btnGestionMachine) {
 			this.dispose();
-			GestionMachine gm = new GestionMachine();
+			GestionMachine gm = new GestionMachine(controler);
 		}
 		
 	}

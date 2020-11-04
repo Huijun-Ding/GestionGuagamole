@@ -12,8 +12,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-public class AjouterMachine extends JFrame implements ActionListener{
+import Controler.ControlerInterface;
 
+public class AjouterMachine extends JFrame implements ActionListener{
+	ControlerInterface controler;
 	private JPanel contentPane;
 
 
@@ -22,7 +24,8 @@ public class AjouterMachine extends JFrame implements ActionListener{
 	/**
 	 * Create the frame.
 	 */
-	public AjouterMachine() {
+	public AjouterMachine(ControlerInterface controler) {
+		this.controler=controler;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -69,10 +72,10 @@ public class AjouterMachine extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btnValiderAM) {
 			this.dispose();
-			GestionMachine gm = new GestionMachine();
+			GestionMachine gm = new GestionMachine(controler);
 		}if(e.getSource()==btnAnnulerAM) {
 			this.dispose();
-			GestionMachine gm1 = new GestionMachine();
+			GestionMachine gm1 = new GestionMachine(controler);
 		}
 		
 	}

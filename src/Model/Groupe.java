@@ -3,47 +3,48 @@ package Model;
 import java.util.ArrayList;
 
 public class Groupe {
-    private String numGroupe;
+
+    private int numGroupe;
     private Formation formation;
     private ArrayList<Etudiant> etudiants;
-    private ArrayList<TP>listeTPs;
+    private ArrayList<TP> listeTPs;
 
-    
-    public Groupe(String num, Formation f) {
+    public Groupe(int num, Formation f) {
         this.numGroupe = num;
         this.formation = f;
         this.etudiants = new ArrayList<>();
         this.listeTPs = new ArrayList<>();
     }
-    
+
     public ArrayList<TP> getListeTPs() {
-		return listeTPs;
-	}
-   
-    public void ajouterTP(TP tp) {
-		listeTPs.add(tp);
-    	
+        return listeTPs;
     }
 
-	public String getNumGroupe() {
-    	return numGroupe;
+    public void ajouterTP(TP tp) {
+        this.listeTPs.add(tp);
     }
-	
+
+    public void removeListTPs(TP tp) {
+        this.listeTPs.remove(tp);
+    }
+    
+    public int getNumGroupe() {
+        return numGroupe;
+    }
+
     public void ajouterEtudiantGroupe(Etudiant etu) {
-    	etudiants.add(etu);
-        
+        this.etudiants.add(etu);
+    }
+
+    public void supprimerEtudiantGroupe(Etudiant e) {
+        this.etudiants.remove(e);
     }
     
-    public void supprimerEtudiantGroupe() {
-        
+    public ArrayList<Etudiant> getEtudiants() {
+        return this.etudiants;
     }
-    
-    public void addListTPs() {
-        
+
+    public int getNbEtudiant() {
+        return this.etudiants.size();
     }
-    
-    public void removeListTPs() {
-        
-    }
-    
 }

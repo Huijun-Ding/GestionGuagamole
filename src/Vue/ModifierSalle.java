@@ -2,6 +2,8 @@ package Vue;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -10,28 +12,14 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class ModifierSalle extends JFrame {
+public class ModifierSalle extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
 	private JTextField txtNumSModif;
 	private JTextField txtCSModif;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ModifierSalle frame = new ModifierSalle();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	private static JButton btnValiderModifSalle = new JButton("Valider");
+	private static JButton btnAnnulerModifSalle = new JButton("Annuler");
 	/**
 	 * Create the frame.
 	 */
@@ -47,11 +35,11 @@ public class ModifierSalle extends JFrame {
 		lblNewLabel.setBounds(136, 6, 191, 16);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Numéro de salle:");
+		JLabel lblNewLabel_1 = new JLabel("Numero de salle:");
 		lblNewLabel_1.setBounds(75, 70, 116, 16);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("Capacité:");
+		JLabel lblNewLabel_2 = new JLabel("Capacite:");
 		lblNewLabel_2.setBounds(75, 161, 103, 16);
 		contentPane.add(lblNewLabel_2);
 		
@@ -65,13 +53,29 @@ public class ModifierSalle extends JFrame {
 		contentPane.add(txtCSModif);
 		txtCSModif.setColumns(10);
 		
-		JButton btnValiderModifSalle = new JButton("Valider");
+		
 		btnValiderModifSalle.setBounds(280, 226, 117, 29);
 		contentPane.add(btnValiderModifSalle);
 		
-		JButton btnAnnulerModifSalle = new JButton("Annuler");
+		
 		btnAnnulerModifSalle.setBounds(75, 226, 117, 29);
 		contentPane.add(btnAnnulerModifSalle);
+		
+		btnValiderModifSalle.addActionListener(this);
+		btnAnnulerModifSalle.addActionListener(this);
+		
+		this.setVisible(true);
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==btnValiderModifSalle) {
+			this.dispose();
+			GestionSalle gs = new GestionSalle();
+		}if(e.getSource()==btnAnnulerModifSalle) {
+			this.dispose();
+			GestionSalle gs = new GestionSalle();
+		}
+		
 	}
 
 }

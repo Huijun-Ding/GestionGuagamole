@@ -1,20 +1,30 @@
 package Model;
 
+import BD.BDconfig;
 import java.util.ArrayList;
+import java.sql.*;
 
 public class Groupe {
 
     private int numGroupe;
+    private String nomGroupe;
     private Formation formation;
     private ArrayList<Etudiant> etudiants;
     private ArrayList<TP> listeTPs;
+    static Connection con;
+    static PreparedStatement sql;
+    static ResultSet res;
 
-    public Groupe(int num, Formation f) {
+    public Groupe(int num, String nom, Formation f) {
         this.numGroupe = num;
+        this.nomGroupe = nom;
         this.formation = f;
         this.etudiants = new ArrayList<>();
         this.listeTPs = new ArrayList<>();
-    }
+        BDconfig c= new BDconfig();
+        con = c.getConnection();
+        ActualiserLstEtudiantGroup();
+    } 
 
     public ArrayList<TP> getListeTPs() {
         return listeTPs;
@@ -47,4 +57,25 @@ public class Groupe {
     public int getNbEtudiant() {
         return this.etudiants.size();
     }
+
+    public void ActualiserLstEtudiantGroup(){
+        etudiants.clear();
+        try {
+            sql=con.prepareStatement("SELECT * FROM etudiant where IdG="+this.numGroupe+";");
+            res = sql.executeQuery();
+            while(res.next()){
+                String num=res.getString("NumE");
+                String mdp=res.getString("MdpE");
+                String nom=res.getString("NomE");
+                String prenom=res.getString("PrenomE");
+                int numgroup=res.getInt("IdG");
+                System.out.println(nom);
+                Etudiant e = new Etudiant(num,mdp,nom,prenom,this);
+                etudiants.add(e);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 }
+

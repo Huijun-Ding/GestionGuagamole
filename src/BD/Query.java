@@ -1,5 +1,7 @@
 package BD;
 import java.sql.*;
+import java.util.ArrayList;
+
 import Model.*;
 
 public class Query {
@@ -18,9 +20,9 @@ public class Query {
     	return con;
     }
 	
-    public Utilisateur ConnexionUilisateur(int id, String mdp, int i) {
-		if(id==1234 && mdp.equals("123456")) {
-			AdminMateriel a = new AdminMateriel(1234,"123456","Duan","Chengyu");
+    public Utilisateur connexionUilisateur(int id, String mdp, int i) {
+		if(id==1234 && mdp.equals("1234")) {
+			AdminMateriel a = new AdminMateriel(1234,"1234","Duan","Chengyu");
 			return a;
 		}		
     	Query conn = new Query();
@@ -48,7 +50,29 @@ public class Query {
     	}catch(Exception e) {
     		e.printStackTrace();
     	}
-    	return null;
-    	
+    	return null;   	
     }
+    public ArrayList<Salle> gestionSalle(){
+    	ArrayList<Salle> salle = new ArrayList<Salle>();
+    	Query conn = new Query();
+    	con = conn.getConnection();
+    	Statement stmt;
+    	ResultSet res;
+    	try {
+    		stmt=con.createStatement();
+    		String sql = "SELECT * FROM salle S";
+    		res=stmt.executeQuery(sql);
+    		while(res.next()) {
+    			int IdS = res.getInt("S.IdS");
+    			String NomS = res.getString("S.NomS");
+    			Salle s = new Salle(IdS,NomS,20);
+    			salle.add(s);
+    		}
+    		return salle;
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    	}
+    	return null;
+    }
+    
 }

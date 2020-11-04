@@ -8,6 +8,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Controler.ControlerInterface;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -17,7 +20,7 @@ public class GererGroupe extends JFrame implements ActionListener{
 	private JPanel contentPane;
 	private JTextField txtNumG;
 	private JTextField txtNumE;
-
+	ControlerInterface controler;
 	private static JButton btnRetour = new JButton("Retour");
 	private static JButton btnAjouterEtudiant = new JButton("Ajouter");
 	private static JButton btnSupprimerEtudiant = new JButton("Supprimer");
@@ -25,7 +28,8 @@ public class GererGroupe extends JFrame implements ActionListener{
 	/**
 	 * Create the frame.
 	 */
-	public GererGroupe() {
+	public GererGroupe(ControlerInterface controler) {
+		this.controler = controler;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -76,13 +80,13 @@ public class GererGroupe extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btnRetour) {
 			this.dispose();
-			GestionGroupe gg = new GestionGroupe();
+			GestionGroupe gg = new GestionGroupe(controler);
 		}if(e.getSource()==btnAjouterEtudiant) {
 			this.dispose();
-			GestionGroupe gg = new GestionGroupe();
+			GestionGroupe gg = new GestionGroupe(controler);
 		}if(e.getSource()==btnSupprimerEtudiant) {
 			this.dispose();
-			GestionGroupe gg = new GestionGroupe();
+			GestionGroupe gg = new GestionGroupe(controler);
 		}
 		
 	}

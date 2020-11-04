@@ -8,6 +8,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Controler.ControlerInterface;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -21,11 +24,13 @@ public class ModiferEtudiant extends JFrame implements ActionListener{
 	private JTextField txtPrenomEME;
 	private static JButton btnValiderME = new JButton("Valider");
 	private static JButton btnRetourME = new JButton("Retour");
+	ControlerInterface controler;
 
 	/**
 	 * Create the frame.
 	 */
-	public ModiferEtudiant() {
+	public ModiferEtudiant(ControlerInterface controler) {
+		this.controler=controler;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -92,10 +97,10 @@ public class ModiferEtudiant extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btnValiderME) {
 			this.dispose();
-			GestionEtudiant ge = new GestionEtudiant ();		
+			GestionEtudiant ge = new GestionEtudiant (controler);		
 			}if(e.getSource()==btnRetourME) {
 				this.dispose();
-				GestionEtudiant ge = new GestionEtudiant();
+				GestionEtudiant ge = new GestionEtudiant(controler);
 			}
 		
 	}

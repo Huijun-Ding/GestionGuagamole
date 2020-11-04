@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Controler.ControlerInterface;
+
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
@@ -16,7 +19,7 @@ import java.awt.Button;
 
 public class GestionGroupe extends JFrame implements ActionListener{
 
-
+	ControlerInterface controler;
 	private JPanel contentPane;
 	private static JButton btnGererGroupeEtudiant = new JButton("Gerer groupe d'etudiant");
 	private static JButton btnAjouterGroupe = new JButton("Ajouter un nouveau groupe");
@@ -24,7 +27,8 @@ public class GestionGroupe extends JFrame implements ActionListener{
 	/**
 	 * Create the frame.
 	 */
-	public GestionGroupe() {
+	public GestionGroupe(ControlerInterface controler) {
+		this.controler=controler;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -62,13 +66,13 @@ public class GestionGroupe extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btnGererGroupeEtudiant) {
 			this.dispose();
-			GererGroupe gg = new GererGroupe();
+			GererGroupe gg = new GererGroupe(controler);
 		}if(e.getSource()==btnAjouterGroupe){
 			this.dispose();
-			AjouterGroupe ag = new AjouterGroupe();
+			AjouterGroupe ag = new AjouterGroupe(controler);
 		}if(e.getSource()==btnRetourGG) {
 			this.dispose();
-			HomePageAdminF hp = new HomePageAdminF();
+			HomePageAdminF hp = new HomePageAdminF(controler);
 		}
 		
 	}

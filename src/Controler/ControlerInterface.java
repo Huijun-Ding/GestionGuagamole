@@ -2,6 +2,9 @@ package Controler;
 
 import Model.*;
 import Vue.*;
+
+import java.util.ArrayList;
+
 import BD.*;
 
 
@@ -12,17 +15,21 @@ public class ControlerInterface {
 	}
 	
     public Utilisateur connexion(int id, String mdp, int i) {
-    	Utilisateur user = query.ConnexionUilisateur(id, mdp, i);
+    	Utilisateur user = query.connexionUilisateur(id, mdp, i);
     	if(user!=null) {
     		if(user instanceof AdminMateriel) {
-    			AdminMateriel am = (AdminMateriel) query.ConnexionUilisateur(id, mdp, i);
+    			AdminMateriel am = (AdminMateriel) query.connexionUilisateur(id, mdp, i);
         		return am;
     		}
     		if(user instanceof AdminRespoF) {
-    			AdminRespoF ar = (AdminRespoF) query.ConnexionUilisateur(id, mdp, i);
+    			AdminRespoF ar = (AdminRespoF) query.connexionUilisateur(id, mdp, i);
     			return ar;
     		}
     	}
     	return null;
+    }
+    
+    public ArrayList<Salle> getListeSalle() {
+    		return query.gestionSalle();
     }
 }

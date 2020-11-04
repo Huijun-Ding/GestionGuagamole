@@ -2,7 +2,7 @@ package Model;
 
 public class AdminMateriel extends Utilisateur{
     
-    public AdminMateriel(String num, String mdp, String nom, String prenom) {
+    public AdminMateriel(int num, String mdp, String nom, String prenom) {
         super(num, mdp, nom, prenom);
     }
     

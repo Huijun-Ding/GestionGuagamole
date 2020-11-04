@@ -77,8 +77,10 @@ public class HomePageAdminF extends JFrame implements ActionListener{
 			Connexion conn = new Connexion(controler);
 		}if(e.getSource()==btnGestionEtudiant) {
 			this.dispose();
+			GestionEtudiant ge = new GestionEtudiant();
 		}if(e.getSource()==btnGestionGroupe) {
 			this.dispose();
+			GestionGroupe gg = new GestionGroupe();
 		}
 		
 	}

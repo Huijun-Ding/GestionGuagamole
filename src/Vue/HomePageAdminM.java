@@ -1,37 +1,32 @@
 package Vue;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
+import java.awt.EventQueue;
+import java.awt.Font;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import java.awt.Font;
+
+import Controler.ControlerInterface;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class HomePageAdminM extends JFrame {
+public class HomePageAdminM extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
-
+	private ControlerInterface controler;
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					HomePageAdminM frame = new HomePageAdminM();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
+	private static JButton btnSeDeconnecter = new JButton("Se Deconnecter");
+	private static JButton btnGestionSalle = new JButton("Gestion des salles");
+	private static JButton btnGestionMachine = new JButton("Gestion des machines");
 	/**
 	 * Create the frame.
 	 */
@@ -43,33 +38,51 @@ public class HomePageAdminM extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Bienvenue");
+		JLabel lblNewLabel = new JLabel("Bienvenue!");
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
 		lblNewLabel.setBounds(23, 6, 103, 36);
 		contentPane.add(lblNewLabel);
 		
-		JLabel nomAdminM = new JLabel("");
-		nomAdminM.setBounds(138, 17, 61, 16);
+		JLabel nomAdminM = new JLabel("DUAN");
+		nomAdminM.setBounds(205, 17, 89, 16);
 		contentPane.add(nomAdminM);
 		
-		JLabel prenomAdminM = new JLabel("");
-		prenomAdminM.setBounds(211, 17, 61, 16);
+		JLabel prenomAdminM = new JLabel("Chengyu");
+		prenomAdminM.setBounds(119, 17, 83, 16);
 		contentPane.add(prenomAdminM);
 		
-		JButton btnSeDeconnecter = new JButton("Se Déconnecter");
-		btnSeDeconnecter.setBounds(320, 12, 124, 29);
+		
+		
+		btnSeDeconnecter.setBounds(304, 24, 124, 29);
 		contentPane.add(btnSeDeconnecter);
 		
-		JButton btnGestionSalle = new JButton("Gestion des salles");
-		btnGestionSalle.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		
 		btnGestionSalle.setBounds(40, 136, 168, 52);
 		contentPane.add(btnGestionSalle);
 		
-		JButton btnGestionMachine = new JButton("Gestion des machines");
+		
 		btnGestionMachine.setBounds(259, 136, 168, 52);
 		contentPane.add(btnGestionMachine);
+		
+		btnSeDeconnecter.addActionListener(this);
+		btnGestionSalle.addActionListener(this);
+		btnGestionMachine.addActionListener(this);
+		
+		this.setVisible(true);
 	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==btnSeDeconnecter) {
+			this.dispose();
+			Connexion con = new Connexion(controler);
+		}if(e.getSource()==btnGestionSalle) {
+			this.dispose();
+			GestionSalle gs = new GestionSalle();
+		}if(e.getSource()==btnGestionMachine) {
+			this.dispose();
+			GestionMachine gm = new GestionMachine();
+		}
+		
+	}
+
 }

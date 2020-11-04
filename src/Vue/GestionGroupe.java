@@ -65,6 +65,7 @@ public class GestionGroupe extends JFrame implements ActionListener{
 			GererGroupe gg = new GererGroupe();
 		}if(e.getSource()==btnAjouterGroupe){
 			this.dispose();
+			AjouterGroupe ag = new AjouterGroupe();
 		}if(e.getSource()==btnRetourGG) {
 			this.dispose();
 			HomePageAdminF hp = new HomePageAdminF();

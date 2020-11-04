@@ -10,6 +10,11 @@ public class Formation {
     public Formation(String nom, AdminRespoF resp) {
         this.nomFormation = nom;
         this.adminRespoF = resp;
+        this.groupes = new ArrayList<>();
+    }
+    
+    public String getNomFormation() {
+    	return nomFormation;
     }
     
     public void ajouterGroupe() {

@@ -19,7 +19,15 @@ public class Calendrier {
         return this.heure;
     }
     
-    public boolean equals(Object o) {
+    public void setHeure(Creneau heure) {
+		this.heure = heure;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public boolean equals(Object o) {
             if (o instanceof Calendrier) { //tester si o est une object/type ActionSimple
                     Calendrier as = (Calendrier)o;
                     if (this.getDate().equals(as.getDate()) && this.getHeure().equals(as.getHeure())) {

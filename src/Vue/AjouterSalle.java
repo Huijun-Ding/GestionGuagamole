@@ -12,8 +12,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-public class AjouterSalle extends JFrame implements ActionListener{
+import Controler.ControlerInterface;
 
+public class AjouterSalle extends JFrame implements ActionListener{
+	ControlerInterface controler;
 	private JPanel contentPane;
 
 	/**
@@ -24,7 +26,8 @@ public class AjouterSalle extends JFrame implements ActionListener{
 	/**
 	 * Create the frame.
 	 */
-	public AjouterSalle() {
+	public AjouterSalle(ControlerInterface controler) {
+		this.controler=controler;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -70,10 +73,10 @@ public class AjouterSalle extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btnValiderAjouterSalle) {
 			this.dispose();
-			GestionSalle gs = new GestionSalle();
+			GestionSalle gs = new GestionSalle(controler);
 		}if(e.getSource()==btnAnnulerAjouterSalle) {
 			this.dispose();
-			GestionSalle gs = new GestionSalle();
+			GestionSalle gs = new GestionSalle(controler);
 		}
 		
 	}

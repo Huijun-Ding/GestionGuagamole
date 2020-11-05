@@ -13,7 +13,7 @@ public class Query {
     		e.printStackTrace();
     	}
     	try {
-    		con=DriverManager.getConnection("jdbc:mysql:"+"//127.0.0.1:3306/gestionguagamole","root","");
+    		con=DriverManager.getConnection("jdbc:mysql:"+"//127.0.0.1:3306/guagamole","root","");
     	}catch(SQLException e) {
     		e.printStackTrace();
     	}
@@ -100,6 +100,32 @@ public class Query {
     		e.printStackTrace();
     	}
     
+	}
+
+	public ArrayList<Machine> getListeMachine(int numSalle) {
+		ArrayList<Machine> machine = new ArrayList<Machine>();
+		Query conn = new Query();
+    	con = conn.getConnection();
+    	Statement stmt;
+    	ResultSet res;
+    	try {
+    		stmt=con.createStatement();
+    		String sql = "SELECT * FROM machine M, Salle S WHERE M.IdS=S.IdS and M.IdS="+numSalle;
+    		res=stmt.executeQuery(sql);
+    		while(res.next()) {
+    			int idM = res.getInt("M.IdM");
+    			String nomM = res.getString("M.NomM");
+    			int idS = res.getInt("S.IdS");
+    			String nomS = res.getString("S.NomS");
+    			Salle s = new Salle(idS,nomS,20);
+    			Machine m = new Machine(nomM,s);
+    			machine.add(m);
+    		}
+    		return machine;
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    	}
+		return null;
 	}
 
 

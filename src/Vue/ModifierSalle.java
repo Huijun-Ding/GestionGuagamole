@@ -18,8 +18,8 @@ import javax.swing.JButton;
 public class ModifierSalle extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
-	private JTextField txtNumSModif;
-	private JTextField txtCSModif;
+	private static JTextField txtNumSModif;
+	private static JTextField txtNomSModif;
 	ControlerInterface controler;
 	private static JButton btnValiderModifSalle = new JButton("Valider");
 	private static JButton btnAnnulerModifSalle = new JButton("Annuler");
@@ -43,19 +43,19 @@ public class ModifierSalle extends JFrame implements ActionListener{
 		lblNewLabel_1.setBounds(75, 70, 116, 16);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("Capacite:");
+		JLabel lblNewLabel_2 = new JLabel("Nom de salle:");
 		lblNewLabel_2.setBounds(75, 161, 103, 16);
 		contentPane.add(lblNewLabel_2);
 		
-		txtNumSModif = new JTextField();
+
 		txtNumSModif.setBounds(267, 65, 130, 26);
 		contentPane.add(txtNumSModif);
 		txtNumSModif.setColumns(10);
 		
-		txtCSModif = new JTextField();
-		txtCSModif.setBounds(267, 156, 130, 26);
-		contentPane.add(txtCSModif);
-		txtCSModif.setColumns(10);
+
+		txtNomSModif.setBounds(267, 156, 130, 26);
+		contentPane.add(txtNomSModif);
+		txtNomSModif.setColumns(10);
 		
 		
 		btnValiderModifSalle.setBounds(280, 226, 117, 29);
@@ -73,6 +73,8 @@ public class ModifierSalle extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btnValiderModifSalle) {
+			int numSalle = Integer.parseInt(txtNumSModif.getText());
+			String nomSalle = txtNomSModif.getText();
 			this.dispose();
 			GestionSalle gs = new GestionSalle(controler);
 		}if(e.getSource()==btnAnnulerModifSalle) {

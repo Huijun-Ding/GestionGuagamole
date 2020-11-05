@@ -54,7 +54,7 @@ public class AjouterTP {
         JLabel j2 = new JLabel("Date : ");
         DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         JFormattedTextField dateTextField = new JFormattedTextField(format);
-        dateTextField.setText("dd-MM-yyyy");
+        dateTextField.setText("yyyy-MM-dd");
 
         JLabel j3 = new JLabel("Créneau : ");
         JComboBox cmb1 = new JComboBox();
@@ -140,7 +140,7 @@ public class AjouterTP {
                 if (e.getSource() == btn2) {
                     // ajouter le TP
                     //Calendrier c1 = new Calendrier();
-                    //c1.setDate(j2.getText());
+                    //c1.setDate(j2.());
                     //c1.setHeure((Creneau) cmb1.getSelectedItem());
                     /*String date = (String)j2.getText();
                     Enum c = (Creneau) cmb1.getSelectedItem()

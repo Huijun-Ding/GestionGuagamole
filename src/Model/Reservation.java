@@ -9,13 +9,13 @@ public class Reservation {
     private Machine machine;
     private TP tp;
 
-    public Reservation(Date d, Calendrier c, Utilisateur u, Machine m) {
+    public Reservation(Calendrier c, Utilisateur u, Machine m) {
         this.calendrierR = c;
         this.utilisateur = u;
         this.machine = m;
     }
 
-    public Reservation(Date d, Calendrier c, Utilisateur u, Machine m, TP tp) {
+    public Reservation(Calendrier c, Utilisateur u, Machine m, TP tp) {
         this.calendrierR = c;
         this.utilisateur = u;
         this.machine = m;

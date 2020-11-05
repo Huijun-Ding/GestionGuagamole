@@ -5,9 +5,9 @@ import java.util.Date;
 public class Calendrier {
 
     private Creneau heure;
-    private String date;
+    private Date date;
 
-    public Calendrier(Creneau t, String j) {
+    public Calendrier(Creneau t, Date j) {
         this.date = j;
         this.heure = t;
     }
@@ -15,7 +15,7 @@ public class Calendrier {
     public Calendrier() {
     }
 
-    public String getDate() {
+    public Date getDate() {
         return this.date;
     }
 
@@ -27,7 +27,7 @@ public class Calendrier {
         this.heure = heure;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

@@ -26,7 +26,7 @@ public class Groupe {
         BD.Query.ajouterGroupe(nom, numf);
     } 
     
-    public Groupe() {}
+    //public Groupe() {}
 
     public ArrayList<TP> getListeTPs() {
         return listeTPs;

@@ -32,4 +32,15 @@ public class ControlerInterface {
     public ArrayList<Salle> getListeSalle() {
     		return query.gestionSalle();
     }
+    
+    public void supprimerSalle(String nom) {
+    	query.supprimerSalle(nom);
+    }
+
+	public void ajouterSalle(int numS, String nomS) {
+		query.ajouterSalle(numS, nomS);
+		
+	}
+
+
 }

@@ -11,6 +11,8 @@ public class Enseignant extends Utilisateur{
         tps = new ArrayList();
     }    
     
+    public Enseignant() {}
+    
     public void supprimerTPs(TP e) {
         this.tps.remove(e);
         e.supprimerTP();

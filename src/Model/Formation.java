@@ -9,7 +9,7 @@ public class Formation {
     static PreparedStatement sql;
     static ResultSet res;
 
-    private int numFormation;
+    static int numFormation;
     private String nomFormation;
     private AdminRespoF adminRespoF;
     private ArrayList<Groupe> lstGroupe;
@@ -23,6 +23,11 @@ public class Formation {
         con = c.getConnection();
         ActualiserLstGroupe();
     }
+    
+    public static int getNumFormation() {
+        return Formation.numFormation;
+    }
+    
     public void ActualiserLstGroupe(){
         lstGroupe.clear();
         try {

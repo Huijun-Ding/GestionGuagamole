@@ -4,9 +4,9 @@ import java.sql.*;
 
 public class BDconfig {
 
-    static final String DB_URL = "jdbc:mysql://localhost:3306/guacamole?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+    static final String DB_URL = "jdbc:mysql://localhost:3306/guagamole";
     static final String USER = "root";
-    static final String PASS = "000000";
+    static final String PASS = "";
     static Connection con;
     static PreparedStatement sql;
     static ResultSet res;
@@ -19,6 +19,7 @@ public class BDconfig {
         }
         try {
             con = DriverManager.getConnection(DB_URL, USER, PASS);
+            System.out.println("Connexion BD réussit");
         } catch (SQLException e) {
             e.printStackTrace();
         }

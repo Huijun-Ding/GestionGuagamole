@@ -22,7 +22,11 @@ public class Groupe {
         BDconfig c= new BDconfig();
         con = c.getConnection();
         ActualiserLstEtudiantGroup();
+        int numf = f.getNumFormation();
+        BD.Query.ajouterGroupe(nom, numf);
     } 
+    
+    public Groupe() {}
 
     public ArrayList<TP> getListeTPs() {
         return listeTPs;

@@ -11,7 +11,7 @@ public class BDconfig {
     		e.printStackTrace();
     	}
     	try {
-    		con=DriverManager.getConnection("jdbc:mysql:"+"//127.0.0.1:3306/gestionguagamole","root","");
+    		con=DriverManager.getConnection("jdbc:mysql:"+"//127.0.0.1:3306/guagamole","root","");
     		System.out.println("success");
     	}catch(SQLException e) {
     		e.printStackTrace();

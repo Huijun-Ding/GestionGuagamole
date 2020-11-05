@@ -4,27 +4,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Machine {
-    private String nomMachine;
+    private String numMachine;
     private Salle salle;
     private ArrayList<Reservation> reservations;
-	private HashMap<Calendrier,Boolean> etatMachine ;
+    private HashMap<Calendrier,Boolean> etatMachine = new HashMap<Calendrier,Boolean>();
     
     public Machine(String num, Salle s) {
-        this.nomMachine = num;
+        this.numMachine = num;
         this.salle = s;
-        this.etatMachine= new HashMap<Calendrier,Boolean>();
-        this.reservations = new ArrayList<>();
+        reservations = new ArrayList();
     }
     
-    public ArrayList<Reservation> getReservations() {
-		return reservations;
-	}
-    
-    public String getNomMachine() {
-    	return nomMachine;
-    }   
-        
+    public String getNumM() {
+    	return this.numMachine;
+    }
 }
-
-
-

@@ -4,22 +4,18 @@ import java.util.ArrayList;
 
 public class Enseignant extends Utilisateur{
   
-    private ArrayList<TP> tps;
+    private ArrayList<TP> TPs;
     
-    public Enseignant(String num, String mdp, String nom, String prenom) {
+    public Enseignant(int num, String mdp, String nom, String prenom) {
         super(num, mdp, nom, prenom);
-        tps = new ArrayList();
+        TPs = new ArrayList();
     }    
     
-    //public Enseignant() {}
+    public void supprimerTP() {
+        
+    }
     
-    public void supprimerTPs(TP e) {
-        this.tps.remove(e);
-        e.supprimerTP();
+    public void ajouterTP() {
+        
     }
-
-    public void ajouterTPs(TP e) {
-        this.tps.add(e);
-    }
-
 }

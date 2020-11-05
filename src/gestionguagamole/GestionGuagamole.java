@@ -10,7 +10,6 @@ public class GestionGuagamole {
         ControlerInterface controler = new ControlerInterface();
         Query query = new Query();
         Connexion c1 = new Connexion(controler);
-        new BD.Query().getConnection();
     }
     
 }

@@ -21,7 +21,7 @@ public class ControlerInterface {
 	public int getType() {
 		return this.typeU;
 	}
-	public void deconnexion() {
+	public void deconnexion() { 
 		idU=0;
 		typeU=0;
 	}

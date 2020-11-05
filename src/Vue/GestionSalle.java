@@ -22,6 +22,7 @@ import Model.Salle;
 
 import javax.swing.AbstractListModel;
 import javax.swing.ListSelectionModel;
+import javax.swing.JComboBox;
 
 public class GestionSalle extends JFrame implements ActionListener{
 
@@ -29,12 +30,9 @@ public class GestionSalle extends JFrame implements ActionListener{
 	private JPanel contentPane;
 
 	private static JButton btnAjouterSalle = new JButton("Ajouter");
-	private static JButton btnModifierSalle = new JButton("Modifier");
 	private static JButton btnSupprimerSalle = new JButton("Supprimer");
 	private static JButton btnRetourGS = new JButton("Retour");
-	private static DefaultListModel listmodel = new DefaultListModel();
-	private static JList listSalle = new JList(listmodel);
-
+	private static JComboBox comGroupe = new JComboBox();
 	
 	
 	/**
@@ -49,53 +47,50 @@ public class GestionSalle extends JFrame implements ActionListener{
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		listSalle.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		listSalle.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+		
+		
 
 		
 		
-		listSalle.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-		listSalle.setBounds(31, 76, 180, 152);
-		contentPane.add(listSalle);
+		
 		int size = controler.getListeSalle().size();
 		int count = 0;
-		String[] str = new String[size];
+		Salle[] str = new Salle[size];
 		for(Salle s : controler.getListeSalle()) {
-			String nom = s.getNomSalle();
-			str[count]=nom;
+			str[count]=s;
 			count+=1;
 		}
 		for(int addnum=0;addnum<size;addnum++) {
-			listmodel.addElement(str[addnum]);
+			comGroupe.addItem(str[addnum].getNomSalle());
 		}
 		
 		
 		JLabel lblNewLabel_1 = new JLabel("Salle de TP:");
-		lblNewLabel_1.setBounds(31, 50, 97, 16);
+		lblNewLabel_1.setBounds(48, 47, 97, 16);
 		contentPane.add(lblNewLabel_1);
 		
 		
-		btnAjouterSalle.setBounds(270, 73, 117, 29);
+		btnAjouterSalle.setBounds(182, 89, 117, 29);
 		contentPane.add(btnAjouterSalle);
 		
 		
-		btnModifierSalle.setBounds(270, 136, 117, 29);
-		contentPane.add(btnModifierSalle);
-		
-		
-		btnSupprimerSalle.setBounds(270, 199, 117, 29);
+		btnSupprimerSalle.setBounds(182, 163, 117, 29);
 		contentPane.add(btnSupprimerSalle);
 		
 		
-		btnRetourGS.setBounds(165, 255, 117, 29);
+		btnRetourGS.setBounds(182, 239, 117, 29);
 		contentPane.add(btnRetourGS);
 		
 		JLabel lblNewLabel = new JLabel("Gestion des salles");
 		lblNewLabel.setBounds(165, 10, 145, 15);
 		contentPane.add(lblNewLabel);
 		
+		
+		comGroupe.setBounds(155, 44, 169, 23);
+		contentPane.add(comGroupe);
+		
+		
 		btnAjouterSalle.addActionListener(this);
-		btnModifierSalle.addActionListener(this);
 		btnSupprimerSalle.addActionListener(this);
 		btnRetourGS.addActionListener(this);
 		System.out.println(str);
@@ -112,9 +107,12 @@ public class GestionSalle extends JFrame implements ActionListener{
 		}if(e.getSource()==btnAjouterSalle) {
 			this.dispose();
 			AjouterSalle as = new AjouterSalle(controler);
-		}if(e.getSource()==btnModifierSalle) {
-			this.dispose();
-			ModifierSalle ms = new ModifierSalle(controler);
+		}if(e.getSource()==btnSupprimerSalle) {
+			String nom = (String)comGroupe.getSelectedItem();
+			controler.supprimerSalle(nom);
+			this.repaint();
+			
+			
 		}
 		
 	}

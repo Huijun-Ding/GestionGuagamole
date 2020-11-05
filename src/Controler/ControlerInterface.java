@@ -11,19 +11,25 @@ import BD.*;
 public class ControlerInterface {
 	private Query query;
 	private int idU=0;
+	private int typeU=0;
 	public ControlerInterface() {
 		this.query = new Query();
 	}
 	public int getId() {
 		return this.idU;
 	}
+	public int getType() {
+		return this.typeU;
+	}
 	public void deconnexion() {
 		idU=0;
+		typeU=0;
 	}
     public Utilisateur connexion(int id, String mdp, int i) {
     	Utilisateur user = query.connexionUilisateur(id, mdp, i);
     	if(user!=null) {
     		idU=id;
+    		typeU=i;
     		if(user instanceof AdminMateriel) {
     			AdminMateriel am = (AdminMateriel) query.connexionUilisateur(id, mdp, i);
         		return am;
@@ -34,6 +40,10 @@ public class ControlerInterface {
     		}
     	}
     	return null;
+    }
+    
+    public String[] getNomPrenom(int id, int type) {
+    	return query.getNomPrenom(id, type);
     }
     
     public ArrayList<Salle> getListeSalle() {

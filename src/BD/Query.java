@@ -128,6 +128,19 @@ public class Query {
 		return null;
 	}
 
+	public void supprimerMachine(String numMachine) {
+		Query conn = new Query();
+    	con = conn.getConnection();
+    	Statement stmt;
+    	try {
+    		stmt=con.createStatement();
+    		String sql = "DELETE FROM machine WHERE NomM='"+ numMachine+"'";
+    		stmt.execute(sql);
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    	}
+	}
+
 
 	}
 	

@@ -55,6 +55,10 @@ public class ControlerInterface {
 		query.ajouterMachine(nomMachine, idS);
 		
 	}
+	
+	public ArrayList<TP> getListReservation(){
+		return query.getListReservation();
+	}
 
 
 }

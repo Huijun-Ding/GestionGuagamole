@@ -164,6 +164,57 @@ public class Query {
     	}
 		
 	}
+	public Creneau getCreneauEnum(String date) {
+		Creneau cre=null;
+		if(date.equals("8h00-9h30")) {
+			cre=Creneau.CRENEAU_8H00_9H30;
+		}if(date.equals("9h30-11h00")) {
+			cre=Creneau.CRENEAU_9H30_11H00;
+		}if(date.equals("11h00-12h30")) {
+			cre=Creneau.CRENEAU_11H00_12H30;
+		}if(date.equals("12h30-14h00")) {
+			cre=Creneau.CRENEAU_12H30_14H00;
+		}if(date.equals("14h00-15h30")) {
+			cre=Creneau.CRENEAU_14H00_15H30;
+		}if(date.equals("15h30-17h00")) {
+			cre=Creneau.CRENEAU_15H30_17H00;
+		}if(date.equals("17h00-18h30")) {
+			cre=Creneau.CRENEAU_17H00_18H30;
+		}if(date.equals("18h30-20h00")) {
+			cre=Creneau.CRENEAU_18H30_20H00;
+		}
+		return cre;
+	}
+	public ArrayList<TP> getListReservation() {
+		ArrayList<TP> reservation = new ArrayList<TP>();
+		Query conn = new Query();
+    	con = conn.getConnection();
+    	Statement stmt;
+    	ResultSet res;
+    	try {
+    		stmt=con.createStatement();
+    		Date dateRes;
+    		String cres;
+    		int idS;
+    		String etatS;
+    		Creneau cre;
+    		String sql = "SELECT * FROM tp T, salle S WHERE S.IdS = T.IdS";
+    		res = stmt.executeQuery(sql);
+    		while(res.next()) {
+    			dateRes = res.getDate("T.DateTP");
+    			cres = res.getString("T.CreneauTP");
+    			Salle s = new Salle(res.getInt("S.IdS"),res.getString("S.NomS"),20);
+    			cre = getCreneauEnum(cres);
+    			Calendrier cal = new Calendrier(cre, dateRes);
+    			TP tp = new TP(null,0,cal,s,null,null);
+    			reservation.add(tp);
+    		}
+    		return reservation;
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    	}
+		return null;
+	}
 
 
 	}

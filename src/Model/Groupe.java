@@ -20,6 +20,7 @@ public class Groupe {
 		return listeTPs;
 	}
    
+ 
     public void ajouterTP(TP tp) {
 		listeTPs.add(tp);
     	
@@ -31,7 +32,6 @@ public class Groupe {
 	
     public void ajouterEtudiantGroupe(Etudiant etu) {
     	etudiants.add(etu);
-        
     }
     
     public void supprimerEtudiantGroupe() {

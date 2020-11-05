@@ -14,6 +14,9 @@ public class Reservation {
         this.machine = m;
     }
 
+    public Utilisateur getUtilisateur() {
+    	return utilisateur;
+    }
 	public Calendrier getCalendrierR() {
 		return calendrierR;
 	}

@@ -16,4 +16,8 @@ public class ControlerInterface {
     public void modifierReservation(Reservation res, Calendrier cal) {
     	etu.modifierReservation(res, cal);
     }
+    
+    public void ajouterReservation(Reservation res) {
+    	etu.ajouterReservation(res);
+    }
 }

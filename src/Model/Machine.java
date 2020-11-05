@@ -7,7 +7,7 @@ public class Machine {
     private String numMachine;
     private Salle salle;
     private ArrayList<Reservation> reservations;
-    private HashMap<Calendrier,Boolean> etatMachine ;
+	private HashMap<Calendrier,Boolean> etatMachine ;
     
     public Machine(String num, Salle s) {
         this.numMachine = num;
@@ -16,6 +16,9 @@ public class Machine {
         this.reservations = new ArrayList<>();
     }
     
+    public ArrayList<Reservation> getReservations() {
+		return reservations;
+	}
     public String getNumMachine() {
     	return numMachine;
     }

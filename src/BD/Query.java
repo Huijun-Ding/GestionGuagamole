@@ -84,7 +84,7 @@ public class Query {
     		String sql = "DELETE FROM salle WHERE NomS='"+ nom+"'";
     		stmt.execute(sql);
     	}catch(Exception e) {
-    		e.printStackTrace();
+    		e.printStackTrace(); 
     	}
     }
 

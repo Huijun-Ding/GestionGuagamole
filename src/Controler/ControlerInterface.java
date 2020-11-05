@@ -51,5 +51,10 @@ public class ControlerInterface {
 		
 	}
 
+	public void ajouterMachine(String nomMachine, int idS) {
+		query.ajouterMachine(nomMachine, idS);
+		
+	}
+
 
 }

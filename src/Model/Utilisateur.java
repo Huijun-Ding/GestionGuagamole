@@ -15,6 +15,4 @@ public class Utilisateur {
         this.nomU = nom;
         this.prenomU = prenom;
     }
-
-    //public Utilisateur() {}
 }

@@ -7,19 +7,25 @@ import java.util.HashMap;
 public class Salle {
 
     private String nomSalle;
+    private int numSalle;
     private int capaciteSalle;
     private HashMap<Calendrier, Boolean> etatSalle;
     private ArrayList<Machine> machines;
 
-    public Salle(String num, int nb) {
-        this.nomSalle = num;
+    public Salle(int num, String nom, int nb) {
+        this.numSalle = num;
+        this.nomSalle=nom;
         this.capaciteSalle = nb;
         this.etatSalle = new HashMap<Calendrier, Boolean>();
         this.machines = new ArrayList<>();
     }
 
-    public String getNumSalle() {
+    public String getNomSalle() {
         return nomSalle;
+    }
+
+    public int getNumSalle() {
+    	return this.numSalle;
     }
 
     public void setEtatSalle(Calendrier c, boolean etat) {

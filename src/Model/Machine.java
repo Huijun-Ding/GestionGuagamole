@@ -15,9 +15,11 @@ public class Machine {
         this.etatMachine= new HashMap<Calendrier,Boolean>();
         this.reservations = new ArrayList<>();
     }
-    
-    public String getNumMachine() {
+
+    public String getNomMachine() {
     	return nomMachine;
     }
-	
 }
+
+
+

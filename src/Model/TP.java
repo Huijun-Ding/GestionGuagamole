@@ -45,4 +45,11 @@ public class TP {
         
         return nbPresent;
     }
+
+    public Calendrier getCalendrier() {
+    	return this.calendrierTP;
+    }
+    public Salle getSalle() {
+    	return this.salle;
+    }
 }

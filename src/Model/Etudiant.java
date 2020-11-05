@@ -18,7 +18,6 @@ public class Etudiant extends Utilisateur {
         super(num, mdp, nom, prenom);
         mesReservation = new ArrayList();
     }
-
     
     public Groupe getGroupe() {
         return groupe;

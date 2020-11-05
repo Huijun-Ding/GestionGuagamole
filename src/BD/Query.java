@@ -263,6 +263,56 @@ public class Query {
 		return null;
 	}
 
+	public ArrayList<Formation> getListeFormation() {
+		ArrayList<Formation> formation = new ArrayList<Formation>();
+		Query conn = new Query();
+    	con = conn.getConnection();
+    	Statement stmt;
+    	ResultSet res;
+    	try {
+    		stmt=con.createStatement();
+    		String sql = "SELECT * FROM formation";
+    		res=stmt.executeQuery(sql);
+    		while(res.next()) {
+    			int idF = res.getInt("IdF");
+    			String nomF = res.getString("NomF");
+    			Formation f = new Formation(nomF,null);
+    			formation.add(f);
+    		}
+    		return formation;
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    	}
+		return null;
+	}
+
+	public ArrayList<Etudiant> getListEtudiant(String nomF) {
+		ArrayList<Etudiant> etudiant = new ArrayList<Etudiant>();
+		Query conn = new Query();
+    	con = conn.getConnection();
+    	Statement stmt;
+    	ResultSet res;
+    	try {
+    		stmt=con.createStatement();
+    		String sql = "SELECT * FROM etudiant e, groupe g, formation f WHERE e.IdG=g.IdG and g.IdF=f.IdF and f.NomF='"+nomF+"'";
+    		res=stmt.executeQuery(sql);
+    		while(res.next()) {
+    			int idE = res.getInt("e.IdE");
+    			String nomE = res.getString("e.NomE");
+    			String prenomE = res.getString("e.PrenomE");
+    			String nomG = res.getString("g.NomG");
+    			Formation f = new Formation(nomF,null);
+    			Groupe g = new Groupe(nomG,f);
+    			Etudiant e = new Etudiant(idE,null,nomE,prenomE,g);
+    			etudiant.add(e);
+    		}
+    		return etudiant;
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    	}
+		return null;
+	}
+
 }
 
 	

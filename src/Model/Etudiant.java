@@ -14,6 +14,12 @@ public class Etudiant extends Utilisateur {
         mesReservation = new ArrayList();
     }
 
+    public Etudiant(String num, String mdp, String nom, String prenom) {
+        super(num, mdp, nom, prenom);
+        mesReservation = new ArrayList();
+    }
+
+    
     public Groupe getGroupe() {
         return groupe;
     }

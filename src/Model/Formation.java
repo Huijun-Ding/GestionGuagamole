@@ -31,7 +31,7 @@ public class Formation {
             while(res.next()){
                 int num=res.getInt("IdG");
                 String nom=res.getString("NomG");
-                Groupe g=new Groupe(num,nom,this);
+                Groupe g=new Groupe(nom,this);
                 lstGroupe.add(g);
             }
         } catch (SQLException throwables) {

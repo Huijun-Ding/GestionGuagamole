@@ -6,7 +6,6 @@ import java.sql.*;
 
 public class Groupe {
 
-    private int numGroupe;
     private String nomGroupe;
     private Formation formation;
     private ArrayList<Etudiant> etudiants;
@@ -15,8 +14,7 @@ public class Groupe {
     static PreparedStatement sql;
     static ResultSet res;
 
-    public Groupe(int num, String nom, Formation f) {
-        this.numGroupe = num;
+    public Groupe(String nom, Formation f) {
         this.nomGroupe = nom;
         this.formation = f;
         this.etudiants = new ArrayList<>();
@@ -36,10 +34,6 @@ public class Groupe {
 
     public void removeListTPs(TP tp) {
         this.listeTPs.remove(tp);
-    }
-    
-    public int getNumGroupe() {
-        return numGroupe;
     }
 
     public void ajouterEtudiantGroupe(Etudiant etu) {
@@ -61,14 +55,14 @@ public class Groupe {
     public void ActualiserLstEtudiantGroup(){
         etudiants.clear();
         try {
-            sql=con.prepareStatement("SELECT * FROM etudiant where IdG="+this.numGroupe+";");
+            sql=con.prepareStatement("SELECT * FROM etudiant where IdG="+this.nomGroupe+";");
             res = sql.executeQuery();
             while(res.next()){
                 String num=res.getString("NumE");
                 String mdp=res.getString("MdpE");
                 String nom=res.getString("NomE");
                 String prenom=res.getString("PrenomE");
-                int numgroup=res.getInt("IdG");
+                //int numgroup = res.getInt("IdG");
                 System.out.println(nom);
                 Etudiant e = new Etudiant(num,mdp,nom,prenom,this);
                 etudiants.add(e);

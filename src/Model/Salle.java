@@ -20,6 +20,10 @@ public class Salle {
     public String getNomSalle() {
     	return this.nom;
     }
+    public int getNumSalle() {
+    	return this.numSalle;
+    }
+    
     public void setEtatSalle(Calendrier c, boolean etat) {
 
     }

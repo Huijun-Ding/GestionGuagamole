@@ -120,9 +120,7 @@ public class GestionMachine extends JFrame implements ActionListener,ItemListene
 		comSalle.addItemListener(this);
 
 	}
-	
-
-	
+		
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btnAjouterMachine) {
@@ -143,8 +141,6 @@ public class GestionMachine extends JFrame implements ActionListener,ItemListene
 		}
 		
 	}
-
-
 
 	@Override
 	public void itemStateChanged(ItemEvent e) {

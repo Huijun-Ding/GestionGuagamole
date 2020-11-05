@@ -12,6 +12,10 @@ public class Formation {
         this.adminRespoF = resp;
     }
     
+    public String getNomF() {
+    	return this.nomFormation;
+    }
+    
     public void ajouterGroupe() {
         
     }

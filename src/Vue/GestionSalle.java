@@ -61,7 +61,7 @@ public class GestionSalle extends JFrame implements ActionListener{
 			count+=1;
 		}
 		for(int addnum=0;addnum<size;addnum++) {
-			comGroupe.addItem(str[addnum].getNomSalle());
+			comGroupe.addItem(str[addnum].getNumSalle());
 		}
 		
 		
@@ -102,16 +102,19 @@ public class GestionSalle extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btnRetourGS) {
+			comGroupe.removeAllItems();
 			this.dispose();
 			HomePageAdminM am = new HomePageAdminM(controler);
 		}if(e.getSource()==btnAjouterSalle) {
+			comGroupe.removeAllItems();
 			this.dispose();
 			AjouterSalle as = new AjouterSalle(controler);
 		}if(e.getSource()==btnSupprimerSalle) {
 			String nom = (String)comGroupe.getSelectedItem();
 			controler.supprimerSalle(nom);
-			this.repaint();
-			
+			comGroupe.removeAllItems();
+			this.dispose();
+			GestionSalle gs = new GestionSalle(controler);
 			
 		}
 		

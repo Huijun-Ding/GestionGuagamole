@@ -27,5 +27,11 @@ public class TP {
     public void ajouterTP() {
         
     }
-
+    
+    public Calendrier getCalendrier() {
+    	return this.calendrierTP;
+    }
+    public Salle getSalle() {
+    	return this.salle;
+    }
 }

@@ -141,6 +141,30 @@ public class Query {
     	}
 	}
 
+	public void ajouterMachine(String nomMachine, int idS) {
+		Query conn = new Query();
+    	con = conn.getConnection();
+    	Statement stmt;
+    	Statement stmt1;
+    	ResultSet res;
+    	try {
+    		stmt=con.createStatement();
+    		stmt1=con.createStatement();
+    		String sql = "SELECT Max(M.IdM) as maxidm FROM machine M";
+    		res=stmt.executeQuery(sql);
+    		int numIdM=1;
+    		while(res.next()) {
+    			numIdM = res.getInt("maxidm");
+    			numIdM+=1;
+    		}
+    		sql = "INSERT INTO machine(IdM, NomM, IdS) VALUES ("+numIdM+",'"+nomMachine+"',"+idS+")";
+    		stmt1.execute(sql);
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    	}
+		
+	}
+
 
 	}
 	

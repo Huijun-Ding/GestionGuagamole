@@ -10,13 +10,20 @@ import BD.*;
 
 public class ControlerInterface {
 	private Query query;
+	private int idU=0;
 	public ControlerInterface() {
 		this.query = new Query();
 	}
-	
+	public int getId() {
+		return this.idU;
+	}
+	public void deconnexion() {
+		idU=0;
+	}
     public Utilisateur connexion(int id, String mdp, int i) {
     	Utilisateur user = query.connexionUilisateur(id, mdp, i);
     	if(user!=null) {
+    		idU=id;
     		if(user instanceof AdminMateriel) {
     			AdminMateriel am = (AdminMateriel) query.connexionUilisateur(id, mdp, i);
         		return am;

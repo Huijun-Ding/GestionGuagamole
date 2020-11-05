@@ -313,6 +313,21 @@ public class Query {
 		return null;
 	}
 
+	public Object supprimerEtudiant(Etudiant stu) {
+		int idE = stu.getNumE();
+		Query conn = new Query();
+    	con = conn.getConnection();
+    	Statement stmt;
+    	ResultSet res;
+		try{
+            stmt = con.createStatement();
+            stmt.execute("delete from etudiant where IdE="+"'"+idE+"';");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+		return null;
+	}
+
 }
 
 	

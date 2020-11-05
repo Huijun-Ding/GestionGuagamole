@@ -70,7 +70,9 @@ public class Connexion extends JFrame implements ItemListener, ActionListener{
 		passConn = new JPasswordField();
 		passConn.setBounds(244, 137, 115, 21);
 		contentPane.add(passConn);
-				
+		txtIdentifiantConn.setText("");
+		passConn.setText("");
+		
 		rdEtudiant.setBounds(47, 182, 121, 23);
 		contentPane.add(rdEtudiant);
 				

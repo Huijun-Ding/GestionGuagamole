@@ -46,5 +46,10 @@ public class ControlerInterface {
 		return query.getListeMachine(numSalle);
 	}
 
+	public void supprimerMachine(String numMachine) {
+		query.supprimerMachine(numMachine);
+		
+	}
+
 
 }

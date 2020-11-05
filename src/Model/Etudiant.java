@@ -38,12 +38,6 @@ public class Etudiant extends Utilisateur {
             res.setCalendrierR(cal);
         }
     }
-    
-    /*public int numG;
-    
-    public Etudiant(String num, String mdp, String nom, String prenom, int p) {
-        super(num, mdp, nom, prenom);
-        this.numG = p;
-    }*/
+
 }
 

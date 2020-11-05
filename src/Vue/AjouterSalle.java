@@ -23,6 +23,9 @@ public class AjouterSalle extends JFrame implements ActionListener{
 	 */
 	private static JButton btnValiderAjouterSalle = new JButton("Valider");
 	private static JButton btnAnnulerAjouterSalle = new JButton("Annuler");
+	private static JTextField txtNumS = new JTextField();
+	private static JTextField txtNomS = new JTextField();
+	
 	/**
 	 * Create the frame.
 	 */
@@ -43,19 +46,19 @@ public class AjouterSalle extends JFrame implements ActionListener{
 		lblNewLabel_1.setBounds(95, 80, 114, 16);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("Capacite:");
+		JLabel lblNewLabel_2 = new JLabel("Nom de salle:");
 		lblNewLabel_2.setBounds(95, 162, 114, 16);
 		contentPane.add(lblNewLabel_2);
 		
-		JTextField txtNumS = new JTextField();
+		
 		txtNumS.setBounds(244, 75, 130, 26);
 		contentPane.add(txtNumS);
 		txtNumS.setColumns(10);
 		
-		JTextField txtCS = new JTextField();
-		txtCS.setBounds(244, 157, 130, 26);
-		contentPane.add(txtCS);
-		txtCS.setColumns(10);
+		
+		txtNomS.setBounds(244, 157, 130, 26);
+		contentPane.add(txtNomS);
+		txtNomS.setColumns(10);
 		
 		
 		btnValiderAjouterSalle.setBounds(257, 229, 117, 29);
@@ -72,6 +75,9 @@ public class AjouterSalle extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btnValiderAjouterSalle) {
+			int numSalle = Integer.parseInt(txtNumS.getText());
+			String nomSalle = txtNomS.getText();
+			controler.ajouterSalle(numSalle,nomSalle);
 			this.dispose();
 			GestionSalle gs = new GestionSalle(controler);
 		}if(e.getSource()==btnAnnulerAjouterSalle) {

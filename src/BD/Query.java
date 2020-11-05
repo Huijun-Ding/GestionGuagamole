@@ -328,6 +328,11 @@ public class Query {
 		return null;
 	}
 
+	public static void ajouterTP(String text) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
 
 	

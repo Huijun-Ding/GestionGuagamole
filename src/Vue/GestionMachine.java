@@ -33,8 +33,8 @@ public class GestionMachine extends JFrame implements ActionListener,ItemListene
 	private static JButton btnModifierMachine = new JButton("Modifier");
 	private static JButton btnSupprimerMachine = new JButton("Supprimer");
 	private static JButton btnRetourGM = new JButton("Retour");
-	private static JComboBox comSalle = new JComboBox();
-	private static JComboBox comMachine = new JComboBox();
+	public static JComboBox comSalle = new JComboBox();
+	public static JComboBox comMachine = new JComboBox();
 	/**
 	 * Create the frame.
 	 */
@@ -134,6 +134,12 @@ public class GestionMachine extends JFrame implements ActionListener,ItemListene
 		}if(e.getSource()==btnRetourGM) {
 			this.dispose();
 			HomePageAdminM hp = new HomePageAdminM(controler);
+		}if(e.getSource()==btnSupprimerMachine) {
+			String numMachine = comMachine.getSelectedItem().toString();
+			controler.supprimerMachine(numMachine);
+			comMachine.removeAllItems();
+			this.dispose();
+			GestionMachine gm = new GestionMachine(controler);
 		}
 		
 	}

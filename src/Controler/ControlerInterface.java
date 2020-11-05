@@ -1,7 +1,6 @@
 package Controler;
 
 import Model.*;
-import BD.*;
 
 public class ControlerInterface {
     private Etudiant etu; 

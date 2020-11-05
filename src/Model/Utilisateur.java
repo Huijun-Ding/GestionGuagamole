@@ -1,7 +1,5 @@
 package Model;
 
-
-
 public class Utilisateur {
     protected String numU;
     protected String mdpU;
@@ -14,6 +12,10 @@ public class Utilisateur {
         this.nomU = nom;
         this.prenomU = prenom;
     }
+
+	public String getNumU() {
+		return numU;
+	}
 
 	
 

@@ -3,7 +3,7 @@ package Model;
 import java.util.ArrayList;
 
 public class Utilisateur {
-    private int numU;
+	protected int numU;
     private String mdpU;
     protected String nomU;
     protected String prenomU;

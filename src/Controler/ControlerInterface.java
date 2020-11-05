@@ -77,5 +77,12 @@ public class ControlerInterface {
 		return query.getListReservation();
 	}
 
+	public ArrayList<Formation> getListeFormation(){
+		return query.getListeFormation();
+	}
+	
+	public ArrayList<Etudiant> getListEtudiant(String nomF){
+		return query.getListEtudiant(nomF);
+	}
 
 }

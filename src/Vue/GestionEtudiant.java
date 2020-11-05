@@ -136,9 +136,9 @@ public class GestionEtudiant extends JFrame implements ActionListener, ItemListe
 			}
 			Etudiant stu = et[ordre];
 			controler.supprimerEtudaint(stu);
+			this.dispose();
 			comEtudiant.removeAllItems();
 			comFormation.removeAllItems();
-			this.dispose();
 			GestionEtudiant ge = new GestionEtudiant(controler);
 		}if(e.getSource()==btnRetourGE) {
 			this.dispose();

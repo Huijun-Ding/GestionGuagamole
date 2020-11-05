@@ -19,4 +19,8 @@ public class Etudiant extends Utilisateur{
     public String getPrenomE() {
     	return super.prenomU;
     }
+    
+    public int getNumE() {
+    	return super.numU;
+    }
 }

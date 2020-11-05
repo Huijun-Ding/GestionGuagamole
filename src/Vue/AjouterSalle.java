@@ -78,10 +78,14 @@ public class AjouterSalle extends JFrame implements ActionListener{
 			int numSalle = Integer.parseInt(txtNumS.getText());
 			String nomSalle = txtNomS.getText();
 			controler.ajouterSalle(numSalle,nomSalle);
+			txtNumS.removeAll();
+			txtNomS.removeAll();
 			this.dispose();
 			GestionSalle gs = new GestionSalle(controler);
 		}if(e.getSource()==btnAnnulerAjouterSalle) {
 			this.dispose();
+			txtNumS.removeAll();
+			txtNomS.removeAll();
 			GestionSalle gs = new GestionSalle(controler);
 		}
 		

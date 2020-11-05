@@ -36,7 +36,7 @@ public class GestionSalle extends JFrame implements ActionListener{
 	private static JButton btnSupprimerSalle = new JButton("Supprimer");
 	private static JButton btnRetourGS = new JButton("Retour");
 	public static JComboBox comGroupe = new JComboBox();
-	
+	public static JButton btnReserver = new JButton("Reservation");
 	
 	/**
 	 * Create the frame.
@@ -77,7 +77,7 @@ public class GestionSalle extends JFrame implements ActionListener{
 		contentPane.add(btnAjouterSalle);
 		
 		
-		btnSupprimerSalle.setBounds(182, 163, 117, 29);
+		btnSupprimerSalle.setBounds(182, 138, 117, 29);
 		contentPane.add(btnSupprimerSalle);
 		
 		
@@ -93,9 +93,14 @@ public class GestionSalle extends JFrame implements ActionListener{
 		contentPane.add(comGroupe);
 		
 		
+		btnReserver.setBounds(182, 188, 117, 29);
+		contentPane.add(btnReserver);
+		
+		
 		btnAjouterSalle.addActionListener(this);
 		btnSupprimerSalle.addActionListener(this);
 		btnRetourGS.addActionListener(this);
+		btnReserver.addActionListener(this);
 
 		this.setVisible(true);
 	}
@@ -117,11 +122,11 @@ public class GestionSalle extends JFrame implements ActionListener{
 			controler.supprimerSalle(nom);
 			comGroupe.removeAllItems();
 			this.dispose();
-			GestionSalle gs = new GestionSalle(controler);
-			
+			GestionSalle gs = new GestionSalle(controler);			
+		}if(e.getSource()==btnReserver) {
+			this.dispose();
+			GestionReservation gr = new GestionReservation(controler);
 		}
 		
 	}
-
-	
 }

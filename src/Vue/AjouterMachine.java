@@ -13,14 +13,18 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import Controler.ControlerInterface;
+import Model.Salle;
+
+import javax.swing.JComboBox;
 
 public class AjouterMachine extends JFrame implements ActionListener{
 	ControlerInterface controler;
 	private JPanel contentPane;
 
-
+	private static JTextField txtNomMAM = new JTextField();
 	private static JButton btnValiderAM = new JButton("Valider");
 	private static JButton btnAnnulerAM = new JButton("Annuler");
+	private final JComboBox comSalle = new JComboBox();
 	/**
 	 * Create the frame.
 	 */
@@ -37,23 +41,18 @@ public class AjouterMachine extends JFrame implements ActionListener{
 		lblNewLabel.setBounds(154, 25, 142, 16);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Numero de machine:");
-		lblNewLabel_1.setBounds(36, 81, 142, 16);
+		JLabel lblNewLabel_1 = new JLabel("Nom de machine:");
+		lblNewLabel_1.setBounds(40, 75, 142, 16);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Numero de salle:");
 		lblNewLabel_2.setBounds(40, 144, 142, 16);
 		contentPane.add(lblNewLabel_2);
 		
-		JTextField txtNumMAM = new JTextField();
-		txtNumMAM.setBounds(238, 80, 130, 26);
-		contentPane.add(txtNumMAM);
-		txtNumMAM.setColumns(10);
 		
-		JTextField txtNumSAM = new JTextField();
-		txtNumSAM.setBounds(239, 139, 130, 26);
-		contentPane.add(txtNumSAM);
-		txtNumSAM.setColumns(10);
+		txtNomMAM.setBounds(239, 71, 130, 26);
+		contentPane.add(txtNomMAM);
+		txtNomMAM.setColumns(10);
 		
 		
 		btnValiderAM.setBounds(260, 215, 117, 29);
@@ -62,6 +61,20 @@ public class AjouterMachine extends JFrame implements ActionListener{
 		
 		btnAnnulerAM.setBounds(75, 216, 117, 29);
 		contentPane.add(btnAnnulerAM);
+		comSalle.setBounds(239, 141, 130, 23);
+		
+		contentPane.add(comSalle);
+		
+		int size = controler.getListeSalle().size();
+		int count = 0;
+		Salle[] str = new Salle[size];
+		for(Salle s : controler.getListeSalle()) {
+			str[count]=s;
+			count+=1;
+		}
+		for(int addnum=0;addnum<size;addnum++) {
+			comSalle.addItem(str[addnum].getNumSalle());
+		}
 		
 		btnValiderAM.addActionListener(this);
 		btnAnnulerAM.addActionListener(this);
@@ -71,6 +84,9 @@ public class AjouterMachine extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btnValiderAM) {
+			String nomMachine = txtNomMAM.getText();
+			int idS = Integer.parseInt(comSalle.getSelectedItem().toString());
+			controler.ajouterMachine(nomMachine, idS);
 			this.dispose();
 			GestionMachine gm = new GestionMachine(controler);
 		}if(e.getSource()==btnAnnulerAM) {
@@ -79,5 +95,4 @@ public class AjouterMachine extends JFrame implements ActionListener{
 		}
 		
 	}
-
 }

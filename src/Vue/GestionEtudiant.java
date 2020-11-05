@@ -38,27 +38,19 @@ public class GestionEtudiant extends JFrame implements ActionListener{
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Gestion des etudiants");
-		lblNewLabel.setFont(new Font("ËÎÌו", Font.PLAIN, 20));
 		lblNewLabel.setBounds(106, 0, 250, 46);
+		lblNewLabel.setFont(new Font("ËÎÌו", Font.PLAIN, 20));
 		contentPane.add(lblNewLabel);
 		
 		JList list = new JList();
-		list.setBounds(10, 51, 210, 204);
+		list.setBounds(10, 56, 210, 204);
 		contentPane.add(list);
-		
-		
 		btnAjouterEtudiant.setBounds(292, 48, 93, 23);
 		contentPane.add(btnAjouterEtudiant);
-		
-		
 		btnModifierEtudiant.setBounds(292, 98, 93, 23);
 		contentPane.add(btnModifierEtudiant);
-		
-		
 		btnSupprimerEtudiant.setBounds(292, 153, 93, 23);
 		contentPane.add(btnSupprimerEtudiant);
-		
-		
 		btnRetourGE.setBounds(292, 204, 93, 23);
 		contentPane.add(btnRetourGE);
 		

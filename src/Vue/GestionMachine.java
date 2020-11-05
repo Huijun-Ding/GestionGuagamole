@@ -125,6 +125,7 @@ public class GestionMachine extends JFrame implements ActionListener,ItemListene
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btnAjouterMachine) {
 			this.dispose();
+			AjouterMachine.comSalle.removeAllItems();
 			AjouterMachine am  = new AjouterMachine(controler);
 		}if(e.getSource()==btnModifierMachine) {
 			this.dispose();

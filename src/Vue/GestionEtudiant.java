@@ -124,7 +124,22 @@ public class GestionEtudiant extends JFrame implements ActionListener, ItemListe
 			ModiferEtudiant me = new ModiferEtudiant(controler);
 			this.dispose();
 		}if(e.getSource()==btnSupprimerEtudiant) {
-			
+			int ordre = comEtudiant.getSelectedIndex();
+			String nomF = comFormation.getSelectedItem().toString();
+			ArrayList<Etudiant> etudiant = controler.getListEtudiant(nomF);
+			int sizeM = etudiant.size();
+			int countM = 0;
+			Etudiant[] et = new Etudiant[sizeM];
+			for(Etudiant etu : etudiant) {
+				et[countM]=etu;
+				countM+=1;
+			}
+			Etudiant stu = et[ordre];
+			controler.supprimerEtudaint(stu);
+			this.dispose();
+			comEtudiant.removeAllItems();
+			comFormation.removeAllItems();
+			GestionEtudiant ge = new GestionEtudiant(controler);
 		}if(e.getSource()==btnRetourGE) {
 			this.dispose();
 			HomePageAdminF hp = new HomePageAdminF(controler);

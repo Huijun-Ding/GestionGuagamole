@@ -5,6 +5,9 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
 import BD.*;
 
 import javax.swing.DefaultListModel;
@@ -32,7 +35,7 @@ public class GestionSalle extends JFrame implements ActionListener{
 	private static JButton btnAjouterSalle = new JButton("Ajouter");
 	private static JButton btnSupprimerSalle = new JButton("Supprimer");
 	private static JButton btnRetourGS = new JButton("Retour");
-	private static JComboBox comGroupe = new JComboBox();
+	public static JComboBox comGroupe = new JComboBox();
 	
 	
 	/**
@@ -93,7 +96,7 @@ public class GestionSalle extends JFrame implements ActionListener{
 		btnAjouterSalle.addActionListener(this);
 		btnSupprimerSalle.addActionListener(this);
 		btnRetourGS.addActionListener(this);
-		System.out.println(str);
+
 		this.setVisible(true);
 	}
 	
@@ -119,4 +122,6 @@ public class GestionSalle extends JFrame implements ActionListener{
 		}
 		
 	}
+
+	
 }

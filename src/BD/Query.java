@@ -215,9 +215,59 @@ public class Query {
     	}
 		return null;
 	}
+	public String[] getNomPrenom(int id, int type) {
+		String[] nomprenom = new String[2];
+		Query conn = new Query();
+    	con = conn.getConnection();
+    	Statement stmt;
+    	ResultSet res;
+    	try {
+      		stmt=con.createStatement();
+      		String sql;
+      		if(type==1) {
+      			sql="SELECT * FROM etudiant WHERE IdE="+id;
+      			res=stmt.executeQuery(sql);
+      			while(res.next()) {
+      				String nom = res.getString("NomE");
+      				String prenom = res.getString("PrenomE");
+      				nomprenom[0]=nom;
+      				nomprenom[1]=prenom;
+      			}
+      		}
+      		if(type==2) {
+      			sql="SELECT * FROM enseignant WHERE IdEns="+id;
+      			res=stmt.executeQuery(sql);
+      			while(res.next()) {
+      				String nom = res.getString("NomEns");
+      				String prenom = res.getString("PrenomEns");
+      				nomprenom[0]=nom;
+      				nomprenom[1]=prenom;
+      			}
+      		}
+      		if(type==3) {
+      			sql="SELECT * FROM enseignant E, encadrer EN WHERE E.idEns=EN.idEns and E.IdEns="+id;
+      			res=stmt.executeQuery(sql);
+      			while(res.next()) {
+      				String nom = res.getString("E.NomEns");
+      				String prenom = res.getString("E.PrenomEns");
+      				nomprenom[0]=nom;
+      				nomprenom[1]=prenom;
+      			}
+      		}
+      		return nomprenom;
+    	}
 
-
+    	catch(Exception e) {
+    		e.printStackTrace();
+    	}
+		return null;
 	}
+
+}
+
+	
+
+	
 	
 	
     

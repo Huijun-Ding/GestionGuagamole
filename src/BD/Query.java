@@ -26,7 +26,7 @@ public class Query {
 			return a;
 		}		
     	Query conn = new Query();
-    	con = conn.getConnection();
+    	con = conn.getConnection(); 
     	Statement stmt;
     	ResultSet res;
     	try {

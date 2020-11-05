@@ -2,8 +2,8 @@ package Model;
 
 import java.util.ArrayList;
 
-public class Etudiant extends Utilisateur{
-    
+public class Etudiant extends Utilisateur {
+
     private Groupe groupe;
 
     private ArrayList<Reservation> mesReservation;
@@ -11,12 +11,11 @@ public class Etudiant extends Utilisateur{
     public Etudiant(String num, String mdp, String nom, String prenom, Groupe p) {
         super(num, mdp, nom, prenom);
         this.groupe = p;
-        this.mesReservation = new ArrayList<>();
-        
+        this.mesReservation = new ArrayList<>();  
     }
     
     public Groupe getGroupe() {
-    	return groupe;
+        return groupe;
     }
     
     public ArrayList<Reservation> getMesReservation() {
@@ -37,9 +36,9 @@ public class Etudiant extends Utilisateur{
     	if(mesReservation.contains(res)) {
     		mesReservation.set(mesReservation.indexOf(res), res);
     	}
-    
     }
     
 }
     
+
 

@@ -6,15 +6,4 @@ public class AdminRespoF extends Enseignant{
         super(num, mdp, nom, prenom);
     }
     
-    public void ajouterUtilisateur() {
-        
-    }
-    
-    public void supprimerUtilisateur() {
-        
-    }  
-    
-    public void modifierUtilisateur() {
-        
-    }    
 }

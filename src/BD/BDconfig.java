@@ -1,4 +1,7 @@
 package BD;
+import java.sql.*;
+
+import java.sql.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,31 +11,27 @@ import java.sql.SQLException;
 
 public class BDconfig {
 
-	/*Connexion à la base de données guacamole_bd*/
-	String url = "jdbc:mysql://localhost:3306/guacamole_db";
-	String login = "root";
-	String mdp = "";
-	Connection con;
-	PreparedStatement sql;
-	ResultSet res;
-	
-	public Connection getConnection() {
-		 /* Chargement du driver JDBC pour MySQL */
-	    try {
-	        Class.forName( "com.mysql.jdbc.Driver" );
-	    } catch ( ClassNotFoundException e ) {
-	    	e.printStackTrace();
-	    }
-	    //Connexion à la BD
-		try {
-		    con = DriverManager.getConnection( url, login, mdp );
-		   
-		} catch ( SQLException e ) {
-			e.printStackTrace();	
-		}
-	return con;
-	}
-		
+    static final String DB_URL = "jdbc:mysql://localhost:3306/guagamole";
+    static final String USER = "root";
+    static final String PASS = "";
+    static Connection con;
+    static PreparedStatement sql;
+    static ResultSet res;
+    
+    public static Connection getConnection(){
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            con = DriverManager.getConnection(DB_URL, USER, PASS);
+            System.out.println("Connexion BD rÃ©ussit");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return con;
+    }
 }
 	
 	

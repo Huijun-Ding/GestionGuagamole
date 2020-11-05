@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import Controler.ControlerInterface;
@@ -22,12 +23,14 @@ import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JTable;
+import java.awt.ScrollPane;
 
 public class GestionReservation extends JFrame implements ActionListener{
 	private ControlerInterface controler;
 	private JPanel contentPane;
 //	private static JTable tableReservation = new JTable(table,title);
 	private static JButton btnRetourRes = new JButton("Retour");
+	JTable tableReservation;
 	/**
 	 * Create the frame.
 	 */
@@ -48,7 +51,7 @@ public class GestionReservation extends JFrame implements ActionListener{
 		
 		btnRetourRes.setBounds(671, 27, 93, 23);
 		contentPane.add(btnRetourRes);
-		
+				
 		ArrayList<TP> tp =  controler.getListReservation();
 		int size = tp.size();
 		Object[] title = {"Date reservation","Creneau reservation", "Salle", "Etat"};
@@ -68,18 +71,24 @@ public class GestionReservation extends JFrame implements ActionListener{
 			count++;
 		}
 				
-		JTable tableReservation = new JTable(table,title);
+		tableReservation = new JTable(table,title);
 		tableReservation.setBounds(20, 69, 744, 378);
-		contentPane.add(tableReservation);
+		
+		JScrollPane scrollPane = new JScrollPane(tableReservation);
+	    contentPane.add(scrollPane, BorderLayout.CENTER);
 		
 		contentPane.add(tableReservation.getTableHeader(), BorderLayout.NORTH);
 		contentPane.add(tableReservation, BorderLayout.CENTER);
+		
+
 		btnRetourRes.addActionListener(this);
 		
 		
 		
 		this.setVisible(true);
 	}
+	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btnRetourRes) {

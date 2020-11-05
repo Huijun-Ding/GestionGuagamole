@@ -71,9 +71,13 @@ public class ModifierMachine extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btnValiderModifMachine) {
 			this.dispose();
+			GestionMachine.comSalle.removeAllItems();
+			GestionMachine.comMachine.removeAllItems();
 			GestionMachine gm = new GestionMachine(controler);
 		}if(e.getSource()==btnAnnulerModifMachine) {
 			this.dispose();
+			GestionMachine.comSalle.removeAllItems();
+			GestionMachine.comMachine.removeAllItems();
 			GestionMachine gm = new GestionMachine(controler);
 		}
 		

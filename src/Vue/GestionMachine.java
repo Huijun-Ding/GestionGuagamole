@@ -104,7 +104,7 @@ public class GestionMachine extends JFrame implements ActionListener,ItemListene
 			countM+=1;
 		}
 		for(int add=0;add<sizeM;add++) {
-			comMachine.addItem(ma[add].getNumM());
+			comMachine.addItem(ma[add].getNomMachine());
 		}
 
 		
@@ -153,7 +153,7 @@ public class GestionMachine extends JFrame implements ActionListener,ItemListene
 				ma[countM++]=s;				
 			}
 			for(int add=0;add<sizeM;add++) {
-				comMachine.addItem(ma[add].getNumM());
+				comMachine.addItem(ma[add].getNomMachine());
 			}
 		}
 		

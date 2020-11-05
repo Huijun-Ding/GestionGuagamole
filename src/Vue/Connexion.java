@@ -115,8 +115,7 @@ public class Connexion extends JFrame implements ItemListener, ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0){
 		if(arg0.getSource()==btnValiderConn) {
-			String identifiant = txtIdentifiantConn.getText();
-			int id = Integer.parseInt(identifiant);
+			String id = txtIdentifiantConn.getText();
 			String mdp = new String(passConn.getPassword());
 			if(controler.connexion(id, mdp, i)!=null) {
 			if(i==3) {

@@ -84,5 +84,9 @@ public class ControlerInterface {
 	public ArrayList<Etudiant> getListEtudiant(String nomF){
 		return query.getListEtudiant(nomF);
 	}
+	public void supprimerEtudaint(Etudiant stu) {
+		query.supprimerEtudiant(stu);
+		
+	}
 
 }

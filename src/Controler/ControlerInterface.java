@@ -13,18 +13,6 @@ public class ControlerInterface {
         this.query = new Query();
     }
 
-    public void annulerReservation(Reservation res) {
-        query.annulerReservation(res);
-    }
-    
-    public void modifierReservation(Reservation res) {
-    	query.modifierReservation(res);
-    }
-    
-    public void ajouterReservation(Reservation res) {
-    	query.ajouterReservation(res);
-    }
-        
     public Utilisateur connexion(String id, String mdp, int i) {
         Utilisateur user = query.connexionUilisateur(id, mdp, i);
         if (user != null) {

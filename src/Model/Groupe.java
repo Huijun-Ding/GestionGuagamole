@@ -29,8 +29,8 @@ public class Groupe {
     //public Groupe() {}
 
     public ArrayList<TP> getListeTPs() {
-		return listeTPs;
-	}
+        return listeTPs;
+    }
 
     public void ajouterTP(TP tp) {
         this.listeTPs.add(tp);
@@ -41,7 +41,7 @@ public class Groupe {
     }
 
     public void ajouterEtudiantGroupe(Etudiant etu) {
-       this.etudiants.add(etu);
+        this.etudiants.add(etu);
     }
 
     public void supprimerEtudiantGroupe(Etudiant e) {

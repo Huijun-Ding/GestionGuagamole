@@ -29,12 +29,6 @@ public class ConsultationEns {
         jp1.setLayout(null);
         jfEns.getContentPane().add(jp1, BorderLayout.CENTER);
         
-        JPanel panel = new JPanel();
-        panel.setBackground(SystemColor.text);
-        panel.setBounds(0, 0, 90, 340);
-        jp1.add(panel);
-        panel.setLayout(null);
-        
         jfEns.setVisible(true); 
     }
 

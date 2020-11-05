@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-  
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-<<<<<<< HEAD
 	<classpathentry exported="true" kind="lib" path="mysql-connector-java-5.1.39-bin.jar"/>
-=======
-	<classpathentry kind="lib" path="mysql-connector-java-5.1.39-bin.jar"/>
-
->>>>>>> e98a91912e33d4cc1a3a78f700c3dc72c5adb2a9
 	<classpathentry kind="output" path="bin"/>
 </classpath>

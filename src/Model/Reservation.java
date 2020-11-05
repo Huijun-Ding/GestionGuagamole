@@ -22,13 +22,9 @@ public class Reservation {
         this.tp = tp;
     }
 
-    public Utilisateur getUtilisateur() {
-    	return utilisateur;
+    public Calendrier getCalendrierR() {
+        return calendrierR;
     }
-	public Calendrier getCalendrierR() {
-		return calendrierR;
-	}
-
 
     public void setCalendrierR(Calendrier calendrierR) {
         this.calendrierR = calendrierR;

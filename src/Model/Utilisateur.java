@@ -1,11 +1,13 @@
 package Model;
 
+import java.util.ArrayList;
+
 public class Utilisateur {
 
-    protected String numU;
-    protected String mdpU;
-    protected String nomU;
-    protected String prenomU;
+    private String numU;
+    private String mdpU;
+    private String nomU;
+    private String prenomU;
 
     public Utilisateur(String num, String mdp, String nom, String prenom) {
         this.numU = num;
@@ -13,9 +15,4 @@ public class Utilisateur {
         this.nomU = nom;
         this.prenomU = prenom;
     }
-
-	public String getNumU() {
-		return numU;
-	}
-
 }

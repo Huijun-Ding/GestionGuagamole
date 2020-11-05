@@ -88,9 +88,13 @@ public class AjouterMachine extends JFrame implements ActionListener{
 			int idS = Integer.parseInt(comSalle.getSelectedItem().toString());
 			controler.ajouterMachine(nomMachine, idS);
 			this.dispose();
+			GestionMachine.comSalle.removeAllItems();
+			GestionMachine.comMachine.removeAllItems();
 			GestionMachine gm = new GestionMachine(controler);
 		}if(e.getSource()==btnAnnulerAM) {
 			this.dispose();
+			GestionMachine.comSalle.removeAllItems();
+			GestionMachine.comMachine.removeAllItems();
 			GestionMachine gm1 = new GestionMachine(controler);
 		}
 		

@@ -14,4 +14,8 @@ public class Machine {
         this.salle = s;
         reservations = new ArrayList();
     }
+    
+    public String getNumM() {
+    	return this.numMachine;
+    }
 }

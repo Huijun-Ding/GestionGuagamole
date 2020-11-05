@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,10 +16,13 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import Controler.ControlerInterface;
+import Model.Machine;
+import Model.Salle;
 
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
 
-public class GestionMachine extends JFrame implements ActionListener{
+public class GestionMachine extends JFrame implements ActionListener,ItemListener{
 
 	private JPanel contentPane;
 	ControlerInterface controler;
@@ -28,6 +33,8 @@ public class GestionMachine extends JFrame implements ActionListener{
 	private static JButton btnModifierMachine = new JButton("Modifier");
 	private static JButton btnSupprimerMachine = new JButton("Supprimer");
 	private static JButton btnRetourGM = new JButton("Retour");
+	private static JComboBox comSalle = new JComboBox();
+	private static JComboBox comMachine = new JComboBox();
 	/**
 	 * Create the frame.
 	 */
@@ -40,13 +47,8 @@ public class GestionMachine extends JFrame implements ActionListener{
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JList listMachine = new JList();
-		listMachine.setBorder(new LineBorder(Color.BLACK, 2, true));
-		listMachine.setBounds(31, 76, 180, 152);
-		contentPane.add(listMachine);
-		
 		JLabel lblNewLabel_1 = new JLabel("Machines:");
-		lblNewLabel_1.setBounds(31, 50, 97, 16);
+		lblNewLabel_1.setBounds(31, 139, 97, 16);
 		contentPane.add(lblNewLabel_1);
 		
 		
@@ -68,13 +70,59 @@ public class GestionMachine extends JFrame implements ActionListener{
 		lblNewLabel.setBounds(146, 17, 157, 16);
 		contentPane.add(lblNewLabel);
 		
+		
+		comMachine.setBounds(31, 157, 157, 23);
+		contentPane.add(comMachine);
+		
+		
+		
+		JLabel lblNewLabel_2 = new JLabel("Salle");
+		lblNewLabel_2.setBounds(31, 57, 54, 15);
+		contentPane.add(lblNewLabel_2);		
+		
+		
+		comSalle.setBounds(31, 76, 157, 23);
+		contentPane.add(comSalle);
+		int size = controler.getListeSalle().size();
+		int count = 0;
+		Salle[] str = new Salle[size];
+		for(Salle s : controler.getListeSalle()) {
+			str[count]=s;
+			count+=1;
+		}
+		for(int addnum=0;addnum<size;addnum++) {
+			comSalle.addItem(str[addnum].getNumSalle());
+		}
+		
+		String numS=comSalle.getSelectedItem().toString();
+		int numSalle = Integer.parseInt(numS);
+		int sizeM = controler.getListeMachine(numSalle).size();
+		System.out.println(sizeM);
+		System.out.println(numSalle);
+		int countM = 0;
+		Machine[] ma = new Machine[sizeM];
+		for(Machine s : controler.getListeMachine(numSalle)) {
+			ma[countM]=s;
+			countM+=1;
+		}
+		for(int add=0;add<sizeM;add++) {
+			comMachine.addItem(ma[add].getNumM());
+		}
+
+		
 		btnAjouterMachine.addActionListener(this);
 		btnModifierMachine.addActionListener(this);
 		btnSupprimerMachine.addActionListener(this);
 		btnRetourGM.addActionListener(this);
 		
 		this.setVisible(true);
+		
+		comSalle.addItemListener(this);
+
 	}
+	
+
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btnAjouterMachine) {
@@ -90,4 +138,23 @@ public class GestionMachine extends JFrame implements ActionListener{
 		
 	}
 
+
+
+	@Override
+	public void itemStateChanged(ItemEvent e) {
+		if(e.getStateChange()==ItemEvent.SELECTED) {
+			comMachine.removeAllItems();;
+			int numSalle = Integer.parseInt(comSalle.getSelectedItem().toString());
+			int sizeM = controler.getListeMachine(numSalle).size();
+			int countM = 0;
+			Machine[] ma = new Machine[sizeM];
+			for(Machine s : controler.getListeMachine(numSalle)) {
+				ma[countM++]=s;				
+			}
+			for(int add=0;add<sizeM;add++) {
+				comMachine.addItem(ma[add].getNumM());
+			}
+		}
+		
+	}
 }

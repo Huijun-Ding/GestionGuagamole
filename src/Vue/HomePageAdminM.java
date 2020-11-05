@@ -78,9 +78,12 @@ public class HomePageAdminM extends JFrame implements ActionListener{
 			Connexion con = new Connexion(controler);
 		}if(e.getSource()==btnGestionSalle) {
 			this.dispose();
+			GestionSalle.comGroupe.removeAllItems();
 			GestionSalle gs = new GestionSalle(controler);
 		}if(e.getSource()==btnGestionMachine) {
 			this.dispose();
+			GestionMachine.comMachine.removeAllItems();
+			GestionMachine.comSalle.removeAllItems();
 			GestionMachine gm = new GestionMachine(controler);
 		}
 		

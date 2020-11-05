@@ -41,6 +41,10 @@ public class ControlerInterface {
 		query.ajouterSalle(numS, nomS);
 		
 	}
+	
+	public ArrayList<Machine> getListeMachine(int numSalle){
+		return query.getListeMachine(numSalle);
+	}
 
 
 }

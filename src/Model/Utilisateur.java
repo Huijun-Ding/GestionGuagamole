@@ -2,6 +2,8 @@ package Model;
 
 public class Utilisateur {
 
+
+
     protected String numU;
     protected String mdpU;
     protected String nomU;

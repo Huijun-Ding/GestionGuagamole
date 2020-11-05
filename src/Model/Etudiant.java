@@ -8,6 +8,8 @@ public class Etudiant extends Utilisateur {
 
     private ArrayList<Reservation> mesReservation;
     
+
+
     public Etudiant(String num, String mdp, String nom, String prenom, Groupe p) {
         super(num, mdp, nom, prenom);
         this.groupe = p;
@@ -26,6 +28,19 @@ public class Etudiant extends Utilisateur {
     	mesReservation.add(res);
     }
     
+
+    public String getNomE() {
+    	return super.nomU;
+    }
+    
+    public String getPrenomE() {
+    	return super.prenomU;
+    }
+    
+    public int getNumE() {
+    	return super.numU;
+    }
+
     public void annulerReservation(Reservation res) {
     	if(mesReservation.contains(res)) {
     		mesReservation.remove(res);
@@ -37,7 +52,7 @@ public class Etudiant extends Utilisateur {
     		mesReservation.set(mesReservation.indexOf(res), res);
     	}
     }
-    
+
 }
     
 

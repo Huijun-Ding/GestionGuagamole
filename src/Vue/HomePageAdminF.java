@@ -43,13 +43,18 @@ public class HomePageAdminF extends JFrame implements ActionListener{
 		lblNewLabel.setBounds(20, 10, 105, 47);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNomRF = new JLabel("");
-		lblNomRF.setBounds(135, 28, 54, 15);
+		int id = controler.getId();
+		int type = controler.getType();
+		String[] nomprenom = controler.getNomPrenom(id, type);
+		JLabel lblNomRF = new JLabel(nomprenom[0]);
+		lblNomRF.setFont(new Font("ËÎÌו", Font.PLAIN, 15));
+		lblNomRF.setBounds(106, 47, 105, 33);
 		contentPane.add(lblNomRF);
 		
-		JLabel lblPrenomRF = new JLabel("");
+		JLabel lblPrenomRF = new JLabel(nomprenom[1]);
+		lblPrenomRF.setFont(new Font("ËÎÌו", Font.PLAIN, 15));
 		lblPrenomRF.setHorizontalAlignment(SwingConstants.LEFT);
-		lblPrenomRF.setBounds(199, 28, 54, 15);
+		lblPrenomRF.setBounds(30, 47, 90, 33);
 		contentPane.add(lblPrenomRF);
 		
 		
@@ -75,6 +80,7 @@ public class HomePageAdminF extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btnSeDeconnecterRF) {
 			this.dispose();
+			controler.deconnexion();
 			Connexion conn = new Connexion(controler);
 		}if(e.getSource()==btnGestionEtudiant) {
 			this.dispose();

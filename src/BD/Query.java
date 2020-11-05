@@ -510,6 +510,119 @@ public class Query {
 		}
 		return nomSallesLibres;
 	}
+
+	public String[] getNomPrenom(int id, int type) {
+		String[] nomprenom = new String[2];
+		Query conn = new Query();
+    	con = conn.getConnection();
+    	Statement stmt;
+    	ResultSet res;
+    	try {
+      		stmt=con.createStatement();
+      		String sql;
+      		if(type==1) {
+      			sql="SELECT * FROM etudiant WHERE IdE="+id;
+      			res=stmt.executeQuery(sql);
+      			while(res.next()) {
+      				String nom = res.getString("NomE");
+      				String prenom = res.getString("PrenomE");
+      				nomprenom[0]=nom;
+      				nomprenom[1]=prenom;
+      			}
+      		}
+      		if(type==2) {
+      			sql="SELECT * FROM enseignant WHERE IdEns="+id;
+      			res=stmt.executeQuery(sql);
+      			while(res.next()) {
+      				String nom = res.getString("NomEns");
+      				String prenom = res.getString("PrenomEns");
+      				nomprenom[0]=nom;
+      				nomprenom[1]=prenom;
+      			}
+      		}
+      		if(type==3) {
+      			sql="SELECT * FROM enseignant E, encadrer EN WHERE E.idEns=EN.idEns and E.IdEns="+id;
+      			res=stmt.executeQuery(sql);
+      			while(res.next()) {
+      				String nom = res.getString("E.NomEns");
+      				String prenom = res.getString("E.PrenomEns");
+      				nomprenom[0]=nom;
+      				nomprenom[1]=prenom;
+      			}
+      		}
+      		return nomprenom;
+    	}
+
+    	catch(Exception e) {
+    		e.printStackTrace();
+    	}
+		return null;
+	}
+
+	public ArrayList<Formation> getListeFormation() {
+		ArrayList<Formation> formation = new ArrayList<Formation>();
+		Query conn = new Query();
+    	con = conn.getConnection();
+    	Statement stmt;
+    	ResultSet res;
+    	try {
+    		stmt=con.createStatement();
+    		String sql = "SELECT * FROM formation";
+    		res=stmt.executeQuery(sql);
+    		while(res.next()) {
+    			int idF = res.getInt("IdF");
+    			String nomF = res.getString("NomF");
+    			Formation f = new Formation(nomF,null);
+    			formation.add(f);
+    		}
+    		return formation;
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    	}
+		return null;
+	}
+
+	public ArrayList<Etudiant> getListEtudiant(String nomF) {
+		ArrayList<Etudiant> etudiant = new ArrayList<Etudiant>();
+		Query conn = new Query();
+    	con = conn.getConnection();
+    	Statement stmt;
+    	ResultSet res;
+    	try {
+    		stmt=con.createStatement();
+    		String sql = "SELECT * FROM etudiant e, groupe g, formation f WHERE e.IdG=g.IdG and g.IdF=f.IdF and f.NomF='"+nomF+"'";
+    		res=stmt.executeQuery(sql);
+    		while(res.next()) {
+    			int idE = res.getInt("e.IdE");
+    			String nomE = res.getString("e.NomE");
+    			String prenomE = res.getString("e.PrenomE");
+    			String nomG = res.getString("g.NomG");
+    			Formation f = new Formation(nomF,null);
+    			Groupe g = new Groupe(nomG,f);
+    			Etudiant e = new Etudiant(idE,null,nomE,prenomE,g);
+    			etudiant.add(e);
+    		}
+    		return etudiant;
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    	}
+		return null;
+	}
+
+	public Object supprimerEtudiant(Etudiant stu) {
+		int idE = stu.getNumE();
+		Query conn = new Query();
+    	con = conn.getConnection();
+    	Statement stmt;
+    	ResultSet res;
+		try{
+            stmt = con.createStatement();
+            stmt.execute("delete from etudiant where IdE="+"'"+idE+"';");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+		return null;
+
 	
 	/**
 	 * affiche une liste des machines libres dans une salle o� va se d�rouler un tp
@@ -604,7 +717,14 @@ public class Query {
 		        } 
 		}
 		return nomMachinesLibres;
+
 	}
+
+}
+
+	
+
+	
 	
 	/**
 	 * afficher la liste des reservations effectu�es

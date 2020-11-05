@@ -97,8 +97,6 @@ public class GestionMachine extends JFrame implements ActionListener,ItemListene
 		String numS=comSalle.getSelectedItem().toString();
 		int numSalle = Integer.parseInt(numS);
 		int sizeM = controler.getListeMachine(numSalle).size();
-		System.out.println(sizeM);
-		System.out.println(numSalle);
 		int countM = 0;
 		Machine[] ma = new Machine[sizeM];
 		for(Machine s : controler.getListeMachine(numSalle)) {

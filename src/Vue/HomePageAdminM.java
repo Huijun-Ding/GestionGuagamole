@@ -75,6 +75,7 @@ public class HomePageAdminM extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btnSeDeconnecter) {
 			this.dispose();
+			controler.deconnexion();
 			Connexion con = new Connexion(controler);
 		}if(e.getSource()==btnGestionSalle) {
 			this.dispose();

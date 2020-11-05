@@ -24,8 +24,17 @@ public class Formation {
         ActualiserLstGroupe();
     }
     
+
+    public String getNomF() {
+    	return this.nomFormation;
+    }
+    
+    public void ajouterGroupe() {
+        
+
     public static int getNumFormation() {
         return Formation.numFormation;
+
     }
     
     public void ActualiserLstGroupe(){

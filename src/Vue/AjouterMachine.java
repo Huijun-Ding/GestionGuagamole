@@ -24,7 +24,7 @@ public class AjouterMachine extends JFrame implements ActionListener{
 	private static JTextField txtNomMAM = new JTextField();
 	private static JButton btnValiderAM = new JButton("Valider");
 	private static JButton btnAnnulerAM = new JButton("Annuler");
-	private final JComboBox comSalle = new JComboBox();
+	public static JComboBox comSalle = new JComboBox();
 	/**
 	 * Create the frame.
 	 */

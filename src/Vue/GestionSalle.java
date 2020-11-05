@@ -61,7 +61,7 @@ public class GestionSalle extends JFrame implements ActionListener{
 			count+=1;
 		}
 		for(int addnum=0;addnum<size;addnum++) {
-			comGroupe.addItem(str[addnum].getNumSalle());
+			comGroupe.addItem(str[addnum].getNomSalle());
 		}
 		
 		

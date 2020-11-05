@@ -75,4 +75,36 @@ public class Query {
     	return null;
     }
     
-}
+    public void supprimerSalle(String nom) {
+    	Query conn = new Query();
+    	con = conn.getConnection();
+    	Statement stmt;
+    	try {
+    		stmt=con.createStatement();
+    		String sql = "DELETE FROM salle WHERE NomS='"+ nom+"'";
+    		stmt.execute(sql);
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    	}
+    }
+
+	public void ajouterSalle(int numS, String nomS) {
+		Query conn = new Query();
+    	con = conn.getConnection();
+    	Statement stmt;
+    	try {
+    		stmt=con.createStatement();
+    		String sql = "INSERT INTO `salle`(`IdS`, `NomS`) VALUES ("+numS+",'"+nomS+"')";
+    		stmt.execute(sql);
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    	}
+    
+	}
+
+
+	}
+	
+	
+    
+

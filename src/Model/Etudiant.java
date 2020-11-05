@@ -33,10 +33,9 @@ public class Etudiant extends Utilisateur{
     	}
     }
 
-    public void modifierReservation(Reservation res,Calendrier cal) {
+    public void modifierReservation(Reservation res) {
     	if(mesReservation.contains(res)) {
-    		//changer date et creneau
-    		res.setCalendrierR(cal);
+    		mesReservation.set(mesReservation.indexOf(res), res);
     	}
     
     }

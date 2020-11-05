@@ -1,6 +1,7 @@
 package Controler;
 
 import Model.*;
+import BD.*;
 
 public class ControlerInterface {
     private Etudiant etu; 
@@ -13,8 +14,8 @@ public class ControlerInterface {
     	etu.annulerReservation(res);
     }
     
-    public void modifierReservation(Reservation res, Calendrier cal) {
-    	etu.modifierReservation(res, cal);
+    public void modifierReservation(Reservation res) {
+    	etu.modifierReservation(res);
     }
     
     public void ajouterReservation(Reservation res) {

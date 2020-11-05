@@ -23,6 +23,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import java.util.ArrayList;
+import java.awt.SystemColor;
 
 public class AjouterTP {
 
@@ -41,37 +42,48 @@ public class AjouterTP {
         JLabel jl = new JLabel("Nouveau TP");
         jp.setBackground(Color.white);
         jp.add(jl);
-        jfATP.add(jp, BorderLayout.NORTH);
+        jfATP.getContentPane().add(jp, BorderLayout.NORTH);
 
         JPanel jp1 = new JPanel();
-        JButton btn1 = new JButton("Reour");
+        jp1.setBackground(SystemColor.inactiveCaptionBorder);
+        JButton btn1 = new JButton("Retour");
+        btn1.setBounds(225, 273, 59, 21);
         JButton btn2 = new JButton("Valider");
+        btn2.setBounds(441, 273, 65, 21);
 
         JLabel j = new JLabel("Nom : ");
+        j.setBounds(221, 24, 31, 13);
         JTextField txtfield = new JTextField();
+        txtfield.setBounds(405, 21, 137, 19);
         txtfield.setText("Veuillez saisir le nom du TP ");
 
         JLabel j2 = new JLabel("Date : ");
+        j2.setBounds(221, 62, 31, 13);
         DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         JFormattedTextField dateTextField = new JFormattedTextField(format);
+        dateTextField.setBounds(405, 59, 105, 19);
         dateTextField.setText("yyyy-MM-dd");
 
-        JLabel j3 = new JLabel("Créneau : ");
+        JLabel j3 = new JLabel("Cr�neau : ");
+        j3.setBounds(221, 101, 59, 13);
         JComboBox cmb1 = new JComboBox();
-        // tous les créneau
-        cmb1.addItem(Creneau.CRENEAU_8H00_9H30);
-        cmb1.addItem(Creneau.CRENEAU_9H30_11H00);
-        cmb1.addItem(Creneau.CRENEAU_11H00_12H30);
-        cmb1.addItem(Creneau.CRENEAU_12H30_14H00);
-        cmb1.addItem(Creneau.CRENEAU_14H00_15H30);
-        cmb1.addItem(Creneau.CRENEAU_15H30_17H00);
-        cmb1.addItem(Creneau.CRENEAU_17H00_18H30);
-        cmb1.addItem(Creneau.CRENEAU_18H30_20H00);
+        cmb1.setBounds(408, 98, 137, 19);
+        // tous les cr�nneau
+        cmb1.addItem("8h00-9h30");
+        cmb1.addItem("9h30-11h00");
+        cmb1.addItem("11h00-12h30");
+        cmb1.addItem("12h30-14h00");
+        cmb1.addItem("14h00-15h30");
+        cmb1.addItem("15h30-17h00");
+        cmb1.addItem("17h00-18h30");
+        cmb1.addItem("18h30-20h00");
 
         JLabel j4 = new JLabel("Salle : ");
+        j4.setBounds(223, 142, 33, 13);
         JComboBox cmb2 = new JComboBox();
+        cmb2.setBounds(408, 139, 102, 19);
         // une boucle de tous les créneau
-        cmb2.addItem("--veuillez coisir--");
+        cmb2.addItem("--veuillez choisir--");
         try {
             sql = con.prepareStatement("select NomS from salle;");
             res = sql.executeQuery();
@@ -83,9 +95,11 @@ public class AjouterTP {
         }
 
         JLabel j5 = new JLabel("Formation :  ");
+        j5.setBounds(221, 180, 60, 13);
         JComboBox cmb3 = new JComboBox();
+        cmb3.setBounds(408, 177, 102, 19);
         // une boucle de tous les créneau
-        cmb3.addItem("--veuillez coisir--");
+        cmb3.addItem("--veuillez choisir--");
         try {
             sql = con.prepareStatement("select NomF from formation;");
             res = sql.executeQuery();
@@ -96,10 +110,12 @@ public class AjouterTP {
             throwables.printStackTrace();
         }
 
-        JLabel j6 = new JLabel("Groupe d'étudiants :  ");
+        JLabel j6 = new JLabel("Groupe d'�tudiants :  ");
+        j6.setBounds(222, 220, 110, 13);
         JComboBox cmb4 = new JComboBox();
+        cmb4.setBounds(408, 217, 102, 19);
         // une boucle de tous les créneau
-        cmb4.addItem("--veuillez coisir--");
+        cmb4.addItem("--veuillez choisir--");
         try {
             sql = con.prepareStatement("select NomG from groupe;");
             res = sql.executeQuery();
@@ -109,6 +125,7 @@ public class AjouterTP {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        jp1.setLayout(null);
 
         jp1.add(j);
         jp1.add(txtfield);
@@ -124,7 +141,7 @@ public class AjouterTP {
         jp1.add(cmb4);
         jp1.add(btn1);
         jp1.add(btn2);
-        jfATP.add(jp1, BorderLayout.CENTER);
+        jfATP.getContentPane().add(jp1, BorderLayout.CENTER);
 
         btn1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

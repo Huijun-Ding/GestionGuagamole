@@ -7,20 +7,11 @@ import Model.*;
 
 public class ControlerInterface {
 
-    //private Etudiant etu;
     private Query query;
 
     public ControlerInterface() {
         this.query = new Query();
     }
-
-    /*public void annulerReservation(Reservation res) {
-        etu.annulerReservation(res);
-    }
-
-    public void modifierReservation(Reservation res, Calendrier cal) {
-        etu.modifierReservation(res, cal);
-    }*/
 
     public Utilisateur connexion(String id, String mdp, int i) {
         Utilisateur user = query.connexionUilisateur(id, mdp, i);

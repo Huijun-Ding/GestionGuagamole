@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import java.awt.SystemColor;
 
 public class MenuEns {
     public MenuEns() {
@@ -18,14 +19,18 @@ public class MenuEns {
         JLabel jl = new JLabel("Menu");   
         jp.setBackground(Color.white);  
         jp.add(jl);   
-        jfEns.add(jp, BorderLayout.NORTH); 
+        jfEns.getContentPane().add(jp, BorderLayout.NORTH); 
 
         JPanel jp1 = new JPanel();
+        jp1.setBackground(SystemColor.inactiveCaptionBorder);
         JButton btn1 = new JButton("Ajouter un TP");  
+        btn1.setBounds(236, 135, 95, 21);
         JButton btn2 = new JButton("Consulter les TPs");
+        btn2.setBounds(443, 135, 111, 21);
+        jp1.setLayout(null);
         jp1.add(btn1);
         jp1.add(btn2);
-        jfEns.add(jp1, BorderLayout.CENTER);
+        jfEns.getContentPane().add(jp1, BorderLayout.CENTER);
 
         btn1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

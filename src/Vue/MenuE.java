@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import java.awt.SystemColor;
 
 public class MenuE {
     public MenuE() {
@@ -19,30 +20,38 @@ public class MenuE {
         JLabel jl = new JLabel("Menu");   
         jp.setBackground(Color.white);  
         jp.add(jl);   
-        jf.add(jp, BorderLayout.NORTH);
+        jf.getContentPane().add(jp, BorderLayout.NORTH);
 
         JPanel cards = new JPanel(new CardLayout());  
 
         JPanel jp1 = new JPanel();
+        jp1.setBackground(SystemColor.inactiveCaptionBorder);
         JButton btn1 = new JButton("Effectuer une réservation");  
+        btn1.setBounds(202, 152, 159, 21);
         JButton btn2 = new JButton("Consulter mes réservations");
+        btn2.setBounds(421, 152, 167, 21);
+        jp1.setLayout(null);
         jp1.add(btn1);
         jp1.add(btn2);
-        jf.add(jp1, BorderLayout.CENTER);
 
         JPanel jp2 = new JPanel();
+        jp2.setBackground(SystemColor.inactiveCaptionBorder);
         JButton btn3 = new JButton("Réserver pour un TP");
+        btn3.setBounds(231, 107, 137, 21);
         JButton btn4 = new JButton("Réserver une machine libre");
+        btn4.setBounds(391, 107, 169, 21);
         JButton btn5 = new JButton("Retour");
+        btn5.setBounds(358, 214, 63, 21);
+        jp2.setLayout(null);
         jp2.add(btn3);
         jp2.add(btn4);
-        jp2.add(btn5, BorderLayout.SOUTH);
+        jp2.add(btn5);
 
         cards.add(jp1, "card1");    //ajouter panel1 dans card comme card1
         cards.add(jp2, "card2");    //ajouter panel2 dans card comme card2
         CardLayout cl = (CardLayout) (cards.getLayout());
         cl.show(cards, "card1");    //Afficher card1
-        jf.add(cards);
+        jf.getContentPane().add(cards);
 
         btn1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

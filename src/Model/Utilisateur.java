@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Utilisateur {
     private int numU;
     private String mdpU;
-    private String nomU;
-    private String prenomU;
+    protected String nomU;
+    protected String prenomU;
     private ArrayList<Reservation> mesReservation;
     
     public Utilisateur(int num, String mdp, String nom, String prenom) {

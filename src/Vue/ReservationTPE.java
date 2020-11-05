@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.*;
+import Controler.ControlerInterface;
 
 public class ReservationTPE {
 
@@ -17,6 +18,7 @@ public class ReservationTPE {
     static PreparedStatement sql;
     static ResultSet res;
     private int ids;
+    ControlerInterface ci = new ControlerInterface();
 
     public ReservationTPE() {
         BDconfig c = new BDconfig();
@@ -84,29 +86,32 @@ public class ReservationTPE {
         lblNewLabel.setBounds(402, 73, 45, 13);
         jp2.add(lblNewLabel);
         try {
-            sql = con.prepareStatement("select IdS, NomSalle from tp t, derouler d, salle s where t.IdTP = d.IdTP and d.IdS = s.IdS and t.NomTP = ?;");
+            sql = con.prepareStatement("select distinct d.IdS, s.NomS from tp t, derouler d, salle s where t.IdTP = d.IdTP and d.IdS = s.IdS and t.NomTP = ?;");
             sql.setString(1, (String)cmbTP.getSelectedItem());
-            sql.executeUpdate();
-            lblNewLabel.setText(res.getString("NomSalle"));
-            ids = res.getInt("IdS");
+            res = sql.executeQuery();
+            //System.out.println(res.getInt("d.IdS"));
+            lblNewLabel.setText(res.getString("s.NomS"));
+            ids = res.getInt("d.IdS");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-        }   
-        
+        }
+
         JComboBox comboBox = new JComboBox();
         comboBox.setBounds(404, 114, 106, 21);
         comboBox.addItem("--veuillez choisir--");
+        //System.out.println(ci.afficherMachineTP());
         try {
-            sql = con.prepareStatement("select NomM from machine m, salle s where m.IdS = s.IdS;");
+            sql = con.prepareStatement("select NomM from machine m, salle s where m.IdS = s.IdS and s.IdS = ?;");
+            sql.setInt(1, ids);
             res = sql.executeQuery();
             while (res.next()) {
                 comboBox.addItem(res.getString("NomM"));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-        }         
+        }
         jp2.add(comboBox);
-        
+
         CardLayout cl = (CardLayout) (cards.getLayout());
         cl.show(cards, "card1");
         jf2.getContentPane().add(cards);
@@ -120,7 +125,7 @@ public class ReservationTPE {
                 }
             }
         });
-                
+
         btn2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == btn2) {

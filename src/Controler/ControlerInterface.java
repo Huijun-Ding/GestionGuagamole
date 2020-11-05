@@ -67,5 +67,9 @@ public class ControlerInterface {
     public ArrayList<TP> getListReservation() {
         return query.getListReservation();
     }
+    
+    public ArrayList<String> afficherMachineTP() {
+        return query.afficherMachineTP();
+    }
 
 }

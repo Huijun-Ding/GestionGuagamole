@@ -25,12 +25,11 @@ import java.awt.event.ActionEvent;
 import java.awt.Color;
 
 public class Connexion extends JFrame implements ItemListener, ActionListener{
-
+	
 	private JPanel contentPane;
 	private static JTextField txtIdentifiantConn;
 	private static JPasswordField passConn;
 	private ControlerInterface controler;
-
 	private static JRadioButton rdEtudiant = new JRadioButton("Etudiant",false);
 	private static JRadioButton rdEnseignant = new JRadioButton("Enseignant",false);
 	private static JRadioButton rdRespoF = new JRadioButton("Respo. Formation",false);
@@ -41,6 +40,8 @@ public class Connexion extends JFrame implements ItemListener, ActionListener{
 	private static JButton btnValiderConn = new JButton("Valider");
 	private static JButton btnAnnulerConn = new JButton("Annuler");
 	private static JLabel lblVerifier = new JLabel("");
+	
+
 	/**
 	 * Create the frame.
 	 */

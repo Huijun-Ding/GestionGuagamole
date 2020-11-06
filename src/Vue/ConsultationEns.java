@@ -172,7 +172,12 @@ public class ConsultationEns {
                 if (e.getSource() == btnNewButton_1) {
                     jfEns.dispose();
                     // supprimer ce TP de la BD
-
+                    /*try {
+                        sql = con.prepareStatement("delete from etudiant where NumE=" + "'" + num + "';");
+                        sql.executeUpdate();
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }*/
                 }
             }
         });
@@ -180,7 +185,7 @@ public class ConsultationEns {
         comboBox.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == comboBox) {
-                    jfEns.dispose();
+
                     // afficher(reset) Nom du TP, Date, Créneau, Capacité de salle et Nb étidiants sur guagamole
                     String nomtp = comboBox.getSelectedItem().toString();
                     int idtp = 0;
@@ -201,7 +206,7 @@ public class ConsultationEns {
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }
-                    
+
                     // Date
                     try {
                         sql = con.prepareStatement("select DateTP from derouler where IdTP = ?;");
@@ -213,19 +218,19 @@ public class ConsultationEns {
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }
-                    
+
                     // Créneau
                     try {
                         sql = con.prepareStatement("select CreneauTP from derouler where IdTP = ?;");
                         sql.setInt(1, idtp);
                         res = sql.executeQuery();
                         while (res.next()) {
-                            datetp = res.getString("CreneauTP");
+                            creneautp = res.getString("CreneauTP");
                         }
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }
-                    
+
                     //  IdS
                     try {
                         sql = con.prepareStatement("select IdS from derouler where IdTP = ?;");
@@ -237,7 +242,7 @@ public class ConsultationEns {
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }
-                    
+
                     // Capacité de salle
                     try {
                         sql = con.prepareStatement("select COUNT(*) from machine where IdS = ?;");
@@ -248,11 +253,9 @@ public class ConsultationEns {
                         }
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
-                    }                    
-                    
-                    // Nb étidiants sur guagamole
+                    }
 
-                    
+                    // Nb étidiants sur guagamole
                     // reset JLabels
                     lblNewLabel_5.setText(nomtp);
                     lblNewLabel_5_1.setText(datetp);

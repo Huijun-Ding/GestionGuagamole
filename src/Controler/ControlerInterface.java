@@ -24,6 +24,7 @@ public class ControlerInterface {
     
     public void ajouterReservation(Reservation res) {
     	query.ajouterReservation(res);
+    }
 
     public Utilisateur connexion(String id, String mdp, int i) {
         Utilisateur user = query.connexionUilisateur(id, mdp, i);

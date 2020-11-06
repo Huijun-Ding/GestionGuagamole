@@ -19,8 +19,6 @@ public class Machine {
     public ArrayList<Reservation> getReservations() {
 		return reservations;
 	}
-    public String getNumMachine() {
-    	return numMachine;
 
     public String getNomMachine() {
     	return nomMachine;

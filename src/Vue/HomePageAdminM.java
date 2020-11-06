@@ -40,16 +40,22 @@ public class HomePageAdminM extends JFrame implements ActionListener{
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Bienvenue!");
-		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
-		lblNewLabel.setBounds(23, 6, 103, 36);
+		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+		lblNewLabel.setBounds(23, 6, 124, 36);
 		contentPane.add(lblNewLabel);
 		
-		JLabel nomAdminM = new JLabel("DUAN");
-		nomAdminM.setBounds(205, 17, 89, 16);
+		String[] str = controler.getNomPrenom(controler.getId(), controler.getType());
+		
+		JLabel nomAdminM = new JLabel("");
+		nomAdminM.setFont(new Font("Arial", Font.PLAIN, 15));
+		nomAdminM.setText(str[0]);
+		nomAdminM.setBounds(119, 68, 89, 16);
 		contentPane.add(nomAdminM);
 		
-		JLabel prenomAdminM = new JLabel("Chengyu");
-		prenomAdminM.setBounds(119, 17, 83, 16);
+		JLabel prenomAdminM = new JLabel("");
+		prenomAdminM.setFont(new Font("Arial", Font.PLAIN, 15));
+		prenomAdminM.setText(str[1]);
+		prenomAdminM.setBounds(23, 68, 83, 16);
 		contentPane.add(prenomAdminM);
 		
 		
@@ -75,6 +81,7 @@ public class HomePageAdminM extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btnSeDeconnecter) {
 			this.dispose();
+			controler.deconnexion();
 			Connexion con = new Connexion(controler);
 		}if(e.getSource()==btnGestionSalle) {
 			this.dispose();

@@ -18,11 +18,11 @@ public class Etudiant extends Utilisateur {
         super(num, mdp, nom, prenom);
         mesReservation = new ArrayList();
     }
-    
-    public Groupe getGroupe() {
-        return groupe;
+
+    public String getNomE() {
+        return super.nomU;
     }
-    
+
     public void ajouterReservation(Reservation res) {
         this.mesReservation.add(res);
     }
@@ -44,5 +44,20 @@ public class Etudiant extends Utilisateur {
         }
     }
 
-}
+    public String getPrenomE() {
+        return super.prenomU;
+    }
 
+    public String getMdpE() {
+        return super.mdpU;
+    }
+    
+    public String getNumE() {
+        return super.numU;
+    }
+
+    public Groupe getGroupe() {
+        return this.groupe;
+    }
+
+}

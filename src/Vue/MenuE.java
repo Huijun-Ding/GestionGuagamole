@@ -29,12 +29,11 @@ public class MenuE {
         jl.setFont(new Font("Tahoma", Font.PLAIN, 14));
         jp.setBackground(Color.white);  
         jp.add(jl);   
-        jf.getContentPane().add(jp, BorderLayout.NORTH);
+        jf.add(jp, BorderLayout.NORTH);
 
         JPanel cards = new JPanel(new CardLayout());  
 
         JPanel jp1 = new JPanel();
-        jp1.setBackground(SystemColor.inactiveCaptionBorder);
         JButton btn1 = new JButton("Effectuer une réservation");  
         btn1.setFont(new Font("Tahoma", Font.PLAIN, 14));
         btn1.setBounds(112, 152, 249, 41);
@@ -44,10 +43,11 @@ public class MenuE {
         jp1.setLayout(null);
         jp1.add(btn1);
         jp1.add(btn2);
+        jf.add(jp1, BorderLayout.CENTER);
 
         JPanel jp2 = new JPanel();
-        jp2.setBackground(SystemColor.inactiveCaptionBorder);
         JButton btn3 = new JButton("Réserver pour un TP");
+
         btn3.setFont(new Font("Tahoma", Font.PLAIN, 14));
         btn3.setBounds(158, 107, 210, 48);
         JButton btn4 = new JButton("Réserver une machine libre");
@@ -59,13 +59,13 @@ public class MenuE {
         jp2.setLayout(null);
         jp2.add(btn3);
         jp2.add(btn4);
-        jp2.add(btn5);
+        jp2.add(btn5, BorderLayout.SOUTH);
 
         cards.add(jp1, "card1");    //ajouter panel1 dans card comme card1
         cards.add(jp2, "card2");    //ajouter panel2 dans card comme card2
         CardLayout cl = (CardLayout) (cards.getLayout());
         cl.show(cards, "card1");    //Afficher card1
-        jf.getContentPane().add(cards);
+        jf.add(cards);
 
         btn1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

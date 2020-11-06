@@ -110,6 +110,31 @@ public class GestionEtudiant extends JFrame implements ActionListener, ItemListe
 		
 		this.setVisible(true);
 	}
+	public void setListeDeroulante() {
+		int size = controler.getListeFormation().size();
+		int count = 0;
+		Formation[] str = new Formation[size];
+		for(Formation f : controler.getListeFormation()) {
+			str[count]=f;
+			count+=1;			
+		}
+		for(int addnum=0;addnum<size;addnum++) {
+			comFormation.addItem(str[addnum].getNomF());
+		}
+		
+		String nomF = comFormation.getSelectedItem().toString();
+		ArrayList<Etudiant> etudiant = controler.getListEtudiant(nomF);
+		int sizeM = etudiant.size();
+		int countM = 0;
+		Etudiant[] et = new Etudiant[sizeM];
+		for(Etudiant e : etudiant) {
+			et[countM]=e;
+			countM+=1;
+		}
+		for(int add=0;add<sizeM;add++) {
+			comEtudiant.addItem(et[add].getNomE()+" "+et[add].getPrenomE());
+		}
+	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btnAjouterEtudiant) {
@@ -129,10 +154,9 @@ public class GestionEtudiant extends JFrame implements ActionListener, ItemListe
 			}
 			Etudiant stu = et[ordre];
 			controler.supprimerEtudaint(stu);
-			this.dispose();
 			comEtudiant.removeAllItems();
 			comFormation.removeAllItems();
-			GestionEtudiant ge = new GestionEtudiant(controler);
+			setListeDeroulante();
 		}if(e.getSource()==btnRetourGE) {
 			this.dispose();
 			HomePageAdminF hp = new HomePageAdminF(controler);

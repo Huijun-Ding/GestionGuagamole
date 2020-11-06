@@ -67,30 +67,9 @@ public class GestionEtudiant extends JFrame implements ActionListener, ItemListe
 
 		comEtudiant.setBounds(78, 153, 142, 23);
 		contentPane.add(comEtudiant);
-		
-		int size = controler.getListeFormation().size();
-		int count = 0;
-		Formation[] str = new Formation[size];
-		for(Formation f : controler.getListeFormation()) {
-			str[count]=f;
-			count+=1;			
-		}
-		for(int addnum=0;addnum<size;addnum++) {
-			comFormation.addItem(str[addnum].getNomF());
-		}
-		
-		String nomF = comFormation.getSelectedItem().toString();
-		ArrayList<Etudiant> etudiant = controler.getListEtudiant(nomF);
-		int sizeM = etudiant.size();
-		int countM = 0;
-		Etudiant[] et = new Etudiant[sizeM];
-		for(Etudiant e : etudiant) {
-			et[countM]=e;
-			countM+=1;
-		}
-		for(int add=0;add<sizeM;add++) {
-			comEtudiant.addItem(et[add].getNomE()+" "+et[add].getPrenomE());
-		}
+		comFormation.removeAllItems();
+		comEtudiant.removeAllItems();
+		setListeDeroulante();
 		
 		JLabel lblNewLabel_1 = new JLabel("Formation:");
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -110,6 +89,7 @@ public class GestionEtudiant extends JFrame implements ActionListener, ItemListe
 		
 		this.setVisible(true);
 	}
+	
 	public void setListeDeroulante() {
 		int size = controler.getListeFormation().size();
 		int count = 0;

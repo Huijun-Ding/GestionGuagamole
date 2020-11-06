@@ -43,7 +43,7 @@ public class ConsultationEns {
         System.out.println(contro.getId());
         try {
             sql = con.prepareStatement("select IdEns from enseignant where NumEns = ?;");
-            sql.setString(1, /*contro.getId().toString()*/"20500001");
+            sql.setString(1, contro.getId());
             res = sql.executeQuery();
             while (res.next()) {
                 idens = res.getInt("IdEns");
@@ -82,7 +82,7 @@ public class ConsultationEns {
             sql.setInt(1, idens);            
             res = sql.executeQuery();
             while (res.next()) {
-                comboBox.addItem(res.getString("NomS"));
+                comboBox.addItem(res.getString("NomTP"));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -161,8 +161,38 @@ public class ConsultationEns {
         lblNewLabel_4_1.setBounds(212, 253, 231, 27);
         jp1.add(lblNewLabel_4_1);
 
+        btnNewButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == btnNewButton) {
+                    jfEns.dispose();
+                    new MenuEns(controler);
+                }
+            }
+        });
 
-
+        btnNewButton_1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == btnNewButton_1) {
+                    jfEns.dispose();
+                    // supprimer ce TP de la BD
+                    
+                    
+                    
+                }
+            }
+        });
+        
+        comboBox.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == comboBox) {
+                    jfEns.dispose();
+                    // afficher(reset) Nom du TP, Date, Créneau, Capacité de salle et Nb étidiants sur guagamole
+                    
+                    
+                    
+                }
+            }
+        });
         jfEns.setVisible(true);
     }
 

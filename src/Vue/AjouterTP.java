@@ -223,7 +223,8 @@ public class AjouterTP {
                     }                   
 
                     // recherche IdEns
-                    numens = contro.getId().toString();
+                    numens = contro.getId();
+                    System.out.println(contro.getId());
                     System.out.println(idens);
                     try {
                         sql = con.prepareStatement("select IdEns from enseignant where NumEns = ?;");

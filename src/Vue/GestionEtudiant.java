@@ -29,7 +29,6 @@ public class GestionEtudiant extends JFrame implements ActionListener, ItemListe
 
 	private JPanel contentPane;
 	private static JButton btnAjouterEtudiant = new JButton("Ajouter");
-	private static JButton btnModifierEtudiant = new JButton("Modifier");
 	private static JButton btnSupprimerEtudiant = new JButton("Supprimer");
 	private static JButton btnRetourGE = new JButton("Retour");
 	public static JComboBox comFormation = new JComboBox();
@@ -54,14 +53,11 @@ public class GestionEtudiant extends JFrame implements ActionListener, ItemListe
 		btnAjouterEtudiant.setFont(new Font("Arial", Font.PLAIN, 12));
 		btnAjouterEtudiant.setBounds(292, 48, 93, 23);
 		contentPane.add(btnAjouterEtudiant);
-		btnModifierEtudiant.setFont(new Font("Arial", Font.PLAIN, 12));
-		btnModifierEtudiant.setBounds(292, 98, 93, 23);
-		contentPane.add(btnModifierEtudiant);
 		btnSupprimerEtudiant.setFont(new Font("Arial", Font.PLAIN, 12));
-		btnSupprimerEtudiant.setBounds(292, 153, 93, 23);
+		btnSupprimerEtudiant.setBounds(292, 110, 93, 23);
 		contentPane.add(btnSupprimerEtudiant);
 		btnRetourGE.setFont(new Font("Arial", Font.PLAIN, 12));
-		btnRetourGE.setBounds(292, 204, 93, 23);
+		btnRetourGE.setBounds(292, 173, 93, 23);
 		contentPane.add(btnRetourGE);
 		
 
@@ -107,7 +103,6 @@ public class GestionEtudiant extends JFrame implements ActionListener, ItemListe
 		contentPane.add(lblNewLabel_2);
 		
 		btnAjouterEtudiant.addActionListener(this);
-		btnModifierEtudiant.addActionListener(this);
 		btnSupprimerEtudiant.addActionListener(this);
 		btnRetourGE.addActionListener(this);
 		
@@ -120,9 +115,6 @@ public class GestionEtudiant extends JFrame implements ActionListener, ItemListe
 		if(e.getSource()==btnAjouterEtudiant) {
 			AjouterEtudiant.comGroupe.removeAllItems();
 			AjouterEtudiant ae = new AjouterEtudiant(controler);
-			this.dispose();
-		}if(e.getSource()==btnModifierEtudiant) {
-			ModiferEtudiant me = new ModiferEtudiant(controler);
 			this.dispose();
 		}if(e.getSource()==btnSupprimerEtudiant) {
 			int ordre = comEtudiant.getSelectedIndex();

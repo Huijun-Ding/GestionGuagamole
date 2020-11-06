@@ -20,9 +20,9 @@ public class Query {
     	return con;
     }
 	
-    public Utilisateur connexionUilisateur(int id, String mdp, int i) {
-		if(id==1234 && mdp.equals("1234")) {
-			AdminMateriel a = new AdminMateriel(1234,"1234","Duan","Chengyu");
+    public Utilisateur connexionUilisateur(String id, String mdp, int i) {
+		if(id.equals("1234") && mdp.equals("1234")) {
+			AdminMateriel a = new AdminMateriel("1234","1234","Duan","Chengyu");
 			return a;
 		}		
     	Query conn = new Query();
@@ -37,11 +37,11 @@ public class Query {
     			sql="SELECT * FROM enseignant E, encadrer EN WHERE E.idEns=EN.idEns";
     			res=stmt.executeQuery(sql);
     			while(res.next()) {    				
-    				int idEns = res.getInt("E.idEns");
+    				String idEns = res.getString("E.idEns");
     				String mdpEns = res.getString("E.mdpEns");
     				String nomEns = res.getString("E.nomEns");
     				String prenomEns = res.getString("E.prenomEns");
-    				if(idEns==id && mdpEns.equals(mdp)) {
+    				if(idEns.equals(id) && mdpEns.equals(mdp)) {
     				ar = new AdminRespoF(idEns,mdpEns,nomEns,prenomEns);
     				return ar;
     				}
@@ -215,7 +215,7 @@ public class Query {
     	}
 		return null;
 	}
-	public String[] getNomPrenom(int id, int type) {
+	public String[] getNomPrenom(String id, int type) {
 		String[] nomprenom = new String[2];
 		Query conn = new Query();
     	con = conn.getConnection();
@@ -297,7 +297,7 @@ public class Query {
     		String sql = "SELECT * FROM etudiant e, groupe g, formation f WHERE e.IdG=g.IdG and g.IdF=f.IdF and f.NomF='"+nomF+"'";
     		res=stmt.executeQuery(sql);
     		while(res.next()) {
-    			int idE = res.getInt("e.IdE");
+    			String idE = res.getString("e.IdE");
     			String nomE = res.getString("e.NomE");
     			String prenomE = res.getString("e.PrenomE");
     			String nomG = res.getString("g.NomG");
@@ -313,8 +313,8 @@ public class Query {
 		return null;
 	}
 
-	public Object supprimerEtudiant(Etudiant stu) {
-		int idE = stu.getNumE();
+	public void supprimerEtudiant(Etudiant stu) {
+		String idE = stu.getNumE();
 		Query conn = new Query();
     	con = conn.getConnection();
     	Statement stmt;
@@ -325,7 +325,52 @@ public class Query {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+	}
+
+	public ArrayList<Groupe> getListGroupe() {
+		ArrayList<Groupe> groupe = new ArrayList<Groupe>();
+		Query conn = new Query();
+    	con = conn.getConnection();
+    	Statement stmt;
+    	ResultSet res;
+		try{
+            stmt = con.createStatement();
+            res=stmt.executeQuery("Select * From groupe");
+            while(res.next()) {
+            	String numG = res.getString("IdG");
+            	Groupe g = new Groupe(numG,null);
+            	groupe.add(g);
+            }
+            return groupe;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 		return null;
+	}
+
+	public void ajouterEtudiant(Etudiant etu) {
+		Query conn = new Query();
+    	con = conn.getConnection();
+    	Statement stmt;
+    	Statement stmt1;
+    	ResultSet res;
+		try{
+			int idE = 0;
+			String numE =etu.getNumE();
+			String mdpE = etu.getMdpE();
+			String nomE = etu.getNomE();
+			String prenomE = etu.getPrenomE();
+			int idG = Integer.parseInt(etu.getGroupe().getNumG());
+            stmt = con.createStatement();
+            stmt1 = con.createStatement();
+            res = stmt.executeQuery("SELECT MAX(IdE) as maxide FROM etudiant");
+            while(res.next()) {
+            	idE = res.getInt("maxide")+1;
+            }
+            stmt1.execute("INSERT INTO `etudiant`(`IdE`, `NumE`, `PrenomE`, `NomE`, `MdpE`, `IdG`) VALUES ("+idE+",'"+numE+"','"+prenomE+"','"+nomE+"','"+mdpE+"',"+idG+")");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }		
 	}
 
 }

@@ -43,7 +43,7 @@ public class HomePageAdminF extends JFrame implements ActionListener{
 		lblNewLabel.setBounds(20, 10, 105, 47);
 		contentPane.add(lblNewLabel);
 		
-		int id = controler.getId();
+		String id = controler.getId();
 		int type = controler.getType();
 		String[] nomprenom = controler.getNomPrenom(id, type);
 		JLabel lblNomRF = new JLabel(nomprenom[0]);

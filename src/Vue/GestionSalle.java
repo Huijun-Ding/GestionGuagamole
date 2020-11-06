@@ -52,21 +52,6 @@ public class GestionSalle extends JFrame implements ActionListener{
 		contentPane.setLayout(null);
 		
 		
-
-		
-		
-		
-		int size = controler.getListeSalle().size();
-		int count = 0;
-		Salle[] str = new Salle[size];
-		for(Salle s : controler.getListeSalle()) {
-			str[count]=s;
-			count+=1;
-		}
-		for(int addnum=0;addnum<size;addnum++) {
-			comGroupe.addItem(str[addnum].getNomSalle());
-		}
-		
 		
 		JLabel lblNewLabel_1 = new JLabel("Salle de TP:");
 		lblNewLabel_1.setBounds(48, 47, 97, 16);
@@ -92,6 +77,8 @@ public class GestionSalle extends JFrame implements ActionListener{
 		comGroupe.setBounds(155, 44, 169, 23);
 		contentPane.add(comGroupe);
 		
+		comGroupe.removeAllItems();
+		setListeDeroulante();
 		
 		btnReserver.setBounds(182, 188, 117, 29);
 		contentPane.add(btnReserver);
@@ -105,7 +92,18 @@ public class GestionSalle extends JFrame implements ActionListener{
 		this.setVisible(true);
 	}
 	
-	
+	public void setListeDeroulante() {
+		int size = controler.getListeSalle().size();
+		int count = 0;
+		Salle[] str = new Salle[size];
+		for(Salle s : controler.getListeSalle()) {
+			str[count]=s;
+			count+=1;
+		}
+		for(int addnum=0;addnum<size;addnum++) {
+			comGroupe.addItem(str[addnum].getNomSalle());
+		}
+	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {

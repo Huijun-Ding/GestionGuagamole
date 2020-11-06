@@ -93,5 +93,12 @@ public class ControlerInterface {
 	public void ajouterEtudiant(Etudiant etu) {
 		query.ajouterEtudiant(etu);
 	}
+	public void supprimerGroupe(int numG) {
+		query.supprimerGroupe(numG);
+	}
+	public void ajouterGroupe(Groupe g) {
+		query.ajouterGroupe(g);
+		
+	}
 
 }

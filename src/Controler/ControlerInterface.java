@@ -10,22 +10,22 @@ import BD.*;
 
 public class ControlerInterface {
 	private Query query;
-	private int idU=0;
+	private String idU=null;
 	private int typeU=0;
 	public ControlerInterface() {
 		this.query = new Query();
 	}
-	public int getId() {
+	public String getId() {
 		return this.idU;
 	}
 	public int getType() {
 		return this.typeU;
 	}
 	public void deconnexion() { 
-		idU=0;
+		idU=null;
 		typeU=0;
 	}
-    public Utilisateur connexion(int id, String mdp, int i) {
+    public Utilisateur connexion(String id, String mdp, int i) {
     	Utilisateur user = query.connexionUilisateur(id, mdp, i);
     	if(user!=null) {
     		idU=id;
@@ -42,7 +42,7 @@ public class ControlerInterface {
     	return null;
     }
     
-    public String[] getNomPrenom(int id, int type) {
+    public String[] getNomPrenom(String id, int type) {
     	return query.getNomPrenom(id, type);
     }
     
@@ -85,8 +85,13 @@ public class ControlerInterface {
 		return query.getListEtudiant(nomF);
 	}
 	public void supprimerEtudaint(Etudiant stu) {
-		query.supprimerEtudiant(stu);
-		
+		query.supprimerEtudiant(stu);		
+	}
+	public ArrayList<Groupe> getListeGroupe() {
+		return query.getListGroupe();
+	}
+	public void ajouterEtudiant(Etudiant etu) {
+		query.ajouterEtudiant(etu);
 	}
 
 }

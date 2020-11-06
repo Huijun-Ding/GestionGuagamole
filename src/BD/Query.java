@@ -373,6 +373,49 @@ public class Query {
         }		
 	}
 
+	public void supprimerGroupe(int numG) {
+		Query conn = new Query();
+    	con = conn.getConnection();
+    	Statement stmt;
+    	ResultSet res;
+		try{
+            stmt = con.createStatement();
+            stmt.execute("delete from groupe where IdG="+"'"+numG+"';");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+	}
+
+	public void ajouterGroupe(Groupe g) {
+		Query conn = new Query();
+    	con = conn.getConnection();
+    	Statement stmt;
+    	Statement stmt1;
+    	Statement stmt2;
+    	ResultSet res;
+		try{
+			int idG = 0;
+			int idF = 0;
+			String numG =g.getNumG();
+			String nomF = g.getFormation().getNomF();
+            stmt = con.createStatement();
+            stmt1 = con.createStatement();
+            stmt2 = con.createStatement();
+            res = stmt.executeQuery("SELECT MAX(IdG) as maxidg FROM groupe");
+            while(res.next()) {
+            	idG = res.getInt("maxidg")+1;
+            }
+            res=stmt.executeQuery("SELECT IdF FROM formation WHERE NomF='"+nomF+"'");
+            while(res.next()) {
+            	idF=res.getInt("IdF");
+            }
+            stmt2.execute("INSERT INTO `groupe`(`IdG`, `NomG`, `IdF`) VALUES ("+idG+",'"+numG+"',"+idF+")");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }		
+		
+	}
+
 }
 
 	

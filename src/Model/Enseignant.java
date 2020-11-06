@@ -6,7 +6,7 @@ public class Enseignant extends Utilisateur{
   
     private ArrayList<TP> TPs;
     
-    public Enseignant(int num, String mdp, String nom, String prenom) {
+    public Enseignant(String num, String mdp, String nom, String prenom) {
         super(num, mdp, nom, prenom);
         TPs = new ArrayList();
     }    

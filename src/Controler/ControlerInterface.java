@@ -25,21 +25,29 @@ public class ControlerInterface {
 		idU=null;
 		typeU=0;
 	}
-    public Utilisateur connexion(String id, String mdp, int i) {
-    	Utilisateur user = query.connexionUilisateur(id, mdp, i);
-    	if(user!=null) {
-    		idU=id;
-    		typeU=i;
-    		if(user instanceof AdminMateriel) {
-    			AdminMateriel am = (AdminMateriel) query.connexionUilisateur(id, mdp, i);
-        		return am;
-    		}
-    		if(user instanceof AdminRespoF) {
-    			AdminRespoF ar = (AdminRespoF) query.connexionUilisateur(id, mdp, i);
-    			return ar;
-    		}
-    	}
-    	return null;
+	public Utilisateur connexion(String id, String mdp, int i) {
+        Utilisateur user = query.connexionUilisateur(id, mdp, i);
+            idU = id;
+            typeU = i;
+            
+            if (i==4) {
+                AdminMateriel am = (AdminMateriel) query.connexionUilisateur(id, mdp, i);
+                return am;
+            }
+            if (i==3) {
+                AdminRespoF ar = (AdminRespoF) query.connexionUilisateur(id, mdp, i);
+                return ar;
+            }
+            if (i==1) {
+                Etudiant e = (Etudiant) query.connexionUilisateur(id, mdp, i);
+                return e;
+            }
+            if (i==2) {
+                Enseignant ens = (Enseignant) query.connexionUilisateur(id, mdp, i);
+                return ens;
+                      
+        }
+        return null;
     }
     
     public String[] getNomPrenom(String id, int type) {

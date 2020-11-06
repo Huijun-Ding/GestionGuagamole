@@ -21,37 +21,91 @@ public class Query {
     }
 	
     public Utilisateur connexionUilisateur(String id, String mdp, int i) {
-		if(id.equals("1234") && mdp.equals("1234")) {
-			AdminMateriel a = new AdminMateriel("1234","1234","Duan","Chengyu");
-			return a;
-		}		
-    	Query conn = new Query();
-    	con = conn.getConnection(); 
-    	Statement stmt;
-    	ResultSet res;
-    	try {
-    		String sql;
-    		stmt=con.createStatement();
-    		if(i==3) {
-    			AdminRespoF ar;
-    			sql="SELECT * FROM enseignant E, encadrer EN WHERE E.idEns=EN.idEns";
-    			res=stmt.executeQuery(sql);
-    			while(res.next()) {    				
-    				String idEns = res.getString("E.idEns");
-    				String mdpEns = res.getString("E.mdpEns");
-    				String nomEns = res.getString("E.nomEns");
-    				String prenomEns = res.getString("E.prenomEns");
-    				if(idEns.equals(id) && mdpEns.equals(mdp)) {
-    				ar = new AdminRespoF(idEns,mdpEns,nomEns,prenomEns);
-    				return ar;
-    				}
-    			}
-    		}
-    	}catch(Exception e) {
-    		e.printStackTrace();
-    	}
-    	return null;   	
-    }
+//        if (id.equals("1234") && mdp.equals("1234")) {
+//            AdminMateriel a = new AdminMateriel("1234", "1234", "Duan", "Chengyu");
+//            return a;
+//        }
+        Query conn = new Query();
+        con = conn.getConnection();
+        Statement stmt;
+        Statement stmt2;
+        Statement stmt3;
+        Statement stmt4;
+        ResultSet res;
+        try {
+            String sql;
+            stmt = con.createStatement();
+            stmt2 = con.createStatement();
+            stmt3 = con.createStatement();
+            stmt4 = con.createStatement();
+            if (i == 4) {
+            	 AdminMateriel am;
+                 sql = "SELECT * FROM superadmin";
+                 res = stmt.executeQuery(sql);
+                 while (res.next()) {
+                     String idSA = res.getString("IdSA");
+                     String mdpSA = res.getString("MdpSA");
+                     String nomSA = res.getString("NomSA");
+                     String prenomSA = res.getString("PrenomSA");
+                     if (idSA.equals(id) && mdpSA.equals(mdp)) {
+                         am = new AdminMateriel(idSA, mdpSA, nomSA, prenomSA);
+                         return am;
+                     }
+                 }
+            }
+            if (i == 3) {
+                AdminRespoF ar;
+                sql = "SELECT * FROM enseignant E, encadrer EN WHERE E.IdEns=EN.IdEns";
+                res = stmt2.executeQuery(sql);
+                while (res.next()) {
+                    String idEns = res.getString("E.IdEns");
+                    String mdpEns = res.getString("E.MdpEns");
+                    String nomEns = res.getString("E.NomEns");
+                    String prenomEns = res.getString("E.PrenomEns");
+                    if (idEns.equals(id) && mdpEns.equals(mdp)) {
+                        ar = new AdminRespoF(idEns, mdpEns, nomEns, prenomEns);
+                        return ar;
+                    }
+                }
+            }
+            if (i==2){
+                Enseignant en;
+                sql = "SELECT * FROM enseignant";
+                res = stmt3.executeQuery(sql);
+                while (res.next()) {
+                    String idEns = res.getString("IdEns");
+                    String mdpEns = res.getString("MdpEns");
+                    String nomEns = res.getString("NomEns");
+                    String prenomEns = res.getString("PrenomEns");
+                    if (idEns.equals(id) && mdpEns.equals(mdp)) {
+                        en = new Enseignant(idEns, mdpEns, nomEns, prenomEns);
+                        return en;
+                    }
+                }
+            }
+            if (i==1) {
+                Etudiant e;
+                sql = "SELECT * FROM etudiant";
+                res = stmt4.executeQuery(sql);
+                while (res.next()) {
+                    String idE = res.getString("IdE");
+                    String mdpE = res.getString("MdpE");
+                    String nomE = res.getString("NomE");
+                    String prenomE = res.getString("PrenomE");
+                    if (idE.equals(id) && mdpE.equals(mdp)) {
+                        e = new Etudiant(idE, mdpE, nomE, prenomE,null);
+                        return e;
+                    }
+                }
+                res.close();
+                stmt.close();
+                con.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+ }
     public ArrayList<Salle> gestionSalle(){
     	ArrayList<Salle> salle = new ArrayList<Salle>();
     	Query conn = new Query();

@@ -31,16 +31,13 @@ public class ConsultationEns {
     private static ControlerInterface contro;
 
     public ConsultationEns(ControlerInterface controler) {
-        
+
         this.contro = controler;
 
         BDconfig c = new BDconfig();
         con = c.getConnection();
 
-        ControlerInterface contro = new ControlerInterface();
-        
         // get IdEns
-        System.out.println(contro.getId());
         try {
             sql = con.prepareStatement("select IdEns from enseignant where NumEns = ?;");
             sql.setString(1, contro.getId());
@@ -51,7 +48,7 @@ public class ConsultationEns {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        
+
         JFrame jfEns = new JFrame("Gestion Guagamole");
         jfEns.setBounds(600, 200, 800, 400);
 
@@ -79,7 +76,7 @@ public class ConsultationEns {
         comboBox.addItem("--veuillez choisir--");
         try {
             sql = con.prepareStatement("select t.NomTP from derouler d, tp t where d.IdTP = t.IdTP and d.IdEns = ?;");
-            sql.setInt(1, idens);            
+            sql.setInt(1, idens);
             res = sql.executeQuery();
             while (res.next()) {
                 comboBox.addItem(res.getString("NomTP"));
@@ -87,7 +84,7 @@ public class ConsultationEns {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        
+
         panel.add(comboBox);
 
         JButton btnNewButton = new JButton("Retour");
@@ -175,21 +172,93 @@ public class ConsultationEns {
                 if (e.getSource() == btnNewButton_1) {
                     jfEns.dispose();
                     // supprimer ce TP de la BD
-                    
-                    
-                    
+
                 }
             }
         });
-        
+
         comboBox.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == comboBox) {
                     jfEns.dispose();
                     // afficher(reset) Nom du TP, Date, Créneau, Capacité de salle et Nb étidiants sur guagamole
+                    String nomtp = comboBox.getSelectedItem().toString();
+                    int idtp = 0;
+                    String datetp = "";
+                    String creneautp = "";
+                    int ids = 0;
+                    int capacite = 0;
+                    int nbp = 0;
+
+                    // retrouver IdTP
+                    try {
+                        sql = con.prepareStatement("select IdTP from tp where NomTP = ?;");
+                        sql.setString(1, nomtp);
+                        res = sql.executeQuery();
+                        while (res.next()) {
+                            idtp = res.getInt("IdTP");
+                        }
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
                     
+                    // Date
+                    try {
+                        sql = con.prepareStatement("select DateTP from derouler where IdTP = ?;");
+                        sql.setInt(1, idtp);
+                        res = sql.executeQuery();
+                        while (res.next()) {
+                            datetp = res.getString("DateTP");
+                        }
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
                     
+                    // Créneau
+                    try {
+                        sql = con.prepareStatement("select CreneauTP from derouler where IdTP = ?;");
+                        sql.setInt(1, idtp);
+                        res = sql.executeQuery();
+                        while (res.next()) {
+                            datetp = res.getString("CreneauTP");
+                        }
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
                     
+                    //  IdS
+                    try {
+                        sql = con.prepareStatement("select IdS from derouler where IdTP = ?;");
+                        sql.setInt(1, idtp);
+                        res = sql.executeQuery();
+                        while (res.next()) {
+                            ids = res.getInt("IdS");
+                        }
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
+                    
+                    // Capacité de salle
+                    try {
+                        sql = con.prepareStatement("select COUNT(*) from machine where IdS = ?;");
+                        sql.setInt(1, ids);
+                        res = sql.executeQuery();
+                        while (res.next()) {
+                            capacite = res.getInt("COUNT(*)");
+                        }
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }                    
+                    
+                    // Nb étidiants sur guagamole
+
+                    
+                    // reset JLabels
+                    lblNewLabel_5.setText(nomtp);
+                    lblNewLabel_5_1.setText(datetp);
+                    lblNewLabel_5_2.setText(creneautp);
+                    lblNewLabel_5_3.setText(String.valueOf(capacite));
+                    lblNewLabel_5_4.setText("12");
                 }
             }
         });

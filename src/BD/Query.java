@@ -183,7 +183,7 @@ public Utilisateur connexionUilisateur(String id, String mdp, int i) {
                 sql = "SELECT * FROM enseignant E, encadrer EN WHERE E.IdEns=EN.IdEns";
                 res = stmt.executeQuery(sql);
                 while (res.next()) {
-                    String idEns = res.getString("E.NumEns");
+                    String idEns = res.getString("E.IdEns");
                     String mdpEns = res.getString("E.MdpEns");
                     String nomEns = res.getString("E.NomEns");
                     String prenomEns = res.getString("E.PrenomEns");

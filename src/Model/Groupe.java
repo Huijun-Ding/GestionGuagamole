@@ -36,4 +36,8 @@ public class Groupe {
     public String getNumG() {
     	return this.numGroupe;
     }
+    
+    public Formation getFormation() {
+    	return this.formation;
+    }
 }

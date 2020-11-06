@@ -86,6 +86,8 @@ public class HomePageAdminF extends JFrame implements ActionListener{
 			this.dispose();
 			GestionEtudiant ge = new GestionEtudiant(controler);
 		}if(e.getSource()==btnGestionGroupe) {
+			GestionGroupe.comGroupe.removeAllItems();
+			GestionGroupe.comFormation.removeAllItems();
 			this.dispose();
 			GestionGroupe gg = new GestionGroupe(controler);
 		}

@@ -299,11 +299,21 @@ public class Query {
       			}
       		}
       		if(type==3) {
-      			sql="SELECT * FROM enseignant E, encadrer EN WHERE E.idEns=EN.idEns and E.IdEns="+id;
+      			sql="SELECT Ucase(E.NomEns) as NomEns, E.PrenomEns FROM enseignant E, encadrer EN WHERE E.idEns=EN.idEns and E.IdEns="+id;
       			res=stmt.executeQuery(sql);
       			while(res.next()) {
-      				String nom = res.getString("E.NomEns");
+      				String nom = res.getString("NomEns");
       				String prenom = res.getString("E.PrenomEns");
+      				nomprenom[0]=nom;
+      				nomprenom[1]=prenom;
+      			}
+      		}
+      		if(type==4) {
+      			sql="SELECT Ucase(NomSA) as NomSA, PrenomSA FROM superadmin WHERE IdSA="+id;
+      			res=stmt.executeQuery(sql);
+      			while(res.next()) {
+      				String nom = res.getString("NomSA");
+      				String prenom = res.getString("PrenomSA");
       				nomprenom[0]=nom;
       				nomprenom[1]=prenom;
       			}

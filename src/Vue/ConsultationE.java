@@ -57,7 +57,7 @@ public class ConsultationE {
         jp1.add(panel);
         panel.setLayout(null);
 
-        // get IdEns
+        // get IdE
         System.out.println(contro.getId());
         try {
             sql = con.prepareStatement("select IdE from etudiant where NumE = ?;");
@@ -148,6 +148,21 @@ public class ConsultationE {
                 if (e.getSource() == btnNewButton) {
                     jfE.dispose();
                     new MenuE(controler);
+                }
+            }
+        });
+        
+        btnNewButton_1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == btnNewButton_1) {
+                    // supprimer dans la DB la réservation sélectionnée 
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                 }
             }
         });

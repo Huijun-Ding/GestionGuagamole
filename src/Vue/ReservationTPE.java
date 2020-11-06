@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.*;
 import Controler.*;
+import static Vue.ConsultationE.sql;
 
 public class ReservationTPE {
 
@@ -22,11 +23,12 @@ public class ReservationTPE {
     private String datetp;
     private String creneautp;
     private static ControlerInterface contro;
+    private int idE;
 
     public ReservationTPE(ControlerInterface controler) {
-        
+
         this.contro = controler;
-        
+
         BDconfig c = new BDconfig();
         con = c.getConnection();
 
@@ -145,7 +147,51 @@ public class ReservationTPE {
         btn4.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == btn4) {
-                    // réaliser la résrvation
+
+                    //Insertion dans la bd
+                    String machineTP = comboBox.getSelectedItem().toString();
+                    int idM = 0;
+
+                    // get IdEns
+                    System.out.println(contro.getId());
+                    try {
+                        sql = con.prepareStatement("select IdE from etudiant where NumE = ?;");
+                        sql.setString(1, contro.getId());
+                        res = sql.executeQuery();
+                        while (res.next()) {
+                            idE = res.getInt("IdE");
+                        }
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
+
+                    // Machine
+                    try {
+                        sql = con.prepareStatement("select IdM from machine where NomM=?;");
+                        sql.setString(1, machineTP);
+                        res = sql.executeQuery();
+                        while (res.next()) {
+                            idM = res.getInt("IdM");
+
+                        }
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
+                    
+                    // réaliser la réservation
+                    try {
+                        sql = con.prepareStatement("Insert into reserver(IdE,IdM,DateResa,CreneauResa) values(?,?,?,?)");
+
+                        sql.setInt(1, idE);
+                        sql.setInt(2, idM);
+                        sql.setString(3, datetp);
+                        sql.setString(4, creneautp);
+
+                        int res = sql.executeUpdate();
+
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
 
                     // vers la page de consultation
                     jf2.dispose();

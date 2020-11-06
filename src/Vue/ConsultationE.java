@@ -1,5 +1,6 @@
 package Vue;
 
+import Controler.ControlerInterface;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -18,7 +19,12 @@ import java.awt.Font;
 
 public class ConsultationE {
 
-    public ConsultationE() {
+    private static ControlerInterface contro;
+    
+    public ConsultationE(ControlerInterface controler) {
+        
+        this.contro = controler;
+        
         JFrame jfE = new JFrame("Gestion Guagamole");   
         jfE.setBounds(600, 200, 800, 400);   
 
@@ -105,7 +111,7 @@ public class ConsultationE {
     }
 
     public static void main(String[] args) {
-        new ConsultationE();
+        new ConsultationE(contro);
     }  
     
 }

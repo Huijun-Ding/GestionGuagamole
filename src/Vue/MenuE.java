@@ -1,5 +1,6 @@
 package Vue;
 
+import Controler.ControlerInterface;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -13,7 +14,13 @@ import java.awt.SystemColor;
 import java.awt.Font;
 
 public class MenuE {
-    public MenuE() {
+    
+    private static ControlerInterface contro;
+    
+    public MenuE(ControlerInterface controler) {
+        
+        this.contro = controler;
+        
         JFrame jf = new JFrame("Gestion Guagamole");   
         jf.setBounds(600, 200, 800, 400);   
 
@@ -72,7 +79,7 @@ public class MenuE {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == btn2) {
                     jf.dispose();
-                    new ConsultationE();
+                    new ConsultationE(controler);
                 }
             }
         });
@@ -81,7 +88,7 @@ public class MenuE {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == btn3) {
                     jf.dispose();
-                    new ReservationTPE();
+                    new ReservationTPE(controler);
                 }
             }
         });
@@ -90,7 +97,7 @@ public class MenuE {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == btn4) {
                     jf.dispose();
-                    new ReservationLibreE();
+                    new ReservationLibreE(controler);
                 }
             }
         });
@@ -107,6 +114,6 @@ public class MenuE {
     }
 
     public static void main(String[] args) {
-        new MenuE();
+        new MenuE(contro);
     }    
 }

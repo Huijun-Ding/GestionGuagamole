@@ -21,8 +21,12 @@ public class ReservationTPE {
     private int ids;
     private String datetp;
     private String creneautp;
+    private static ControlerInterface contro;
 
-    public ReservationTPE() {
+    public ReservationTPE(ControlerInterface controler) {
+        
+        this.contro = controler;
+        
         BDconfig c = new BDconfig();
         con = c.getConnection();
 
@@ -116,7 +120,7 @@ public class ReservationTPE {
                 if (e.getSource() == btn1) {
                     //retourner à la page MenuE
                     jf2.dispose();
-                    new MenuE();
+                    new MenuE(controler);
                 }
             }
         });
@@ -145,7 +149,7 @@ public class ReservationTPE {
 
                     // vers la page de consultation
                     jf2.dispose();
-                    new ConsultationE();
+                    new ConsultationE(controler);
                 }
             }
         });
@@ -212,6 +216,6 @@ public class ReservationTPE {
     }
 
     public static void main(String[] args) {
-        new ReservationTPE();
+        new ReservationTPE(contro);
     }
 }

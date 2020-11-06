@@ -8,6 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Controler.ControlerInterface;
+import Model.AdminRespoF;
+import Model.Enseignant;
+import Model.Etudiant;
 import BD.Query;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -70,7 +73,9 @@ public class Connexion extends JFrame implements ItemListener, ActionListener{
 		passConn = new JPasswordField();
 		passConn.setBounds(244, 137, 115, 21);
 		contentPane.add(passConn);
-				
+		txtIdentifiantConn.setText("");
+		passConn.setText("");
+		
 		rdEtudiant.setBounds(47, 182, 121, 23);
 		contentPane.add(rdEtudiant);
 				
@@ -116,14 +121,23 @@ public class Connexion extends JFrame implements ItemListener, ActionListener{
 			String id = txtIdentifiantConn.getText();
 			String mdp = new String(passConn.getPassword());
 			if(controler.connexion(id, mdp, i)!=null) {
-			if(i==3) {
-			this.dispose();
-			HomePageAdminF hpf = new HomePageAdminF(controler);
-					}
-			else {
-				this.dispose();
-				HomePageAdminM hp = new HomePageAdminM(controler);
-			}
+				 if(controler.connexion(id, mdp, i)!=null) {
+			            if(controler.connexion(id, mdp, i) instanceof AdminRespoF) {
+			            this.dispose();
+			            HomePageAdminF hpf = new HomePageAdminF(controler);
+			                    }
+			            else if(controler.connexion(id, mdp, i) instanceof Etudiant)
+			                this.dispose();
+                                        new MenuE(controler);
+			                }
+			            else if(controler.connexion(id, mdp, i) instanceof Enseignant){
+			                this.dispose();
+			                new MenuEns(controler);
+			            }
+			            else {
+			                this.dispose();
+			                HomePageAdminM hp = new HomePageAdminM(controler);
+			            }
 			}
 			else if(controler.connexion(id, mdp, i)==null) {
 				this.dispose();

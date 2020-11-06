@@ -2,6 +2,7 @@ package Vue;
 
 import BD.BDconfig;
 import BD.Query;
+import Controler.ControlerInterface;
 import Model.Calendrier;
 import Model.Creneau;
 import Model.Machine;
@@ -39,8 +40,11 @@ public class ReservationLibreE {
     static ResultSet res;
     private String dater;
     private String creneaur;
+    private static ControlerInterface contro;
 
-    public ReservationLibreE() {
+    public ReservationLibreE(ControlerInterface controler) {
+        
+        this.contro = controler;
 
         BDconfig c = new BDconfig();
         con = c.getConnection();
@@ -132,7 +136,7 @@ public class ReservationLibreE {
                 if (e.getSource() == btn1) {
                     //retourner à la page MenuE
                     jf3.dispose();
-                    new MenuE();
+                    new MenuE(controler);
                 }
             }
         });
@@ -216,7 +220,7 @@ public class ReservationLibreE {
                     
                     // vers la page de consultation
                     jf3.dispose();
-                    new ConsultationE();
+                    new ConsultationE(controler);
                 }
             }
         });
@@ -225,6 +229,6 @@ public class ReservationLibreE {
     }
 
     public static void main(String[] args) {
-        new ReservationLibreE();
+        new ReservationLibreE(contro);
     }
 }

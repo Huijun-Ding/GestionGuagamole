@@ -1,5 +1,6 @@
 package Vue;
 
+import Controler.ControlerInterface;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -12,7 +13,13 @@ import java.awt.SystemColor;
 import java.awt.Font;
 
 public class MenuEns {
-    public MenuEns() {
+    
+    private static ControlerInterface contro;
+    
+    public MenuEns(ControlerInterface controler) {
+        
+        this.contro = controler;
+        
         JFrame jfEns = new JFrame("Gestion Guagamole");   
         jfEns.setBounds(600, 200, 800, 400);   
 
@@ -40,7 +47,7 @@ public class MenuEns {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == btn1) {
                     jfEns.dispose();
-                    new AjouterTP();
+                    new AjouterTP(controler);
                 }
             }
         });
@@ -49,7 +56,7 @@ public class MenuEns {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == btn2) {
                     jfEns.dispose();
-                    new ConsultationEns();
+                    new ConsultationEns(controler);
                 }
             }
         });
@@ -58,6 +65,6 @@ public class MenuEns {
     }
 
     public static void main(String[] args) {
-        new MenuEns();
+        MenuEns m1 = new MenuEns(contro);
     }  
 }

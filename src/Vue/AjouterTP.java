@@ -33,8 +33,12 @@ public class AjouterTP {
     static Connection con;
     static PreparedStatement sql;
     static ResultSet res;
+    private static ControlerInterface contro;
 
-    public AjouterTP() {
+    public AjouterTP(ControlerInterface controler) {
+        
+        this.contro = controler;
+        
         BDconfig c = new BDconfig();
         con = c.getConnection();
         
@@ -167,7 +171,7 @@ public class AjouterTP {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == btn1) {
                     jfATP.dispose();
-                    new MenuEns();
+                    new MenuEns(controler);
                 }
             }
         });
@@ -262,7 +266,7 @@ public class AjouterTP {
                     // ControlerInterface.ajouterTP(txtfield.getText());
                     // fermer la fênetre
                     jfATP.dispose();
-                    new ConsultationEns();
+                    new ConsultationEns(controler);
                 }
             }
         });
@@ -271,6 +275,6 @@ public class AjouterTP {
     }
 
     public static void main(String[] args) {
-        new AjouterTP();
+        new AjouterTP(contro);
     }
 }

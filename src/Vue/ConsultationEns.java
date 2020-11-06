@@ -28,14 +28,30 @@ public class ConsultationEns {
     static Connection con;
     static PreparedStatement sql;
     static ResultSet res;
+    private static ControlerInterface contro;
 
-    public ConsultationEns() {
+    public ConsultationEns(ControlerInterface controler) {
+        
+        this.contro = controler;
 
         BDconfig c = new BDconfig();
         con = c.getConnection();
 
         ControlerInterface contro = new ControlerInterface();
-
+        
+        // get IdEns
+        System.out.println(contro.getId());
+        try {
+            sql = con.prepareStatement("select IdEns from enseignant where NumEns = ?;");
+            sql.setString(1, /*contro.getId().toString()*/"20500001");
+            res = sql.executeQuery();
+            while (res.next()) {
+                idens = res.getInt("IdEns");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        
         JFrame jfEns = new JFrame("Gestion Guagamole");
         jfEns.setBounds(600, 200, 800, 400);
 
@@ -59,6 +75,19 @@ public class ConsultationEns {
         JComboBox comboBox = new JComboBox();
         comboBox.setBackground(Color.WHITE);
         comboBox.setBounds(10, 76, 141, 29);
+        // tous les TPs de cette enseignant
+        comboBox.addItem("--veuillez choisir--");
+        try {
+            sql = con.prepareStatement("select t.NomTP from derouler d, tp t where d.IdTP = t.IdTP and d.IdEns = ?;");
+            sql.setInt(1, idens);            
+            res = sql.executeQuery();
+            while (res.next()) {
+                comboBox.addItem(res.getString("NomS"));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        
         panel.add(comboBox);
 
         JButton btnNewButton = new JButton("Retour");
@@ -132,23 +161,12 @@ public class ConsultationEns {
         lblNewLabel_4_1.setBounds(212, 253, 231, 27);
         jp1.add(lblNewLabel_4_1);
 
-        // get IdEns
-        System.out.println(contro.getId());
-        try {
-            sql = con.prepareStatement("select IdEns from enseignant where NumEns = ?;");
-            sql.setString(1, contro.getId().toString());
-            res = sql.executeQuery();
-            while (res.next()) {
-                idens = res.getInt("IdEns");
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+
 
         jfEns.setVisible(true);
     }
 
     public static void main(String[] args) {
-        new ConsultationEns();
+        new ConsultationEns(contro);
     }
 }

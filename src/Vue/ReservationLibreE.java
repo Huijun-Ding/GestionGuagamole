@@ -37,6 +37,8 @@ public class ReservationLibreE {
     static Connection con;
     static PreparedStatement sql;
     static ResultSet res;
+    private String dater;
+    private String creneaur;
 
     public ReservationLibreE() {
 
@@ -111,22 +113,10 @@ public class ReservationLibreE {
         label.setFont(new Font("Tahoma", Font.PLAIN, 14));
         label.setBounds(208, 91, 170, 41);
         jp2.add(label);
+
         JComboBox cmb3 = new JComboBox();
         cmb3.setFont(new Font("Tahoma", Font.PLAIN, 14));
         cmb3.setBounds(402, 95, 201, 33);
-        cmb3.addItem("--veuillez choisir--");
-        try {
-
-            sql = con.prepareStatement("SELECT NomM FROM machine WHERE IdS in (SELECT IdS FROM salle WHERE IdS not in (SELECT s.IdS FROM Salle s, derouler d WHERE s.IdS = d.IdS and DateTP = ? and CreneauTP = ?));");
-            sql.setString(1, dateTextField.getText());
-            sql.setString(2, (String) cmb1.getSelectedItem());
-            res = sql.executeQuery();
-            while (res.next()) {
-                cmb3.addItem(res.getString("NomM"));
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
         jp2.add(cmb3);
         jp2.add(btn4);
 
@@ -147,9 +137,31 @@ public class ReservationLibreE {
             }
         });
 
+        cmb1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                creneaur = cmb1.getSelectedItem().toString();
+            }
+        });
+
         btn2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                dater = dateTextField.getText().toString();
+                
                 if (e.getSource() == btn2) {
+                    cmb3.addItem("--veuillez choisir--");
+                    try {
+                        sql = con.prepareStatement("SELECT NomM FROM machine WHERE IdS in (SELECT IdS FROM salle WHERE IdS not in (SELECT s.IdS FROM Salle s, derouler d WHERE s.IdS = d.IdS and DateTP = ? and CreneauTP = ?));");
+                        System.out.println(dater);
+                        sql.setString(1, dater);
+                        sql.setString(2, creneaur);
+                        res = sql.executeQuery();
+                        while (res.next()) {
+                            System.out.println(res.getString("NomM"));
+                            cmb3.addItem(res.getString("NomM"));
+                        }
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
                     cl.show(cards, "card2");
                 }
             }
@@ -158,6 +170,8 @@ public class ReservationLibreE {
         btn3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == btn3) {
+                    dater = "";
+                    creneaur = "";
                     cl.show(cards, "card1");
                 }
             }
@@ -165,7 +179,7 @@ public class ReservationLibreE {
 
         btn4.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Query Q=new Query();
+                Query Q = new Query();
                 if (e.getSource() == btn4) {
                     // réaliser la résrvation
                     ArrayList<Machine> lstM = new ArrayList<>();
@@ -195,8 +209,7 @@ public class ReservationLibreE {
                             m = lstM.get(i);
                         }
                     }
-                    
-                    
+
                     //insérer dans BD
                     
                     

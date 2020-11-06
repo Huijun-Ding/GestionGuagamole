@@ -1,7 +1,9 @@
 package Vue;
 
 import BD.*;
+import Controler.ControlerInterface;
 import Model.*;
+import static Vue.ReservationTPE.sql;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -31,11 +33,11 @@ public class AjouterTP {
     static Connection con;
     static PreparedStatement sql;
     static ResultSet res;
-    
+
     public AjouterTP() {
-        BDconfig c= new BDconfig();
+        BDconfig c = new BDconfig();
         con = c.getConnection();
-       
+
         JFrame jfATP = new JFrame("Gestion Guagamole");
         jfATP.setBounds(600, 200, 800, 400);
 
@@ -112,7 +114,7 @@ public class AjouterTP {
         JComboBox cmb3 = new JComboBox();
         cmb3.setFont(new Font("Tahoma", Font.PLAIN, 14));
         cmb3.setBounds(366, 177, 186, 30);
-        // une boucle de tous les crÃ©neau
+        // une boucle de tous les créneau
         cmb3.addItem("--veuillez choisir--");
         try {
             sql = con.prepareStatement("select NomF from formation;");
@@ -130,7 +132,7 @@ public class AjouterTP {
         JComboBox cmb4 = new JComboBox();
         cmb4.setFont(new Font("Tahoma", Font.PLAIN, 14));
         cmb4.setBounds(366, 217, 186, 28);
-        // une boucle de tous les crÃ©neau
+        // une boucle de tous les créneau
         cmb4.addItem("--veuillez choisir--");
         try {
             sql = con.prepareStatement("select NomG from groupe;");
@@ -172,21 +174,79 @@ public class AjouterTP {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == btn2) {
                     // ajouter le TP
-                    //Calendrier c1 = new Calendrier();
-                    //c1.setDate(j2.());
-                    //c1.setHeure((Creneau) cmb1.getSelectedItem());
-                    /*String date = (String)j2.getText();
-                    Enum c = (Creneau) cmb1.getSelectedItem()
-                    String s = (String)cmb2.getSelectedItem();
-                    Enseignant ens = (Enseignant) ;
-                    
-                    Groupe g = new Groupe();
+                    String nom = (String) txtfield.getText();
+                    String date = (String) dateTextField.getText();
+                    String creneau = (String) cmb1.getSelectedItem();
+                    int idg = 0;
+                    int ids = 0;
+                    int idens = 0;
+                    int idtp = 0;
 
-                    TP t = new TP(txtfield.getText(), c1, , );*/
+                    // nouveau ligne dans tp          
+                    try {
+                        sql = con.prepareStatement("Insert into tp(NomTP) values(?)");
+                        sql.setString(1, nom);
+                        sql.executeUpdate();
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
+
+                    // recherche IdG
+                    try {
+                        sql = con.prepareStatement("select IdG from groupe where NomG = ?;");
+                        sql.setString(1, cmb4.getSelectedItem().toString());
+                        res = sql.executeQuery();
+                        while (res.next()) {
+                            idg = res.getInt("IdG");
+                        }
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
                     
-                    BD.Query.ajouterTP(txtfield.getText());
+                    // rechercher IdS
+                    try {
+                        sql = con.prepareStatement("select IdS from salle where NomS = ?;");
+                        sql.setString(1, cmb2.getSelectedItem().toString());
+                        res = sql.executeQuery();
+                        while (res.next()) {
+                            ids = res.getInt("IdS");
+                        }
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }                   
+
+                    // recherche IdEns
                     
-                    // fermer la fÃªnetre
+                    
+                    // recherche IdTP
+                    try {
+                        sql = con.prepareStatement("select IdTP from tp where NomTP = ?;");
+                        sql.setString(1, nom);
+                        res = sql.executeQuery();
+                        while (res.next()) {
+                            idtp = res.getInt("IdTP");
+                        }
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }                   
+                    
+                    // nouveau ligne dans dérouler
+                    try {
+                        sql = con.prepareStatement("Insert into derouler(IdG,IdS,IdEns,IdTP,DateTP,CreneauTP) values(?,?,?,?,?,?)");
+                        sql.setInt(1, idg);
+                        sql.setInt(2, ids);
+                        sql.setInt(3, 1);
+                        sql.setInt(4, idtp);
+                        sql.setString(5, date);
+                        sql.setString(6, creneau);
+                        sql.executeUpdate();
+                        System.out.println("insertion réussite derouler");
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
+
+                    // ControlerInterface.ajouterTP(txtfield.getText());
+                    // fermer la fênetre
                     jfATP.dispose();
                     new ConsultationEns();
                 }

@@ -3,16 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/GestionGuagamole/GestionGuagamole/src/Model/AdminMateriel.java</file>
-            <file>file:/D:/GestionGuagamole/GestionGuagamole/src/Model/Salle.java</file>
-            <file>file:/D:/GestionGuagamole/GestionGuagamole/src/Model/Formation.java</file>
-            <file>file:/D:/GestionGuagamole/GestionGuagamole/src/Model/Groupe.java</file>
-            <file>file:/D:/GestionGuagamole/GestionGuagamole/src/Model/Etudiant.java</file>
-            <file>file:/D:/GestionGuagamole/GestionGuagamole/src/Model/Reservation.java</file>
-            <file>file:/D:/GestionGuagamole/GestionGuagamole/src/Model/Machine.java</file>
-            <file>file:/D:/GestionGuagamole/GestionGuagamole/src/Model/Enseignant.java</file>
-            <file>file:/D:/GestionGuagamole/GestionGuagamole/src/Model/TP.java</file>
-            <file>file:/D:/GestionGuagamole/GestionGuagamole/src/Model/AdminRespoF.java</file>
+            <file>file:/D:/GestionGuagamole/src/BD/Query.java</file>
+            <file>file:/D:/GestionGuagamole/src/Controler/ControlerInterface.java</file>
+            <file>file:/D:/GestionGuagamole/src/Vue/ConsultationE.java</file>
         </group>
     </open-files>
 </project-private>

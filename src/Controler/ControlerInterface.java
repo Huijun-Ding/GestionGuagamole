@@ -81,6 +81,10 @@ public class ControlerInterface {
     public ArrayList<TP> getListReservation() {
         return query.getListReservation();
     }
+    
+    public void ajouterTP(String nom) {
+        query.ajouterTP(nom);
+    }
 
     /*public String getDateTP(String nomTP) {
          return query.getDateTP(nomTP);

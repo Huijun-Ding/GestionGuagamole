@@ -51,7 +51,7 @@ public class ConsultationEns {
         btnNewButton.setBounds(25, 277, 112, 29);
         panel.add(btnNewButton);
         
-        JButton btnNewButton_1 = new JButton("Ajouter un TP");
+        JButton btnNewButton_1 = new JButton("Annuler ce TP");
         btnNewButton_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         	}
@@ -118,6 +118,6 @@ public class ConsultationEns {
     }
 
     public static void main(String[] args) {
-        new MenuEns();
+        new ConsultationEns();
     }  
 }

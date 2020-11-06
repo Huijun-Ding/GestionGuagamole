@@ -37,6 +37,8 @@ public class AjouterTP {
     public AjouterTP() {
         BDconfig c = new BDconfig();
         con = c.getConnection();
+        
+        ControlerInterface contro = new ControlerInterface();
 
         JFrame jfATP = new JFrame("Gestion Guagamole");
         jfATP.setBounds(600, 200, 800, 400);
@@ -180,6 +182,7 @@ public class AjouterTP {
                     int idg = 0;
                     int ids = 0;
                     int idens = 0;
+                    String numens = "";
                     int idtp = 0;
 
                     // nouveau ligne dans tp          
@@ -216,7 +219,18 @@ public class AjouterTP {
                     }                   
 
                     // recherche IdEns
-                    
+                    numens = contro.getId().toString();
+                    System.out.println(idens);
+                    try {
+                        sql = con.prepareStatement("select IdEns from enseignant where NumEns = ?;");
+                        sql.setString(1, numens);
+                        res = sql.executeQuery();
+                        while (res.next()) {
+                            idens = res.getInt("IdEns");
+                        }
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }   
                     
                     // recherche IdTP
                     try {
@@ -235,7 +249,7 @@ public class AjouterTP {
                         sql = con.prepareStatement("Insert into derouler(IdG,IdS,IdEns,IdTP,DateTP,CreneauTP) values(?,?,?,?,?,?)");
                         sql.setInt(1, idg);
                         sql.setInt(2, ids);
-                        sql.setInt(3, 1);
+                        sql.setInt(3, idens);
                         sql.setInt(4, idtp);
                         sql.setString(5, date);
                         sql.setString(6, creneau);

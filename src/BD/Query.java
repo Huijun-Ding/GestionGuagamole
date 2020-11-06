@@ -9,26 +9,24 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class Query {
-    static Connection con;
+    static Connection con = BDconfig.getConnection();
     static PreparedStatement sql;
     static ResultSet res;
     Etudiant etu;
   
     public static void main(String[] args) {
-        BDconfig c = new BDconfig();
-        con = c.getConnection();
+        con = BDconfig.getConnection();
 
-        for (int i = 0; i < BD.Query.afficherSalles().size(); i++) {
-            System.out.println(afficherSalles().get(i));
-        }
+       /* for (int i = 0; i < afficherNomTP(1).size(); i++) {
+            System.out.println(afficherNomTP(1).get(i));
+        }*/
     }
 
-    public Connection getConnection() {
+   public Connection getConnection() {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -142,7 +140,7 @@ public class Query {
     }
 
     public static ArrayList<String> afficherSalles() {
-        ArrayList<String> salles = new ArrayList();
+        ArrayList<String> salles = new ArrayList<>();
         try {
             sql = con.prepareStatement("select NomS from salle;");
             res = sql.executeQuery();
@@ -370,6 +368,7 @@ public class Query {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
         return null;
     }
   /*================ETUDIANT=======================================================*/
@@ -378,14 +377,14 @@ public class Query {
 	 * afficher une liste des nom de tous les tp pour un groupe donn�
 	 * @return
 	 */
-	public static ArrayList<String> afficherNomTP() {
+	public  ArrayList<String> afficherNomTP(String numG, String date ) {
 		ArrayList<String>nomTPs= new ArrayList<>();
 		try {
-		    /*Requ�tes vers la bd*/
+		    /*Requetes vers la bd*/
 
-			//liste des noms de tps pour une date et un cr�naeau donn�, auquel le groupe de l'�tudiant fait partie
+			//liste des noms de tps pour une date et un crenaeau donne, auquel le groupe de l'etudiant fait partie
 		   sql = con.prepareStatement("Select distinct NomTP from tp,derouler where derouler.IdTP=tp.IdTP "
-		   		+ "and IdG=? and Date(DateTP)=? and CreneauTP=?;");
+		   		+ "and IdG ="+numG+" and DateTP ='"+date+"';");
 		   
 		   res = sql.executeQuery();
 		   
@@ -393,29 +392,21 @@ public class Query {
 			   nomTPs.add(res.getString(1));
 		   }
 		   
-		} catch ( SQLException e ) {
-			e.printStackTrace();
+		} catch ( SQLException throwables ) {
+			throwables.printStackTrace();
 			
-		} finally {
+		}/*finally {
 		    if ( res != null )
-		        try {
-		            /* Fermeture de l'objet resultSet */
-		            res.close();
-		        } catch ( SQLException ignore ) {
-		        }
-		    
+	            //Fermeture de l'objet resultSet 
+	            res.close();
+
 		    if(sql !=null)
-		    	try {
-		    		sql.close();
-		    	}catch (SQLException ignore) {
-		    	}
+	    		sql.close();
 		    if ( con != null )
-		        try {
-		            /* Fermeture de la connexion */
-		            con.close();
-		        } catch ( SQLException ignore ) {
-		        } 
-		}
+	            // Fermeture de la connexion 
+	            con.close();
+	            System.out.println("deconnexion bd");
+		}*/
 		return nomTPs;
 	}
 	
@@ -663,7 +654,7 @@ public class Query {
 		   		+ "values(?,?,?,?)");
 		   
 		   sql.setString(1,res.getUtilisateur().getNumU());
-		   sql.setString(2,res.getMachine().getNumMachine());
+		   sql.setString(2,res.getMachine().getNomMachine());
 		   sql.setString(3,res.getCalendrierR().getDate().toString());
 		   sql.setString(4,res.getCalendrierR().getHeure().toString());
 		   sql.executeUpdate();   
@@ -702,7 +693,7 @@ public class Query {
 		   		+ " and DateResa=? and CreneauResa=?) ");
 		   
 		   sql.setString(1,res.getUtilisateur().getNumU());
-		   sql.setString(2,res.getMachine().getNumMachine());
+		   sql.setString(2,res.getMachine().getNomMachine());
 		   sql.setString(3,res.getCalendrierR().getDate().toString());
 		   sql.setString(4,res.getCalendrierR().getHeure().toString());
 		   sql.executeUpdate();  
@@ -742,7 +733,7 @@ public class Query {
 		   sql = con.prepareStatement("UPDATE reserver SET DateResa=?,CreneauResa=? where IdE=? and IdM=?) ");
 		   
 		   sql.setString(1,res.getUtilisateur().getNumU());
-		   sql.setString(2,res.getMachine().getNumMachine());
+		   sql.setString(2,res.getMachine().getNomMachine());
 		   sql.setString(3,res.getCalendrierR().getDate().toString());
 		   sql.setString(4,res.getCalendrierR().getHeure().toString());
 		   

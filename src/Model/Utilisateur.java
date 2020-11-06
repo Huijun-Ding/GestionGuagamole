@@ -15,4 +15,8 @@ public class Utilisateur {
         this.nomU = nom;
         this.prenomU = prenom;
     }
+    
+    public String getNumU() {
+        return this.numU;
+    }
 }

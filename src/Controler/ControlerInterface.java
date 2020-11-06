@@ -8,14 +8,32 @@ import Model.*;
 public class ControlerInterface {
 
     private Query query;
+    private String idU = null;
+    private int typeU = 0;
 
     public ControlerInterface() {
         this.query = new Query();
     }
 
+    public String getId() {
+        return this.idU;
+    }
+
+    public int getType() {
+        return this.typeU;
+    }
+
+    public void deconnexion() {
+        idU = null;
+        typeU = 0;
+    }
+
     public Utilisateur connexion(String id, String mdp, int i) {
         Utilisateur user = query.connexionUilisateur(id, mdp, i);
         if (user != null) {
+            idU = id;
+            typeU = i;
+            
             if (user instanceof AdminMateriel) {
                 AdminMateriel am = (AdminMateriel) query.connexionUilisateur(id, mdp, i);
                 return am;
@@ -24,6 +42,14 @@ public class ControlerInterface {
                 AdminRespoF ar = (AdminRespoF) query.connexionUilisateur(id, mdp, i);
                 return ar;
             }
+            if (user instanceof Etudiant) {
+                Etudiant e = (Etudiant) query.connexionUilisateur(id, mdp, i);
+                return e;
+            }
+            if (user instanceof Enseignant) {
+                Enseignant ens = (Enseignant) query.connexionUilisateur(id, mdp, i);
+                return ens;
+            }           
         }
         return null;
     }
@@ -56,4 +82,11 @@ public class ControlerInterface {
         return query.getListReservation();
     }
 
+    /*public String getDateTP(String nomTP) {
+         return query.getDateTP(nomTP);
+    }
+    
+    public String getCreneauTP(String nomTP) {
+        return query.getCreneauTP(nomTP);
+    }*/
 }

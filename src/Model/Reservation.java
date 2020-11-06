@@ -41,4 +41,8 @@ public class Reservation {
     public TP getTP() {
         return this.tp;
     }
+
+    public Utilisateur getUtilisateur() {
+        return this.utilisateur;
+    }
 }

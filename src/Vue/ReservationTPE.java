@@ -2,6 +2,7 @@ package Vue;
 
 import BD.BDconfig;
 import static Vue.AjouterTP.sql;
+import static Vue.ReservationLibreE.res;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.*;
+import Controler.*;
 
 public class ReservationTPE {
 
@@ -17,6 +19,8 @@ public class ReservationTPE {
     static PreparedStatement sql;
     static ResultSet res;
     private int ids;
+    private String datetp;
+    private String creneautp;
 
     public ReservationTPE() {
         BDconfig c = new BDconfig();
@@ -38,7 +42,7 @@ public class ReservationTPE {
         labelTP.setBounds(211, 110, 110, 13);
         JComboBox cmbTP = new JComboBox();
         cmbTP.setBounds(353, 107, 225, 19);
-        cmbTP.addItem("--veuillez choisir--");
+        //cmbTP.addItem("--veuillez choisir--");
         try {
             sql = con.prepareStatement("select NomTP from tp;");
             res = sql.executeQuery();
@@ -83,30 +87,63 @@ public class ReservationTPE {
         JLabel lblNewLabel = new JLabel("--------");
         lblNewLabel.setBounds(402, 73, 45, 13);
         jp2.add(lblNewLabel);
+        
+        // salle de tp
         try {
-            sql = con.prepareStatement("select IdS, NomSalle from tp t, derouler d, salle s where t.IdTP = d.IdTP and d.IdS = s.IdS and t.NomTP = ?;");
-            sql.setString(1, (String)cmbTP.getSelectedItem());
-            sql.executeUpdate();
-            lblNewLabel.setText(res.getString("NomSalle"));
-            ids = res.getInt("IdS");
+            sql = con.prepareStatement("select distinct d.IdS, s.NomS from tp t, derouler d, salle s where t.IdTP = d.IdTP and d.IdS = s.IdS and t.NomTP = ?;");
+            sql.setString(1, cmbTP.getSelectedItem().toString());
+            res = sql.executeQuery();
+            while (res.next()) {
+                lblNewLabel.setText(res.getString("s.NomS"));
+                ids = res.getInt("d.IdS");
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-        }   
+        }
         
+        // date de tp
+        try {
+            sql = con.prepareStatement("select distinct d.DateTP from derouler d, tp t where t.IdTP = d.IdTP and t.NomTP = ?;");
+            sql.setString(1, cmbTP.getSelectedItem().toString());
+            res = sql.executeQuery();
+            while (res.next()) {
+                datetp = res.getString("d.DateTP");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        
+        // creneau de tp
+        try {
+            sql = con.prepareStatement("select distinct d.CreneauTP from derouler d, tp t where t.IdTP = d.IdTP and t.NomTP = ?;");
+            sql.setString(1, cmbTP.getSelectedItem().toString());
+            res = sql.executeQuery();
+            while (res.next()) {
+                creneautp = res.getString("d.CreneauTP");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        
+        // machine non-réservé dans cette salle
         JComboBox comboBox = new JComboBox();
         comboBox.setBounds(404, 114, 106, 21);
         comboBox.addItem("--veuillez choisir--");
         try {
-            sql = con.prepareStatement("select NomM from machine m, salle s where m.IdS = s.IdS;");
+            sql = con.prepareStatement("select NomM from machine m, salle s where m.IdS = s.IdS and s.IdS = ? and m.IdM not in ( select IdM from reserver where DateResa = ? and CreneauResa = ?);");
+            sql.setInt(1, ids);
+            sql.setString(2, (String)datetp);
+            sql.setString(3, (String)creneautp);
             res = sql.executeQuery();
             while (res.next()) {
+                System.out.println(res.getString("NomM"));
                 comboBox.addItem(res.getString("NomM"));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-        }         
+        }
         jp2.add(comboBox);
-        
+
         CardLayout cl = (CardLayout) (cards.getLayout());
         cl.show(cards, "card1");
         jf2.getContentPane().add(cards);
@@ -120,7 +157,7 @@ public class ReservationTPE {
                 }
             }
         });
-                
+
         btn2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == btn2) {
@@ -142,6 +179,8 @@ public class ReservationTPE {
                 if (e.getSource() == btn4) {
                     // réaliser la résrvation
 
+                    
+                    
                     // vers la page de consultation
                     jf2.dispose();
                     new ConsultationE();

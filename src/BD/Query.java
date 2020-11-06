@@ -18,9 +18,11 @@ public class Query {
         BDconfig c = new BDconfig();
         con = c.getConnection();
 
-        for (int i = 0; i < BD.Query.afficherSalles().size(); i++) {
+        /*for (int i = 0; i < BD.Query.afficherSalles().size(); i++) {
             System.out.println(afficherSalles().get(i));
-        }
+        }*/
+        
+        System.out.println(BD.Query.getCreneauTP("java"));
     }
 
     public Connection getConnection() {
@@ -366,6 +368,58 @@ public class Query {
             return reservation;
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        return null;
+    }
+
+    public void ajouterReservation(Reservation r) {
+        int idE = 0;
+        int idM = 0;
+        try {
+            sql = con.prepareStatement("SELECT IdE from etudiant where NumE=?;");
+            sql.setString(1, r.getUtilisateur().getNumU());
+            res = sql.executeQuery();
+            while (res.next()) {
+                idE = (res.getInt("IdE"));
+            }
+            sql = con.prepareStatement("SELECT IdM fromM machine where NomM=?;");
+            sql.setString(1, r.getMachine().getNomMachine());
+            res = sql.executeQuery();
+            while (res.next()) {
+                idM = (res.getInt("IdM"));
+            }
+            sql = con.prepareStatement("INSERT INTO reserver(IdE,IdM,DateResa,CreneauResa) values(?,?,?,?)");
+            sql.setInt(1, idE);
+            sql.setInt(2, idM);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static String getDateTP(String nomTP) {
+        try {
+            sql = con.prepareStatement("select distinct d.DateTP from derouler d, tp t where t.IdTP = d.IdTP and t.NomTP = ?;");
+            sql.setString(1, nomTP);
+            res = sql.executeQuery();
+            while (res.next()) {
+                return res.getString("d.DateTP");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+    
+    public static String getCreneauTP(String nomTP) {
+        try {
+            sql = con.prepareStatement("select distinct d.CreneauTP from derouler d, tp t where t.IdTP = d.IdTP and t.NomTP = ?;");
+            sql.setString(1, nomTP);
+            res = sql.executeQuery();
+            while (res.next()) {
+                return res.getString("d.CreneauTP");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
         return null;
     }

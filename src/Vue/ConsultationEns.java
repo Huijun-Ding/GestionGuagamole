@@ -3,6 +3,7 @@ package Vue;
 import BD.BDconfig;
 import Controler.ControlerInterface;
 import static Vue.AjouterTP.sql;
+import static Vue.ConsultationE.sql;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -171,10 +172,13 @@ public class ConsultationEns {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == btnNewButton_1) {
                     jfEns.dispose();
-                    // supprimer ce TP de la BD
-                    /*try {
-                        sql = con.prepareStatement("delete from etudiant where NumE=" + "'" + num + "';");
-                        sql.executeUpdate();
+                    // supprimer ce TP 
+                    /*int idr = Integer.parseInt(comboBox.getSelectedItem().toString());
+                    
+                    try {
+                        sql = con.prepareStatement("Delete from reserver where IdR=?");
+                        sql.setInt(1, idr);
+                        int res = sql.executeUpdate();
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }*/
@@ -265,6 +269,7 @@ public class ConsultationEns {
                 }
             }
         });
+        
         jfEns.setVisible(true);
     }
 

@@ -151,18 +151,20 @@ public class ConsultationE {
                 }
             }
         });
-        
+
         btnNewButton_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == btnNewButton_1) {
-                    // supprimer dans la DB la réservation sélectionnée 
+                    // supprimer dans la DB la réservation sélectionnée
+                    int idr = Integer.parseInt(comboBox.getSelectedItem().toString());
                     
-                    
-                    
-                    
-                    
-                    
-                    
+                    try {
+                        sql = con.prepareStatement("Delete from reserver where IdR=?");
+                        sql.setInt(1, idr);
+                        int res = sql.executeUpdate();
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
                 }
             }
         });

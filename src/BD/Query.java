@@ -252,11 +252,11 @@ public class Query {
     		int idS;
     		String etatS;
     		Creneau cre;
-    		String sql = "SELECT * FROM tp T, salle S WHERE S.IdS = T.IdS";
+    		String sql = "SELECT * FROM derouler D, salle S WHERE S.IdS = D.IdS";
     		res = stmt.executeQuery(sql);
     		while(res.next()) {
-    			dateRes = res.getDate("T.DateTP");
-    			cres = res.getString("T.CreneauTP");
+    			dateRes = res.getDate("D.DateTP");
+    			cres = res.getString("D.CreneauTP");
     			Salle s = new Salle(res.getInt("S.IdS"),res.getString("S.NomS"),20);
     			cre = getCreneauEnum(cres);
     			Calendrier cal = new Calendrier(cre, dateRes);

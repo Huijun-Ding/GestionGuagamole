@@ -9,6 +9,7 @@ import Model.Machine;
 import Model.Utilisateur;
 import static Vue.AjouterTP.con;
 import static Vue.AjouterTP.sql;
+import static Vue.ReservationTPE.sql;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -41,9 +42,10 @@ public class ReservationLibreE {
     private String dater;
     private String creneaur;
     private static ControlerInterface contro;
+    private int idE;
 
     public ReservationLibreE(ControlerInterface controler) {
-        
+
         this.contro = controler;
 
         BDconfig c = new BDconfig();
@@ -150,7 +152,7 @@ public class ReservationLibreE {
         btn2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dater = dateTextField.getText().toString();
-                
+
                 if (e.getSource() == btn2) {
                     cmb3.addItem("--veuillez choisir--");
                     try {
@@ -186,7 +188,7 @@ public class ReservationLibreE {
                 Query Q = new Query();
                 if (e.getSource() == btn4) {
                     // réaliser la résrvation
-                    ArrayList<Machine> lstM = new ArrayList<>();
+                    /*ArrayList<Machine> lstM = new ArrayList<>();
                     Machine m = null;
                     Creneau cre = Q.getCreneauEnum((String) cmb1.getSelectedItem());
                     Date d = null;
@@ -212,11 +214,49 @@ public class ReservationLibreE {
                         if (lstM.get(i).getNomMachine().equals((String) cmb3.getSelectedItem())) {
                             m = lstM.get(i);
                         }
-                    }
+                    }*/
 
-                    //insérer dans BD
+            //insérer dans BD
+                    String machineTP = cmb3.getSelectedItem().toString();
+                    int idM = 0;
                     
+                    // get IdEns
+                    System.out.println(contro.getId());
+                    try {
+                        sql = con.prepareStatement("select IdE from etudiant where NumE = ?;");
+                        sql.setString(1, contro.getId());
+                        res = sql.executeQuery();
+                        while (res.next()) {
+                            idE = res.getInt("IdE");
+                        }
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
                     
+                    // Machine
+                    try {
+                        sql = con.prepareStatement("select IdM from machine where NomM=?;");
+                        sql.setString(1, machineTP);
+                        res = sql.executeQuery();
+                        while (res.next()) {
+                            idM= res.getInt("IdM");
+                        }
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
+                    
+                    // inserer les données
+                    try {
+                        sql = con.prepareStatement("Insert into reserver(IdE,IdM,DateResa,CreneauResa) values(?,?,?,?)");
+                        sql.setInt(1,idE);
+                        sql.setInt(2,idM);
+                        sql.setString(3,dater);
+                        sql.setString(4,creneaur);
+                        int res = sql.executeUpdate();
+                        System.out.println("Réservation machine liblre réussite !");
+                    }catch(SQLException throwables) {
+                        throwables.printStackTrace();    
+                    }
                     
                     // vers la page de consultation
                     jf3.dispose();

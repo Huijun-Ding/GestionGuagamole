@@ -177,18 +177,16 @@ public class ReservationTPE {
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }
-                    
+
                     // réaliser la réservation
                     try {
                         sql = con.prepareStatement("Insert into reserver(IdE,IdM,DateResa,CreneauResa) values(?,?,?,?)");
-
                         sql.setInt(1, idE);
                         sql.setInt(2, idM);
                         sql.setString(3, datetp);
                         sql.setString(4, creneautp);
-
                         int res = sql.executeUpdate();
-
+                        System.out.println("Réservation machine tp réussite !");
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }

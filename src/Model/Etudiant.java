@@ -7,7 +7,7 @@ public class Etudiant extends Utilisateur{
     String nom;
     String prenom;
     
-    public Etudiant(int num, String mdp, String nom, String prenom, Groupe p) {
+    public Etudiant(String num, String mdp, String nom, String prenom, Groupe p) {
         super(num, mdp, nom, prenom);
         this.groupe = p;
     }
@@ -20,7 +20,13 @@ public class Etudiant extends Utilisateur{
     	return super.prenomU;
     }
     
-    public int getNumE() {
+    public String getNumE() {
     	return super.numU;
+    }
+    public String getMdpE() {
+    	return super.mdpU;
+    }
+    public Groupe getGroupe() {
+    	return this.groupe;
     }
 }

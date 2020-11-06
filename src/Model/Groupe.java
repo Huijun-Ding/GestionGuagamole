@@ -32,4 +32,8 @@ public class Groupe {
     public ArrayList<TP> getListTPs() {
         return this.listTPs;
     }
+    
+    public String getNumG() {
+    	return this.numGroupe;
+    }
 }

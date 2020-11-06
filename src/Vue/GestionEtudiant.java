@@ -32,8 +32,8 @@ public class GestionEtudiant extends JFrame implements ActionListener, ItemListe
 	private static JButton btnModifierEtudiant = new JButton("Modifier");
 	private static JButton btnSupprimerEtudiant = new JButton("Supprimer");
 	private static JButton btnRetourGE = new JButton("Retour");
-	private static JComboBox comFormation = new JComboBox();
-	private static JComboBox comEtudiant = new JComboBox();
+	public static JComboBox comFormation = new JComboBox();
+	public static JComboBox comEtudiant = new JComboBox();
 	ControlerInterface controler;
 	/**
 	 * Create the frame.
@@ -118,6 +118,7 @@ public class GestionEtudiant extends JFrame implements ActionListener, ItemListe
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btnAjouterEtudiant) {
+			AjouterEtudiant.comGroupe.removeAllItems();
 			AjouterEtudiant ae = new AjouterEtudiant(controler);
 			this.dispose();
 		}if(e.getSource()==btnModifierEtudiant) {

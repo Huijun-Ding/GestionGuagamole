@@ -76,17 +76,17 @@ public class ConsultationE {
         // tous les réservations de cet étudiant
         comboBox.addItem("--veuillez choisir--");
         try {
-            sql = con.prepareStatement("select IdM from reserver where IdE = ?;");
+            sql = con.prepareStatement("select IdR from reserver where IdE = ?;");
             sql.setInt(1, ide);
             res = sql.executeQuery();
             while (res.next()) {
-                comboBox.addItem(res.getInt("IdM"));
+                comboBox.addItem(res.getInt("IdR"));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
         panel.add(comboBox);
-        
+
         JButton btnNewButton = new JButton("Retour");
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -148,6 +148,59 @@ public class ConsultationE {
                 if (e.getSource() == btnNewButton) {
                     jfE.dispose();
                     new MenuE(controler);
+                }
+            }
+        });
+
+        comboBox.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == comboBox) {
+                    // pour chaque réservation, afficher les :
+                    int idr = Integer.parseInt(comboBox.getSelectedItem().toString());
+                    String nomm = "";
+                    String dater = "";
+                    String creneaur = "";
+
+                    // machine 
+                    try {
+                        sql = con.prepareStatement("select m.NomM from reserver r, machine m where r.IdM = m.IdM and r.IdR = ?;");
+                        sql.setInt(1, idr);
+                        res = sql.executeQuery();
+                        while (res.next()) {
+                            nomm = res.getString("NomM");
+                        }
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
+
+                    // date
+                    try {
+                        sql = con.prepareStatement("select DateResa from reserver where IdR = ?;");
+                        sql.setInt(1, idr);
+                        res = sql.executeQuery();
+                        while (res.next()) {
+                            dater = res.getString("DateResa");
+                        }
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
+
+                    // créneau
+                    try {
+                        sql = con.prepareStatement("select CreneauResa from reserver where IdR = ?;");
+                        sql.setInt(1, idr);
+                        res = sql.executeQuery();
+                        while (res.next()) {
+                            creneaur = res.getString("CreneauResa");
+                        }
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
+
+                    // reset value
+                    lblNewLabel_5.setText(nomm);
+                    lblNewLabel_5_1.setText(dater);
+                    lblNewLabel_5_2.setText(creneaur);
                 }
             }
         });

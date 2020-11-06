@@ -24,6 +24,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import java.util.ArrayList;
 import java.awt.SystemColor;
+import java.awt.Font;
 
 public class AjouterTP {
 
@@ -40,6 +41,7 @@ public class AjouterTP {
 
         JPanel jp = new JPanel();
         JLabel jl = new JLabel("Nouveau TP");
+        jl.setFont(new Font("Tahoma", Font.PLAIN, 14));
         jp.setBackground(Color.white);
         jp.add(jl);
         jfATP.getContentPane().add(jp, BorderLayout.NORTH);
@@ -47,28 +49,36 @@ public class AjouterTP {
         JPanel jp1 = new JPanel();
         jp1.setBackground(SystemColor.inactiveCaptionBorder);
         JButton btn1 = new JButton("Retour");
-        btn1.setBounds(225, 273, 59, 21);
+        btn1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        btn1.setBounds(225, 273, 110, 31);
         JButton btn2 = new JButton("Valider");
-        btn2.setBounds(441, 273, 65, 21);
+        btn2.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        btn2.setBounds(436, 273, 116, 31);
 
         JLabel j = new JLabel("Nom : ");
-        j.setBounds(221, 24, 31, 13);
+        j.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        j.setBounds(180, 10, 110, 28);
         JTextField txtfield = new JTextField();
-        txtfield.setBounds(405, 21, 137, 19);
+        txtfield.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        txtfield.setBounds(363, 11, 262, 28);
         txtfield.setText("Veuillez saisir le nom du TP ");
 
         JLabel j2 = new JLabel("Date : ");
-        j2.setBounds(221, 62, 31, 13);
+        j2.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        j2.setBounds(180, 48, 85, 29);
         DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         JFormattedTextField dateTextField = new JFormattedTextField(format);
-        dateTextField.setBounds(405, 59, 105, 19);
+        dateTextField.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        dateTextField.setBounds(363, 49, 189, 24);
         dateTextField.setText("yyyy-MM-dd");
 
-        JLabel j3 = new JLabel("Cr�neau : ");
-        j3.setBounds(221, 101, 59, 13);
+        JLabel j3 = new JLabel("Créneau : ");
+        j3.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        j3.setBounds(180, 87, 85, 31);
         JComboBox cmb1 = new JComboBox();
-        cmb1.setBounds(408, 98, 137, 19);
-        // tous les cr�nneau
+        cmb1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        cmb1.setBounds(363, 83, 186, 35);
+        // tous les crénneau
         cmb1.addItem("8h00-9h30");
         cmb1.addItem("9h30-11h00");
         cmb1.addItem("11h00-12h30");
@@ -79,10 +89,12 @@ public class AjouterTP {
         cmb1.addItem("18h30-20h00");
 
         JLabel j4 = new JLabel("Salle : ");
-        j4.setBounds(223, 142, 33, 13);
+        j4.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        j4.setBounds(180, 134, 83, 25);
         JComboBox cmb2 = new JComboBox();
-        cmb2.setBounds(408, 139, 102, 19);
-        // une boucle de tous les créneau
+        cmb2.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        cmb2.setBounds(363, 128, 186, 36);
+        // une boucle de tous les crÃ©neau
         cmb2.addItem("--veuillez choisir--");
         try {
             sql = con.prepareStatement("select NomS from salle;");
@@ -95,10 +107,12 @@ public class AjouterTP {
         }
 
         JLabel j5 = new JLabel("Formation :  ");
-        j5.setBounds(221, 180, 60, 13);
+        j5.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        j5.setBounds(180, 179, 110, 27);
         JComboBox cmb3 = new JComboBox();
-        cmb3.setBounds(408, 177, 102, 19);
-        // une boucle de tous les créneau
+        cmb3.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        cmb3.setBounds(366, 177, 186, 30);
+        // une boucle de tous les crÃ©neau
         cmb3.addItem("--veuillez choisir--");
         try {
             sql = con.prepareStatement("select NomF from formation;");
@@ -110,11 +124,13 @@ public class AjouterTP {
             throwables.printStackTrace();
         }
 
-        JLabel j6 = new JLabel("Groupe d'�tudiants :  ");
-        j6.setBounds(222, 220, 110, 13);
+        JLabel j6 = new JLabel("Groupe d'étudiants :  ");
+        j6.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        j6.setBounds(180, 219, 176, 25);
         JComboBox cmb4 = new JComboBox();
-        cmb4.setBounds(408, 217, 102, 19);
-        // une boucle de tous les créneau
+        cmb4.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        cmb4.setBounds(366, 217, 186, 28);
+        // une boucle de tous les crÃ©neau
         cmb4.addItem("--veuillez choisir--");
         try {
             sql = con.prepareStatement("select NomG from groupe;");
@@ -170,7 +186,7 @@ public class AjouterTP {
                     
                     BD.Query.ajouterTP(txtfield.getText());
                     
-                    // fermer la fênetre
+                    // fermer la fÃªnetre
                     jfATP.dispose();
                     new ConsultationEns();
                 }

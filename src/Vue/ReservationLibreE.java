@@ -30,7 +30,7 @@ import java.awt.FlowLayout;
 import java.awt.SystemColor;
 import java.text.ParseException;
 import java.util.ArrayList;
-import static javafx.scene.input.KeyCode.Q;
+import java.awt.Font;
 
 public class ReservationLibreE {
 
@@ -49,24 +49,29 @@ public class ReservationLibreE {
 
         JPanel jp = new JPanel();
         JLabel jl = new JLabel("Réserver une machine libre");
+        jl.setFont(new Font("Tahoma", Font.PLAIN, 14));
         jp.setBackground(Color.white);
         jp.add(jl);
         jf3.getContentPane().add(jp, BorderLayout.NORTH);
 
         JPanel jp1 = new JPanel();
         jp1.setBackground(SystemColor.inactiveCaptionBorder);
-        JLabel labelL1 = new JLabel("Choisissez une date ：");
-        labelL1.setBounds(217, 86, 111, 13);
+        JLabel labelL1 = new JLabel("Choisissez une date ");
+        labelL1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        labelL1.setBounds(203, 67, 170, 50);
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         JFormattedTextField dateTextField = new JFormattedTextField(format);
-        dateTextField.setBounds(412, 83, 120, 19);
+        dateTextField.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        dateTextField.setBounds(412, 79, 170, 28);
         dateTextField.setText("yyyy-MM-dd");
 
-        JLabel labelL2 = new JLabel("Choisissez une créneau ：");
-        labelL2.setBounds(217, 123, 138, 13);
+        JLabel labelL2 = new JLabel("Choisissez une créneau ");
+        labelL2.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        labelL2.setBounds(203, 136, 181, 28);
         JComboBox cmb1 = new JComboBox();
-        cmb1.setBounds(412, 120, 120, 19);
-        cmb1.addItem("--veuillez coisir--");
+        cmb1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        cmb1.setBounds(412, 136, 170, 24);
+        cmb1.addItem("--veuillez choisir--");
         cmb1.addItem("8h00-9h30");
         cmb1.addItem("9h30-11h00");
         cmb1.addItem("11h00-12h30");
@@ -82,9 +87,11 @@ public class ReservationLibreE {
         jp1.add(labelL2);
         jp1.add(cmb1);
         JButton btn1 = new JButton("Retour");
-        btn1.setBounds(274, 222, 63, 21);
+        btn1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        btn1.setBounds(215, 222, 122, 34);
         JButton btn2 = new JButton("Valider");
-        btn2.setBounds(431, 222, 65, 21);
+        btn2.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        btn2.setBounds(460, 222, 122, 34);
         jp1.add(btn1);
         jp1.add(btn2);
 
@@ -92,18 +99,22 @@ public class ReservationLibreE {
         JPanel jp2 = new JPanel();
         jp2.setBackground(SystemColor.inactiveCaptionBorder);
         JButton btn4 = new JButton("Réserver");
-        btn4.setBounds(403, 186, 83, 21);
+        btn4.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        btn4.setBounds(466, 186, 137, 41);
         jp2.setLayout(null);
         JButton btn3 = new JButton("Retour");
-        btn3.setBounds(284, 186, 63, 21);
+        btn3.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        btn3.setBounds(208, 186, 126, 41);
         jp2.add(btn3);
 
         JLabel label = new JLabel("Machines disponibles : ");
-        label.setBounds(254, 98, 106, 13);
+        label.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        label.setBounds(208, 91, 170, 41);
         jp2.add(label);
         JComboBox cmb3 = new JComboBox();
-        cmb3.setBounds(402, 95, 102, 19);
-        cmb3.addItem("--veuillez coisir--");
+        cmb3.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        cmb3.setBounds(402, 95, 201, 33);
+        cmb3.addItem("--veuillez choisir--");
         try {
 
             sql = con.prepareStatement("SELECT NomM FROM machine WHERE IdS in (SELECT IdS FROM salle WHERE IdS not in (SELECT s.IdS FROM Salle s, derouler d WHERE s.IdS = d.IdS and DateTP = ? and CreneauTP = ?));");

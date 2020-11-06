@@ -32,16 +32,20 @@ public class ReservationTPE {
 
         JPanel jp = new JPanel();
         JLabel jl = new JLabel("Réserver une machine pour un TP");
+        jl.setFont(new Font("Tahoma", Font.PLAIN, 14));
         jp.setBackground(Color.white);
         jp.add(jl);
         jf2.getContentPane().add(jp, BorderLayout.NORTH);
 
         JPanel jp1 = new JPanel();
         jp1.setBackground(SystemColor.inactiveCaptionBorder);
-        JLabel labelTP = new JLabel("Choisissez votre TP ：");
-        labelTP.setBounds(211, 110, 110, 13);
+        JLabel labelTP = new JLabel("Choisissez votre TP :  ");
+        labelTP.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        labelTP.setBounds(156, 89, 190, 47);
+        
         JComboBox cmbTP = new JComboBox();
-        cmbTP.setBounds(353, 107, 225, 19);
+        cmbTP.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        cmbTP.setBounds(356, 98, 264, 29);
         //cmbTP.addItem("--veuillez choisir--");
         try {
             sql = con.prepareStatement("select NomTP from tp;");
@@ -56,26 +60,35 @@ public class ReservationTPE {
         jp1.setLayout(null);
         jp1.add(labelTP);
         JButton btn1 = new JButton("Retour");
-        btn1.setBounds(258, 184, 88, 21);
+        btn1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        btn1.setBounds(211, 184, 135, 34);
         jp1.add(btn1);
 
         jp1.add(cmbTP);
         JButton btn2 = new JButton("Valider");
-        btn2.setBounds(428, 184, 88, 21);
+        btn2.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        btn2.setBounds(428, 184, 126, 34);
         jp1.add(btn2);
 
         JPanel jp2 = new JPanel();
         jp2.setBackground(SystemColor.inactiveCaptionBorder);
         JButton btn3 = new JButton("Retour");
-        btn3.setBounds(251, 201, 100, 21);
+        btn3.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        btn3.setBounds(250, 201, 101, 33);
+        
         JButton btn4 = new JButton("Réserver");
-        btn4.setBounds(404, 201, 106, 21);
+        btn4.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        btn4.setBounds(437, 201, 115, 33);
+        
         jp2.setLayout(null);
         JLabel label = new JLabel("Salle TP : ");
-        label.setBounds(251, 73, 48, 13);
+        label.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        label.setBounds(237, 53, 106, 33);
         jp2.add(label);
+        
         JLabel label_1 = new JLabel("Machines disponibles : ");
-        label_1.setBounds(251, 118, 106, 13);
+        label_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        label_1.setBounds(237, 111, 146, 33);
         jp2.add(label_1);
 
         jp2.add(btn3);
@@ -85,7 +98,8 @@ public class ReservationTPE {
         cards.add(jp2, "card2");
 
         JLabel lblNewLabel = new JLabel("--------");
-        lblNewLabel.setBounds(402, 73, 45, 13);
+        lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        lblNewLabel.setBounds(404, 53, 115, 33);
         jp2.add(lblNewLabel);
         
         // salle de tp
@@ -127,7 +141,8 @@ public class ReservationTPE {
         
         // machine non-réservé dans cette salle
         JComboBox comboBox = new JComboBox();
-        comboBox.setBounds(404, 114, 106, 21);
+        comboBox.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        comboBox.setBounds(404, 114, 165, 27);
         comboBox.addItem("--veuillez choisir--");
         try {
             sql = con.prepareStatement("select NomM from machine m, salle s where m.IdS = s.IdS and s.IdS = ? and m.IdM not in ( select IdM from reserver where DateResa = ? and CreneauResa = ?);");

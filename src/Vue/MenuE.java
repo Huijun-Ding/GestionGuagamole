@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.SystemColor;
+import java.awt.Font;
 
 public class MenuE {
     public MenuE() {
@@ -18,6 +19,7 @@ public class MenuE {
 
         JPanel jp = new JPanel();    
         JLabel jl = new JLabel("Menu");   
+        jl.setFont(new Font("Tahoma", Font.PLAIN, 14));
         jp.setBackground(Color.white);  
         jp.add(jl);   
         jf.getContentPane().add(jp, BorderLayout.NORTH);
@@ -27,9 +29,11 @@ public class MenuE {
         JPanel jp1 = new JPanel();
         jp1.setBackground(SystemColor.inactiveCaptionBorder);
         JButton btn1 = new JButton("Effectuer une réservation");  
-        btn1.setBounds(202, 152, 159, 21);
+        btn1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        btn1.setBounds(112, 152, 249, 41);
         JButton btn2 = new JButton("Consulter mes réservations");
-        btn2.setBounds(421, 152, 167, 21);
+        btn2.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        btn2.setBounds(421, 152, 233, 41);
         jp1.setLayout(null);
         jp1.add(btn1);
         jp1.add(btn2);
@@ -37,11 +41,14 @@ public class MenuE {
         JPanel jp2 = new JPanel();
         jp2.setBackground(SystemColor.inactiveCaptionBorder);
         JButton btn3 = new JButton("Réserver pour un TP");
-        btn3.setBounds(231, 107, 137, 21);
+        btn3.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        btn3.setBounds(158, 107, 210, 48);
         JButton btn4 = new JButton("Réserver une machine libre");
-        btn4.setBounds(391, 107, 169, 21);
+        btn4.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        btn4.setBounds(426, 107, 210, 48);
         JButton btn5 = new JButton("Retour");
-        btn5.setBounds(358, 214, 63, 21);
+        btn5.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        btn5.setBounds(337, 214, 125, 27);
         jp2.setLayout(null);
         jp2.add(btn3);
         jp2.add(btn4);

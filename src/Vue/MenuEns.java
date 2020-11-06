@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.SystemColor;
+import java.awt.Font;
 
 public class MenuEns {
     public MenuEns() {
@@ -17,6 +18,7 @@ public class MenuEns {
 
         JPanel jp = new JPanel();    
         JLabel jl = new JLabel("Menu");   
+        jl.setFont(new Font("Tahoma", Font.PLAIN, 14));
         jp.setBackground(Color.white);  
         jp.add(jl);   
         jfEns.getContentPane().add(jp, BorderLayout.NORTH); 
@@ -24,9 +26,11 @@ public class MenuEns {
         JPanel jp1 = new JPanel();
         jp1.setBackground(SystemColor.inactiveCaptionBorder);
         JButton btn1 = new JButton("Ajouter un TP");  
-        btn1.setBounds(236, 135, 95, 21);
+        btn1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        btn1.setBounds(165, 135, 166, 44);
         JButton btn2 = new JButton("Consulter les TPs");
-        btn2.setBounds(443, 135, 111, 21);
+        btn2.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        btn2.setBounds(443, 135, 177, 44);
         jp1.setLayout(null);
         jp1.add(btn1);
         jp1.add(btn2);
@@ -45,7 +49,7 @@ public class MenuEns {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == btn2) {
                     jfEns.dispose();
-                    new ConsultationE();
+                    new ConsultationEns();
                 }
             }
         });

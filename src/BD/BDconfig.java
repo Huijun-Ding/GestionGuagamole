@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 public class BDconfig {
 
-    static final String DB_URL = "jdbc:mysql://localhost:3306/guagamole";
+    static final String DB_URL = "jdbc:mysql://localhost:3306/guacamole_db";
     static final String USER = "root";
     static final String PASS = "";
     static Connection con;
@@ -20,7 +20,7 @@ public class BDconfig {
     
     public static Connection getConnection(){
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

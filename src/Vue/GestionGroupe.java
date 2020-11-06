@@ -125,13 +125,38 @@ public class GestionGroupe extends JFrame implements ActionListener, DocumentLis
 		
 		this.setVisible(true);
 	}
+	
+	public void setListeDeroulante() {
+		int size = controler.getListeGroupe().size();
+		int count = 0;
+		Groupe[] str = new Groupe[size];
+		for(Groupe g : controler.getListeGroupe()) {
+			str[count]=g;
+			count+=1;			
+		}
+		for(int addnum=0;addnum<size;addnum++) {
+			comGroupe.addItem(str[addnum].getNumG());
+		}
+		
+		int size1 = controler.getListeFormation().size();
+		int count1 = 0;
+		str1 = new Formation[size1];
+		for(Formation f : controler.getListeFormation()) {
+			str1[count1]=f;
+			count1 += 1;			
+		}
+		for(int addnum=0;addnum<size1;addnum++) {
+			comFormation.addItem(str1[addnum].getNomF());
+		}
+	}
 	@Override
 	public void actionPerformed(ActionEvent e) {if(e.getSource()==btnSupprimerGroupe){
+			System.out.println(comGroupe.getSelectedIndex());
 			controler.supprimerGroupe(Integer.parseInt(comGroupe.getSelectedItem().toString()));
 			comGroupe.removeAllItems();
 			comFormation.removeAllItems();
-			this.dispose();
-			GestionGroupe gg = new GestionGroupe(controler);
+			setListeDeroulante();
+			
 		}if(e.getSource()==btnRetourGG) {
 			this.dispose();
 			HomePageAdminF hp = new HomePageAdminF(controler);
@@ -142,8 +167,8 @@ public class GestionGroupe extends JFrame implements ActionListener, DocumentLis
 			controler.ajouterGroupe(g);
 			comFormation.removeAllItems();
 			comGroupe.removeAllItems();
-			this.dispose();
-			GestionGroupe gg = new GestionGroupe(controler);
+			txtNomG.setText("");
+			setListeDeroulante();
 		}
 		
 	}

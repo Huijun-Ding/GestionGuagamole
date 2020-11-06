@@ -39,7 +39,7 @@ public class HomePageAdminF extends JFrame implements ActionListener{
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Bienvenue!");
-		lblNewLabel.setFont(new Font("ËÎÌו", Font.PLAIN, 20));
+		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 20));
 		lblNewLabel.setBounds(20, 10, 105, 47);
 		contentPane.add(lblNewLabel);
 		
@@ -47,23 +47,26 @@ public class HomePageAdminF extends JFrame implements ActionListener{
 		int type = controler.getType();
 		String[] nomprenom = controler.getNomPrenom(id, type);
 		JLabel lblNomRF = new JLabel(nomprenom[0]);
-		lblNomRF.setFont(new Font("ËÎÌו", Font.PLAIN, 15));
+		lblNomRF.setFont(new Font("Arial", Font.PLAIN, 15));
 		lblNomRF.setBounds(106, 47, 105, 33);
 		contentPane.add(lblNomRF);
 		
 		JLabel lblPrenomRF = new JLabel(nomprenom[1]);
-		lblPrenomRF.setFont(new Font("ËÎÌו", Font.PLAIN, 15));
+		lblPrenomRF.setFont(new Font("Arial", Font.PLAIN, 15));
 		lblPrenomRF.setHorizontalAlignment(SwingConstants.LEFT);
 		lblPrenomRF.setBounds(30, 47, 90, 33);
 		contentPane.add(lblPrenomRF);
+		btnSeDeconnecterRF.setFont(new Font("Arial", Font.PLAIN, 12));
 		
 		
 		btnSeDeconnecterRF.setBounds(280, 24, 137, 23);
 		contentPane.add(btnSeDeconnecterRF);
+		btnGestionEtudiant.setFont(new Font("Arial", Font.PLAIN, 12));
 		
 		
 		btnGestionEtudiant.setBounds(21, 113, 168, 53);
 		contentPane.add(btnGestionEtudiant);
+		btnGestionGroupe.setFont(new Font("Arial", Font.PLAIN, 12));
 		
 		
 		btnGestionGroupe.setBounds(229, 113, 177, 53);
@@ -88,7 +91,7 @@ public class HomePageAdminF extends JFrame implements ActionListener{
 		}if(e.getSource()==btnGestionGroupe) {
 			GestionGroupe.comGroupe.removeAllItems();
 			GestionGroupe.comFormation.removeAllItems();
-			this.dispose();
+			this.setVisible(false);
 			GestionGroupe gg = new GestionGroupe(controler);
 		}
 		

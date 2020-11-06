@@ -10,6 +10,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Controler.ControlerInterface;
+import Model.Etudiant;
+import Model.Formation;
+import Model.Groupe;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -27,6 +30,7 @@ public class AjouterEtudiant extends JFrame implements ActionListener{
 	private static JButton btnValiderAE = new JButton("Valider");
 	private static JButton btnRetourAE = new JButton("Retour");
 	ControlerInterface controler;
+	public static JComboBox comGroupe = new JComboBox();
 	/**
 	 * Create the frame.
 	 */
@@ -92,9 +96,19 @@ public class AjouterEtudiant extends JFrame implements ActionListener{
 		btnRetourAE.setBounds(100, 287, 93, 23);
 		contentPane.add(btnRetourAE);
 		
-		JComboBox comGroupe = new JComboBox();
+
 		comGroupe.setBounds(237, 224, 129, 23);
 		contentPane.add(comGroupe);
+		int size = controler.getListeGroupe().size();
+		int count = 0;
+		Groupe[] str = new Groupe[size];
+		for(Groupe g : controler.getListeGroupe()) {
+			str[count]=g;
+			count+=1;			
+		}
+		for(int addnum=0;addnum<size;addnum++) {
+			comGroupe.addItem(str[addnum].getNumG());
+		}
 		
 		JLabel lblNewLabel_5 = new JLabel("Groupe:");
 		lblNewLabel_5.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -110,9 +124,20 @@ public class AjouterEtudiant extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btnValiderAE) {
+			String numE = txtNumE.getText();
+			String mdpE = txtMdpE.getText();
+			String nomE = txtNomE.getText();
+			String prenomE = txtPrenomE.getText();
+			Groupe g = new Groupe(comGroupe.getSelectedItem().toString(),null);
+			Etudiant etu = new Etudiant(numE,mdpE,nomE,prenomE,g);
+			controler.ajouterEtudiant(etu);
+			GestionEtudiant.comFormation.removeAllItems();
+			GestionEtudiant.comEtudiant.removeAllItems();
 			this.dispose();
 			GestionEtudiant ge = new GestionEtudiant(controler);
 		}if(e.getSource()==btnRetourAE) {
+			GestionEtudiant.comFormation.removeAllItems();
+			GestionEtudiant.comEtudiant.removeAllItems();
 			this.dispose();
 			GestionEtudiant ge = new GestionEtudiant(controler);
 		}
